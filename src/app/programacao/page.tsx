@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 
 const schedule = [
   {
-    day: 'Quinta-feira',
-    date: '15 de Maio',
+    day: 'Quarta-feira',
+    date: '10 de Junho',
     events: [
       { time: '08:00', title: 'Credenciamento', type: 'special' as const, location: 'Entrada Principal' },
       { time: '09:00', title: 'Cerimônia de Abertura', type: 'special' as const, location: 'Auditório Principal' },
@@ -24,8 +24,8 @@ const schedule = [
     ]
   },
   {
-    day: 'Sexta-feira',
-    date: '16 de Maio',
+    day: 'Quinta-feira',
+    date: '11 de Junho',
     events: [
       { time: '08:30', title: 'Rodadas de Negócio - Bloco 1', type: 'networking' as const, location: 'Área de Negócios' },
       { time: '09:30', title: 'Palestra: Comunicação e Branding', speaker: 'Dado Schneider', type: 'palestra' as const, location: 'Auditório Principal' },
@@ -38,11 +38,24 @@ const schedule = [
     ]
   },
   {
-    day: 'Sábado',
-    date: '17 de Maio',
+    day: 'Sexta-feira',
+    date: '12 de Junho',
     events: [
       { time: '09:00', title: 'Rodadas de Negócio - Bloco 3', type: 'networking' as const, location: 'Área de Negócios' },
       { time: '10:00', title: 'Painel: Cases de Sucesso', type: 'palestra' as const, location: 'Auditório Principal' },
+      { time: '11:30', title: 'Degustação: Queijos Artesanais', type: 'workshop' as const, location: 'Arena IG' },
+      { time: '12:30', title: 'Almoço', type: 'break' as const, location: 'Livre' },
+      { time: '14:00', title: 'Workshop: Produtos com IG na Gastronomia', type: 'workshop' as const, location: 'Arena Gastronômica' },
+      { time: '16:00', title: 'Painel: Sustentabilidade e Origem', type: 'palestra' as const, location: 'Auditório Principal' },
+      { time: '18:00', title: 'Happy Hour Networking', type: 'networking' as const, location: 'Área Externa' },
+    ]
+  },
+  {
+    day: 'Sábado',
+    date: '13 de Junho',
+    events: [
+      { time: '09:00', title: 'Rodadas de Negócio - Bloco 4', type: 'networking' as const, location: 'Área de Negócios' },
+      { time: '10:00', title: 'Painel: O Mercado Internacional', type: 'palestra' as const, location: 'Auditório Principal' },
       { time: '11:30', title: 'Degustação: Queijos Artesanais', type: 'workshop' as const, location: 'Arena IG' },
       { time: '12:30', title: 'Almoço de Encerramento', type: 'networking' as const, location: 'Área Central' },
       { time: '14:30', title: 'Cerimônia de Premiação', type: 'special' as const, location: 'Auditório Principal' },
@@ -75,7 +88,7 @@ export default function ProgramacaoPage() {
         <div className="container mx-auto px-4 lg:px-8">
           <SectionTitle
             title="Programação"
-            subtitle="Três dias intensos de conhecimento, experiências e oportunidades de negócio"
+            subtitle="Quatro dias intensos de conhecimento, experiências e oportunidades de negócio"
             align="center"
           />
           <div className="flex flex-wrap justify-center gap-4 mt-8">
@@ -172,7 +185,7 @@ export default function ProgramacaoPage() {
       <section className="py-12 bg-bg-brown">
         <div className="container mx-auto px-4 lg:px-8 text-center">
           <p className="text-text-cream text-sm">
-            * Programação sujeita a alterações. Última atualização: Janeiro/2026
+            * Programação sujeita a alterações. Última atualização: Março/2026
           </p>
         </div>
       </section>
