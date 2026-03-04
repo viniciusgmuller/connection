@@ -1,0 +1,58 @@
+{
+  "id": "conhecer",
+  "title": "Conhecer",
+  "subtitle": "EIXO 1",
+  "description": "Descubra o universo das Indicações Geográficas brasileiras através de conteúdo exclusivo, palestras transformadoras e conhecimento que valoriza nossa cultura.",
+  "features": [
+    {
+      "title": "O que é IG?",
+      "description": "Entenda como as Indicações Geográficas protegem e valorizam produtos únicos de regiões brasileiras.",
+      "icon": "map"
+    },
+    {
+      "title": "Palestras Exclusivas",
+      "description": "Conteúdo transformador com especialistas renomados em turismo, gastronomia e empreendedorismo.",
+      "icon": "microphone"
+    },
+    {
+      "title": "Podcast Connection",
+      "description": "Episódios semanais com histórias inspiradoras de produtores e empreendedores do Brasil.",
+      "icon": "podcast"
+    },
+    {
+      "title": "Blog & Artigos",
+      "description": "Conteúdo aprofundado sobre terroirs brasileiros, receitas e tendências do mercado.",
+      "icon": "book"
+    }
+  ],
+  "cta": {
+    "text": "Explorar Conteúdo",
+    "href": "/conhecer"
+  },
+  "speakers": [
+    {
+      "id": "dado",
+      "name": "Dado Schneider",
+      "title": "Comunicador e Palestrante",
+      "bio": "Mestre e Doutor em Comunicação, destacado pelo BuzzFeed como 'palestrante imperdível'.",
+      "image": "/images/speakers/dado.jpg",
+      "credentials": ["Mestre em Comunicação", "Doutor em Comunicação", "Branded Claro"]
+    },
+    {
+      "id": "tejon",
+      "name": "José Luiz Tejon",
+      "title": "Especialista em Agronegócio",
+      "bio": "TOP 10 Agro pela Forbes 2024, Doutor em Educação com vasta experiência no setor.",
+      "image": "/images/speakers/tejon.jpg",
+      "credentials": ["TOP 10 Agro Forbes 2024", "Doutor em Educação"]
+    },
+    {
+      "id": "paulus",
+      "name": "Guilherme Paulus",
+      "title": "Fundador da CVC",
+      "bio": "Visionário do turismo brasileiro, fundador da maior operadora de viagens da América Latina.",
+      "image": "/images/speakers/paulus.jpg",
+      "credentials": ["Fundador CVC", "Executivo de Turismo"]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "currentPhase": "pre-event",
+  "eventDate": "2026-06-10",
+  "eventEndDate": "2026-06-13",
+  "phases": {
+    "pre-event": {
+      "showTickets": true,
+      "showCountdown": true,
+      "showSchedule": false,
+      "showMap": false,
+      "showGallery": false,
+      "showNextEdition": false
+    },
+    "during-event": {
+      "showTickets": false,
+      "showCountdown": false,
+      "showSchedule": true,
+      "showMap": true,
+      "showGallery": false,
+      "showNextEdition": false
+    },
+    "post-event": {
+      "showTickets": false,
+      "showCountdown": false,
+      "showSchedule": false,
+      "showMap": false,
+      "showGallery": true,
+      "showNextEdition": true
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "id": "negociar",
+  "title": "Negociar",
+  "subtitle": "EIXO 3",
+  "description": "Conecte-se com oportunidades de negócio, participe de rodadas de negociação e estabeleça parcerias estratégicas com produtores e compradores.",
+  "features": [
+    {
+      "title": "Rodadas de Negócio",
+      "description": "Reuniões agendadas entre produtores com IG e compradores qualificados.",
+      "icon": "handshake"
+    },
+    {
+      "title": "Feira de Expositores",
+      "description": "A maior vitrine de produtos com Indicação Geográfica do Brasil.",
+      "icon": "store"
+    },
+    {
+      "title": "Networking Exclusivo",
+      "description": "Momentos pensados para conexões estratégicas entre participantes.",
+      "icon": "network"
+    },
+    {
+      "title": "Parcerias Comerciais",
+      "description": "Oportunidades para distribuidores, restaurantes e varejo conhecerem novos fornecedores.",
+      "icon": "partnership"
+    }
+  ],
+  "cta": {
+    "text": "Quero Participar",
+    "href": "/negociar"
+  },
+  "benefits": [
+    {
+      "title": "Para Produtores",
+      "items": [
+        "Acesso a compradores qualificados",
+        "Visibilidade nacional para seu produto",
+        "Networking com outros produtores IG",
+        "Capacitação em vendas e marketing"
+      ]
+    },
+    {
+      "title": "Para Compradores",
+      "items": [
+        "Produtos exclusivos com origem certificada",
+        "Contato direto com produtores",
+        "Degustação antes da compra",
+        "Condições especiais de negociação"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "testimonials": [
+    {
+      "id": "test-1",
+      "name": "Maria Santos",
+      "role": "Sommelier",
+      "company": "Restaurante Terroir",
+      "quote": "O Connection me abriu os olhos para a riqueza dos produtos brasileiros. As palestras foram transformadoras e agora trabalho exclusivamente com produtores IG.",
+      "image": "/images/testimonials/maria.jpg",
+      "axis": "conhecer"
+    },
+    {
+      "id": "test-2",
+      "name": "João Oliveira",
+      "role": "Chef de Cozinha",
+      "company": "Bistrô Raízes",
+      "quote": "Experimentar os produtos diretamente com os produtores mudou minha forma de cozinhar. Cada ingrediente tem uma história que agora conto aos meus clientes.",
+      "image": "/images/testimonials/joao.jpg",
+      "axis": "experimentar"
+    },
+    {
+      "id": "test-3",
+      "name": "Ana Costa",
+      "role": "Diretora Comercial",
+      "company": "Rede Sabores do Brasil",
+      "quote": "Fechamos parcerias com 12 novos produtores nas rodadas de negócio. O retorno sobre o investimento foi imediato e duradouro.",
+      "image": "/images/testimonials/ana.jpg",
+      "axis": "negociar"
+    },
+    {
+      "id": "test-4",
+      "name": "Carlos Silva",
+      "role": "Produtor de Cacau",
+      "company": "Fazenda Rondônia",
+      "quote": "Consegui expandir minha rede de distribuição para todo o Sul do Brasil. O Connection é o ponto de encontro que faltava no mercado.",
+      "image": "/images/testimonials/carlos.jpg",
+      "axis": "negociar"
+    },
+    {
+      "id": "test-5",
+      "name": "Fernanda Lima",
+      "role": "Jornalista Gastronômica",
+      "company": "Portal Sabor Brasil",
+      "quote": "O conteúdo apresentado no Connection é de altíssimo nível. Saio de cada edição com material para meses de reportagens.",
+      "image": "/images/testimonials/fernanda.jpg",
+      "axis": "conhecer"
+    },
+    {
+      "id": "test-6",
+      "name": "Ricardo Mendes",
+      "role": "Barista Campeão",
+      "company": "Café Especial Minas",
+      "quote": "A Arena Café é simplesmente o melhor espaço para quem ama café especial. As degustações guiadas são inesquecíveis.",
+      "image": "/images/testimonials/ricardo.jpg",
+      "axis": "experimentar"
+    }
+  ]
+}

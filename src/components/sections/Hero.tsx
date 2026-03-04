@@ -1,0 +1,200 @@
+'use client';
+
+import { useEffect, useRef, useCallback } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { EventPhaseWrapper, PhaseConditional } from '@/components/shared/EventPhaseWrapper';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAPParallax } from '@/hooks/useGSAP';
+
+gsap.registerPlugin(ScrollTrigger);
+
+export function Hero() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const heroImageRef = useRef<HTMLDivElement>(null);
+  const decorativeRef = useGSAPParallax<HTMLDivElement>(80);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      tl.fromTo('.hero-headline', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.9 })
+        .fromTo('.hero-subtitle', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7 }, '-=0.5')
+        .fromTo('.hero-ctas', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7 }, '-=0.4')
+        .fromTo('.hero-date-card', { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.6 }, '-=0.5');
+
+      // Parallax zoom on hero image
+      if (heroImageRef.current) {
+        gsap.fromTo(heroImageRef.current.querySelector('img'),
+          { scale: 1.05 },
+          {
+            scale: 1,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: heroImageRef.current,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.5,
+            },
+          }
+        );
+      }
+    }, el);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="relative bg-[#131415]">
+      {/* Green background block — extends behind hero image */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-[138px] w-[calc(100%-40px)] max-w-[1449px] h-[800px] md:h-[1100px] lg:h-[1431px] bg-[#4D564D] rounded-[15px]" />
+
+      {/* Decorative organic SVG vector */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-[5]" aria-hidden="true">
+        <div
+          ref={decorativeRef}
+          className="absolute flex items-center justify-center"
+          style={{
+            left: '-1505px',
+            top: 'calc(50% + 1198px)',
+            width: '4422px',
+            height: '4005px',
+            transform: 'translateY(-50%)',
+          }}
+        >
+          <div className="rotate-[75deg]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/hero-lines.svg"
+              alt=""
+              width={3146}
+              height={3735}
+              className="max-w-none"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Main hero content area */}
+      <div className="relative z-10 mx-auto max-w-[1330px] px-4 md:px-8 pt-[196px] pb-8">
+        <div className="flex flex-col justify-between min-h-[407px]">
+          {/* Headline */}
+          <div className="hero-headline opacity-0">
+            <h1 className="font-heading font-normal text-[#FFF5EC] text-4xl sm:text-5xl md:text-6xl lg:text-[78.85px] leading-[1.02]">
+              Deguste, conheça e{' '}
+              <em className="font-heading italic">sinta</em>
+              <br />
+              os melhores produtos de
+              <br />
+              <em className="font-heading italic">origem do Brasil.</em>
+            </h1>
+          </div>
+
+          {/* Subtitle */}
+          <p className="hero-subtitle opacity-0 font-just-sans font-normal text-lg md:text-xl lg:text-[24px] text-[#FFF5EC]/60 max-w-[604px] mt-6 md:mt-8">
+            O maior evento de produtos de origem do Brasil. Quatro dias de experiências gastronômicas, culturais e de conteúdo em Gramado.
+          </p>
+
+          {/* CTAs + Navigation tabs row */}
+          <div className="hero-ctas opacity-0 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mt-8 md:mt-10 w-full">
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-[10px] w-full lg:w-[604px]">
+              <PhaseConditional
+                preEvent={
+                  <Link
+                    href="/ingressos"
+                    className="inline-flex items-center justify-center flex-1 sm:flex-none sm:w-[200px] p-[15px] bg-[#FFF5EC] rounded-full font-just-sans font-semibold text-[16px] text-[#3D2E1E] text-center hover:bg-[#FFF5EC]/90 transition-colors"
+                  >
+                    Garanta seu Ingresso
+                  </Link>
+                }
+                duringEvent={
+                  <Link
+                    href="/programacao"
+                    className="inline-flex items-center justify-center flex-1 sm:flex-none sm:w-[200px] p-[15px] bg-[#FFF5EC] rounded-full font-just-sans font-semibold text-[16px] text-[#3D2E1E] text-center hover:bg-[#FFF5EC]/90 transition-colors"
+                  >
+                    Confira a Programação
+                  </Link>
+                }
+                postEvent={
+                  <Link
+                    href="/programacao"
+                    className="inline-flex items-center justify-center flex-1 sm:flex-none sm:w-[200px] p-[15px] bg-[#FFF5EC] rounded-full font-just-sans font-semibold text-[16px] text-[#3D2E1E] text-center hover:bg-[#FFF5EC]/90 transition-colors"
+                  >
+                    Reviva a Experiência
+                  </Link>
+                }
+              />
+              <Link
+                href="#sobre"
+                className="inline-flex items-center justify-center flex-1 sm:flex-none sm:w-[200px] p-[15px] border border-[#FFF5EC] rounded-full font-just-sans font-semibold text-[16px] text-[#FFF5EC] text-center hover:bg-[#FFF5EC]/10 transition-colors"
+              >
+                Saiba mais
+              </Link>
+            </div>
+
+            {/* Navigation tabs */}
+            <div className="flex items-start gap-2 sm:gap-[18px] w-full lg:w-[510px]">
+              <a
+                href="#conhecer"
+                className="flex-1 flex items-center justify-center px-[25px] py-[10px] border-b border-[#FFF5EC] font-just-sans font-normal text-[14px] text-[#FFF5EC] text-center hover:bg-[#FFF5EC]/5 transition-colors"
+              >
+                Conhecer
+              </a>
+              <a
+                href="#experimentar"
+                className="flex-1 flex items-center justify-center px-[25px] py-[10px] border-b border-[#FFF5EC] font-just-sans font-normal text-[14px] text-[#FFF5EC] text-center hover:bg-[#FFF5EC]/5 transition-colors"
+              >
+                Experimentar
+              </a>
+              <a
+                href="#negociar"
+                className="flex-1 flex items-center justify-center px-[25px] py-[10px] border-b border-[#FFF5EC] font-just-sans font-normal text-[14px] text-[#FFF5EC] text-center hover:bg-[#FFF5EC]/5 transition-colors"
+              >
+                Negociar
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Date card (floating top right) */}
+      <div className="hero-date-card hidden lg:flex absolute top-[138px] right-[20px] xl:right-[calc(50%-665px)] z-20 flex-col gap-[11px] items-start bg-[#1C1F21] rounded-b-[20px] pt-[16px] pb-[16px] px-[16px] w-[181px] opacity-0">
+        <Image
+          src="/images/icon-location-figma.svg"
+          alt="Localização"
+          width={24}
+          height={24}
+        />
+        <p className="font-heading font-bold text-[#FFF5EC] text-center w-full">
+          <span className="text-[48px] leading-[24px]">10 </span>
+          <span className="text-[24px] leading-[24px]">a</span>
+          <span className="text-[48px] leading-[24px]"> 13</span>
+        </p>
+        <p className="font-heading font-bold text-[24px] leading-[24px] text-[#FFF5EC] text-center w-full">
+          de Junho 2026
+        </p>
+        <p className="font-just-sans font-normal text-[11px] text-[#FFF5EC] text-center w-full">
+          Gramado, Rio Grande do Sul
+        </p>
+      </div>
+
+      {/* Hero image / video area */}
+      <div className="relative z-10 mx-auto max-w-[1450px] px-4 md:px-5 mt-4">
+        <div ref={heroImageRef} className="relative w-full h-[400px] md:h-[600px] lg:h-[810px] rounded-[15px] overflow-hidden">
+          <Image
+            src="/images/hero-bg.jpg"
+            alt="Connection Experience - Terroirs do Brasil"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      </div>
+    </section>
+  );
+}

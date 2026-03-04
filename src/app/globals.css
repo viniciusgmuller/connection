@@ -1,26 +1,274 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Colors */
+  --gold: #C9A962;
+  --gold-dark: #B8943D;
+  --gold-light: #D4B978;
+
+  /* Background Colors */
+  --bg-dark: #1A1A1A;
+  --bg-darker: #0D0D0D;
+  --bg-brown: #3D2E1E;
+  --bg-green: #1E2A1E;
+  --bg-cream: #F5F0E6;
+
+  /* Text Colors */
+  --text-light: #FFFFFF;
+  --text-cream: #F5F0E6;
+  --text-muted: #9CA3AF;
+  --text-dark: #1A1A1A;
+
+  /* Accent Colors */
+  --accent-orange: #E07B39;
+  --accent-blue: #3B4D7A;
+  --accent-green: #2D5A3D;
+
+  /* Brand Colors (Figma Design System) */
+  --brand-white: #FFF5EC;
+  --brand-brown: #956A47;
+  --brand-cow: #131415;
+  --brand-green: #4D564D;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+  --color-gold-light: var(--gold-light);
+
+  --color-bg-dark: var(--bg-dark);
+  --color-bg-darker: var(--bg-darker);
+  --color-bg-brown: var(--bg-brown);
+  --color-bg-green: var(--bg-green);
+  --color-bg-cream: var(--bg-cream);
+
+  --color-text-light: var(--text-light);
+  --color-text-cream: var(--text-cream);
+  --color-text-muted: var(--text-muted);
+  --color-text-dark: var(--text-dark);
+
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-green: var(--accent-green);
+
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-accent: 'Cormorant Garamond', Georgia, serif;
+
+  --color-brand-white: var(--brand-white);
+  --color-brand-brown: var(--brand-brown);
+  --color-brand-cow: var(--brand-cow);
+  --color-brand-green: var(--brand-green);
+
+  --font-boska: var(--font-boska);
+  --font-just-sans: var(--font-just-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base styles */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-darker);
+  color: var(--text-light);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/* Typography utilities */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-accent {
+  font-family: var(--font-accent);
+}
+
+.font-boska {
+  font-family: var(--font-boska);
+}
+
+.font-just-sans {
+  font-family: var(--font-just-sans);
+}
+
+/* Gold text gradient */
+.text-gold-gradient {
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section backgrounds */
+.bg-pattern-leaves {
+  background-image: url('/images/leaf-pattern.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Decorative lines */
+.decorative-line {
+  position: relative;
+}
+
+.decorative-line::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dark);
+}
+
+/* Animation utilities */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Dropdown animation */
+@keyframes dropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-dropdown-in {
+  animation: dropdownIn 0.2s ease-out forwards;
+}
+
+/* Scroll-triggered animations */
+@keyframes scrollFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollFadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scrollFadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scrollScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scroll-animate {
+  opacity: 0;
+}
+
+.scroll-animate.is-visible {
+  animation: scrollFadeInUp 0.7s ease-out forwards;
+}
+
+.scroll-animate-left {
+  opacity: 0;
+}
+
+.scroll-animate-left.is-visible {
+  animation: scrollFadeInLeft 0.7s ease-out forwards;
+}
+
+.scroll-animate-right {
+  opacity: 0;
+}
+
+.scroll-animate-right.is-visible {
+  animation: scrollFadeInRight 0.7s ease-out forwards;
+}
+
+.scroll-animate-scale {
+  opacity: 0;
+}
+
+.scroll-animate-scale.is-visible {
+  animation: scrollScaleIn 0.6s ease-out forwards;
+}
+
+/* Stagger children animations */
+.scroll-stagger.is-visible > * {
+  opacity: 0;
+  animation: scrollFadeInUp 0.5s ease-out forwards;
+}
+
+.scroll-stagger.is-visible > *:nth-child(1) { animation-delay: 0s; }
+.scroll-stagger.is-visible > *:nth-child(2) { animation-delay: 0.1s; }
+.scroll-stagger.is-visible > *:nth-child(3) { animation-delay: 0.2s; }
+.scroll-stagger.is-visible > *:nth-child(4) { animation-delay: 0.3s; }
+.scroll-stagger.is-visible > *:nth-child(5) { animation-delay: 0.4s; }
+.scroll-stagger.is-visible > *:nth-child(6) { animation-delay: 0.5s; }
+
+/* Mobile menu overlay */
+.mobile-menu-overlay {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }

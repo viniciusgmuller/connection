@@ -1,0 +1,602 @@
+{
+  "id": "experimentar",
+  "title": "Experimentar",
+  "subtitle": "EIXO 2",
+  "description": "Viva experiências sensoriais únicas com oficinas práticas, degustações exclusivas e contato direto com produtores de todo o Brasil.",
+  "features": [
+    {
+      "title": "Arena Café",
+      "description": "Espaço dedicado aos melhores cafés especiais do Brasil com baristas premiados.",
+      "icon": "coffee",
+      "image": "/images/experimentar/coffee-main.jpg"
+    },
+    {
+      "title": "Degustações Guiadas",
+      "description": "Experimente vinhos, cafés, queijos e cacau diretamente dos produtores.",
+      "icon": "wine"
+    },
+    {
+      "title": "Aulas Show",
+      "description": "Oficinas práticas com chefs renomados utilizando produtos com Indicação Geográfica.",
+      "icon": "chef"
+    },
+    {
+      "title": "Encontro com Produtores",
+      "description": "Conheça as histórias por trás dos produtos e conecte-se diretamente com quem produz.",
+      "icon": "people"
+    }
+  ],
+  "participants": [
+    {
+      "name": "Ricardo Mendes",
+      "role": "Barista Campeão",
+      "company": "Café Especial Minas",
+      "image": "/images/experimentar/participants/ricardo-mendes.jpg"
+    },
+    {
+      "name": "Helena Cardoso",
+      "role": "Sommelier",
+      "company": "Vinícola Serra Gaúcha",
+      "image": "/images/experimentar/participants/helena-cardoso.jpg"
+    },
+    {
+      "name": "André Figueiredo",
+      "role": "Mestre Queijeiro",
+      "company": "Queijaria Serro, MG",
+      "image": "/images/experimentar/participants/andre-figueiredo.jpg"
+    },
+    {
+      "name": "Patrícia Souza",
+      "role": "Chocolatier",
+      "company": "Cacau Rondônia",
+      "image": "/images/experimentar/participants/patricia-souza.jpg"
+    }
+  ],
+  "categories": ["Vinhos", "Cafés", "Queijos", "Ervas", "Geleias"],
+  "cta": {
+    "text": "Ver Experiências",
+    "href": "/experimentar"
+  },
+  "products": [
+    {
+      "id": "vinho-vale-vinhedos",
+      "name": "Vale dos Vinhedos",
+      "origin": "Bento Gonçalves",
+      "state": "RS",
+      "description": "Vinhos finos da primeira IG reconhecida no Brasil, terroir único da Serra Gaúcha.",
+      "category": "Vinhos",
+      "image": "/images/experimentar/vinhos.jpg"
+    },
+    {
+      "id": "vinho-altos-montes",
+      "name": "Altos Montes",
+      "origin": "Flores da Cunha",
+      "state": "RS",
+      "description": "Vinhos de altitude com acidez elegante e aromas complexos.",
+      "category": "Vinhos",
+      "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "vinho-pinto-bandeira",
+      "name": "Pinto Bandeira",
+      "origin": "Pinto Bandeira",
+      "state": "RS",
+      "description": "Espumantes e vinhos brancos de excelência reconhecida internacionalmente.",
+      "category": "Vinhos",
+      "image": "https://images.unsplash.com/photo-1474722883778-792e7990302f?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "vinho-monte-belo",
+      "name": "Monte Belo",
+      "origin": "Monte Belo do Sul",
+      "state": "RS",
+      "description": "Vinhos artesanais produzidos por famílias de tradição centenária.",
+      "category": "Vinhos",
+      "image": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "vinho-farroupilha",
+      "name": "Farroupilha",
+      "origin": "Farroupilha",
+      "state": "RS",
+      "description": "Moscatéis e espumantes com perfil aromático intenso e frutado.",
+      "category": "Vinhos",
+      "image": "https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "vinho-campanha-gaucha",
+      "name": "Campanha Gaúcha",
+      "origin": "Santana do Livramento",
+      "state": "RS",
+      "description": "Vinhos de região pampeana com influência do terroir de fronteira.",
+      "category": "Vinhos",
+      "image": "https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "vinho-vale-sao-francisco",
+      "name": "Vale do São Francisco",
+      "origin": "Petrolina",
+      "state": "PE",
+      "description": "Vinhos tropicais do semiárido com duas safras anuais.",
+      "category": "Vinhos",
+      "image": "https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "vinho-altos-itajaí",
+      "name": "Vales da Uva Goethe",
+      "origin": "Urussanga",
+      "state": "SC",
+      "description": "Vinhos da uva Goethe, variedade única preservada pela imigração italiana.",
+      "category": "Vinhos",
+      "image": "https://images.unsplash.com/photo-1528823872057-9c018a7a7553?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "vinho-sao-joaquim",
+      "name": "São Joaquim",
+      "origin": "São Joaquim",
+      "state": "SC",
+      "description": "Vinhos de altitude catarinenses com maturação lenta e concentração.",
+      "category": "Vinhos",
+      "image": "https://images.unsplash.com/photo-1585553616435-2dc0a54e271d?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "vinho-espumante-garibaldi",
+      "name": "Espumantes de Garibaldi",
+      "origin": "Garibaldi",
+      "state": "RS",
+      "description": "Capital brasileira do espumante, tradição de mais de 100 anos.",
+      "category": "Vinhos",
+      "image": "https://images.unsplash.com/photo-1567529692333-de9fd6772897?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "vinho-vinhedos-altitude",
+      "name": "Vinhos de Altitude",
+      "origin": "Campos de Cima da Serra",
+      "state": "RS",
+      "description": "Produção acima de 900m com amplitude térmica que gera vinhos elegantes.",
+      "category": "Vinhos",
+      "image": "https://images.unsplash.com/photo-1568213816046-0ee1c42bd559?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "vinho-vale-aurora",
+      "name": "Vale da Aurora",
+      "origin": "Bento Gonçalves",
+      "state": "RS",
+      "description": "Cooperativa centenária produzindo vinhos e sucos de alta qualidade.",
+      "category": "Vinhos",
+      "image": "https://images.unsplash.com/photo-1560148218-1a83060f7b32?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "cafe-cerrado-mineiro",
+      "name": "Cerrado Mineiro",
+      "origin": "Patrocínio",
+      "state": "MG",
+      "description": "Primeira região produtora de café a obter Denominação de Origem no Brasil.",
+      "category": "Cafés",
+      "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "cafe-alta-mogiana",
+      "name": "Alta Mogiana",
+      "origin": "Franca",
+      "state": "SP",
+      "description": "Cafés especiais de região paulista com tradição secular e altitude ideal.",
+      "category": "Cafés",
+      "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "cafe-mantiqueira",
+      "name": "Mantiqueira de Minas",
+      "origin": "Carmo de Minas",
+      "state": "MG",
+      "description": "Cafés premiados mundialmente cultivados nas encostas da Serra da Mantiqueira.",
+      "category": "Cafés",
+      "image": "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "cafe-caparao",
+      "name": "Caparaó",
+      "origin": "Caparaó",
+      "state": "MG",
+      "description": "Cafés de montanha produzidos nas encostas do Pico da Bandeira.",
+      "category": "Cafés",
+      "image": "https://images.unsplash.com/photo-1504630083234-14187a9df0f5?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "cafe-matas-minas",
+      "name": "Matas de Minas",
+      "origin": "Manhuaçu",
+      "state": "MG",
+      "description": "Cafés sombreados pela Mata Atlântica com perfil sensorial único.",
+      "category": "Cafés",
+      "image": "https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "cafe-norte-pioneiro",
+      "name": "Norte Pioneiro",
+      "origin": "Jacarezinho",
+      "state": "PR",
+      "description": "Cafés paranaenses com notas frutadas e corpo aveludado.",
+      "category": "Cafés",
+      "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "cafe-oeste-bahia",
+      "name": "Oeste da Bahia",
+      "origin": "Luís Eduardo Magalhães",
+      "state": "BA",
+      "description": "Cafés do cerrado baiano cultivados em altitude acima de 800 metros.",
+      "category": "Cafés",
+      "image": "https://images.unsplash.com/photo-1498804103079-a6351b050096?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "cafe-chapada-diamantina",
+      "name": "Chapada Diamantina",
+      "origin": "Piatã",
+      "state": "BA",
+      "description": "Cafés de altitude excepcional com notas florais e cítricas.",
+      "category": "Cafés",
+      "image": "https://images.unsplash.com/photo-1415604934674-561df9abf539?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "cafe-montanhas-espirito-santo",
+      "name": "Montanhas do Espírito Santo",
+      "origin": "Venda Nova do Imigrante",
+      "state": "ES",
+      "description": "Café conilon e arábica de montanha capixaba com produção familiar.",
+      "category": "Cafés",
+      "image": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "cafe-campo-gerais",
+      "name": "Campo das Vertentes",
+      "origin": "São João del-Rei",
+      "state": "MG",
+      "description": "Cafés mineiros de região histórica com corpo médio e doçura natural.",
+      "category": "Cafés",
+      "image": "https://images.unsplash.com/photo-1511920170033-f8396924c348?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "cafe-sul-minas",
+      "name": "Sul de Minas",
+      "origin": "Alfenas",
+      "state": "MG",
+      "description": "Maior região produtora de cafés especiais do Brasil.",
+      "category": "Cafés",
+      "image": "https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "cafe-pinhal",
+      "name": "Região do Pinhal",
+      "origin": "Espírito Santo do Pinhal",
+      "state": "SP",
+      "description": "Cafés paulistas de altitude com acidez brilhante e finalização limpa.",
+      "category": "Cafés",
+      "image": "https://images.unsplash.com/photo-1514066558159-fc8c737ef259?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "queijo-canastra",
+      "name": "Queijo Canastra",
+      "origin": "São Roque de Minas",
+      "state": "MG",
+      "description": "Queijo artesanal maturado com fermento natural centenário, patrimônio mineiro.",
+      "category": "Queijos",
+      "image": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "queijo-serro",
+      "name": "Queijo do Serro",
+      "origin": "Serro",
+      "state": "MG",
+      "description": "Um dos queijos mais antigos do Brasil, produzido desde o século XVIII.",
+      "category": "Queijos",
+      "image": "https://images.unsplash.com/photo-1452195100486-9cc805987862?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "queijo-witmarsum",
+      "name": "Queijo Witmarsum",
+      "origin": "Witmarsum",
+      "state": "PR",
+      "description": "Queijos de tradição menonita com maturação em caves naturais.",
+      "category": "Queijos",
+      "image": "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "queijo-marajo",
+      "name": "Queijo do Marajó",
+      "origin": "Soure",
+      "state": "PA",
+      "description": "Queijo de búfala da Ilha do Marajó com textura cremosa inconfundível.",
+      "category": "Queijos",
+      "image": "https://images.unsplash.com/photo-1589881133595-a3c085cb731d?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "queijo-alagoa",
+      "name": "Queijo Alagoa",
+      "origin": "Alagoa",
+      "state": "MG",
+      "description": "Queijo maturado de altitude produzido a mais de 1.000 metros.",
+      "category": "Queijos",
+      "image": "https://images.unsplash.com/photo-1624806992066-5ffcf7ca186b?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "queijo-campos-cima-serra",
+      "name": "Queijo Serrano",
+      "origin": "Bom Jesus",
+      "state": "RS",
+      "description": "Queijo artesanal gaúcho produzido nos Campos de Cima da Serra.",
+      "category": "Queijos",
+      "image": "https://images.unsplash.com/photo-1559561853-08451507cbe7?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "queijo-coalho-pernambuco",
+      "name": "Queijo Coalho",
+      "origin": "Garanhuns",
+      "state": "PE",
+      "description": "Queijo de tradição nordestina, versátil na cozinha e nas churrasqueiras.",
+      "category": "Queijos",
+      "image": "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "queijo-minas-artesanal-araxá",
+      "name": "Queijo de Araxá",
+      "origin": "Araxá",
+      "state": "MG",
+      "description": "Queijo com maturação em cave que revela sabor complexo e marcante.",
+      "category": "Queijos",
+      "image": "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "queijo-triângulo-mineiro",
+      "name": "Queijo do Triângulo",
+      "origin": "Uberlândia",
+      "state": "MG",
+      "description": "Queijo artesanal do Triângulo Mineiro com casca lavada natural.",
+      "category": "Queijos",
+      "image": "https://images.unsplash.com/photo-1560512823-829485b8bf24?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "queijo-campo-vertentes",
+      "name": "Queijo Campo das Vertentes",
+      "origin": "Tiradentes",
+      "state": "MG",
+      "description": "Queijo minas artesanal de região histórica com sabor suave e refinado.",
+      "category": "Queijos",
+      "image": "https://images.unsplash.com/photo-1573821663912-569905455b1c?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "queijo-cerrado",
+      "name": "Queijo do Cerrado",
+      "origin": "Rio Paranaíba",
+      "state": "MG",
+      "description": "Queijo mineiro do cerrado com maturação que intensifica sabores.",
+      "category": "Queijos",
+      "image": "https://images.unsplash.com/photo-1546554137-f86b9593a222?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "queijo-colonia-witmarsum",
+      "name": "Queijo Colonial",
+      "origin": "Palmeira",
+      "state": "PR",
+      "description": "Queijo colonial paranaense com tradição de imigrantes europeus.",
+      "category": "Queijos",
+      "image": "https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "erva-mate-sao-mateus",
+      "name": "Erva-mate São Mateus",
+      "origin": "São Mateus do Sul",
+      "state": "PR",
+      "description": "Erva-mate sombreada com sabor suave e baixo amargor, tradição paranaense.",
+      "category": "Ervas",
+      "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "acafrao-mara-rosa",
+      "name": "Açafrão de Mara Rosa",
+      "origin": "Mara Rosa",
+      "state": "GO",
+      "description": "Cúrcuma goiana com alto teor de curcumina e cor vibrante.",
+      "category": "Ervas",
+      "image": "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "guarana-maues",
+      "name": "Guaraná de Maués",
+      "origin": "Maués",
+      "state": "AM",
+      "description": "Guaraná nativo amazônico cultivado por comunidades tradicionais Sateré-Mawé.",
+      "category": "Ervas",
+      "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "erva-mate-ilópolis",
+      "name": "Erva-mate de Ilópolis",
+      "origin": "Ilópolis",
+      "state": "RS",
+      "description": "Erva-mate gaúcha de sabor encorpado, tradição da região dos vales.",
+      "category": "Ervas",
+      "image": "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "baunilha-cerrado",
+      "name": "Baunilha do Cerrado",
+      "origin": "Alto Paraíso",
+      "state": "GO",
+      "description": "Baunilha nativa do cerrado com aroma intenso e produção sustentável.",
+      "category": "Ervas",
+      "image": "https://images.unsplash.com/photo-1532336414038-cf19250c5757?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "canela-peruíbe",
+      "name": "Canela de Peruíbe",
+      "origin": "Peruíbe",
+      "state": "SP",
+      "description": "Canela cultivada na Mata Atlântica paulista com aroma marcante.",
+      "category": "Ervas",
+      "image": "https://images.unsplash.com/photo-1471943311424-646960669fbc?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "camomila-mandirituba",
+      "name": "Camomila de Mandirituba",
+      "origin": "Mandirituba",
+      "state": "PR",
+      "description": "Camomila paranaense reconhecida pela qualidade e pureza do óleo essencial.",
+      "category": "Ervas",
+      "image": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "pimenta-espelette-bahia",
+      "name": "Pimenta de Anicuns",
+      "origin": "Anicuns",
+      "state": "GO",
+      "description": "Pimenta goiana com sabor marcante e ardência equilibrada.",
+      "category": "Ervas",
+      "image": "https://images.unsplash.com/photo-1577003811926-53b288a6e5d0?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "cravo-bahia",
+      "name": "Cravo da Bahia",
+      "origin": "Valença",
+      "state": "BA",
+      "description": "Cravo-da-índia produzido no Baixo Sul baiano com aroma intenso.",
+      "category": "Ervas",
+      "image": "https://images.unsplash.com/photo-1518110925495-5fe2fda0442c?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "urucum-rondonia",
+      "name": "Urucum de Rondônia",
+      "origin": "Porto Velho",
+      "state": "RO",
+      "description": "Urucum amazônico rico em bixina, corante natural de alto valor.",
+      "category": "Ervas",
+      "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "castanha-para",
+      "name": "Castanha do Pará",
+      "origin": "Oriximiná",
+      "state": "PA",
+      "description": "Castanha nativa coletada por comunidades extrativistas da Amazônia.",
+      "category": "Ervas",
+      "image": "https://images.unsplash.com/photo-1501432377862-3d0432b87a14?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "cumaru-amazonia",
+      "name": "Cumaru da Amazônia",
+      "origin": "Alenquer",
+      "state": "PA",
+      "description": "Baunilha amazônica com aroma único, usada na alta gastronomia.",
+      "category": "Ervas",
+      "image": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "geleia-uva-bento",
+      "name": "Geleia de Uva",
+      "origin": "Bento Gonçalves",
+      "state": "RS",
+      "description": "Geleia artesanal de uvas da Serra Gaúcha, sabor concentrado e natural.",
+      "category": "Geleias",
+      "image": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "goiabada-campos",
+      "name": "Goiabada de Campos",
+      "origin": "Campos dos Goytacazes",
+      "state": "RJ",
+      "description": "Goiabada cascão tradicional fluminense com goiabas vermelhas selecionadas.",
+      "category": "Geleias",
+      "image": "https://images.unsplash.com/photo-1474440692490-2e83ae13ba29?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "doce-leite-viçosa",
+      "name": "Doce de Leite",
+      "origin": "Viçosa",
+      "state": "MG",
+      "description": "Doce de leite artesanal mineiro feito em tacho de cobre.",
+      "category": "Geleias",
+      "image": "https://images.unsplash.com/photo-1599599810694-b5b37304c041?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "geleia-jabuticaba",
+      "name": "Geleia de Jabuticaba",
+      "origin": "Sabará",
+      "state": "MG",
+      "description": "Geleia da fruta símbolo de Minas, festival anual celebra a tradição.",
+      "category": "Geleias",
+      "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "geleia-morango-atibaia",
+      "name": "Geleia de Morango",
+      "origin": "Atibaia",
+      "state": "SP",
+      "description": "Morango de Atibaia transformado em geleia artesanal de sabor vibrante.",
+      "category": "Geleias",
+      "image": "https://images.unsplash.com/photo-1587049352851-8d4e89133924?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "mel-ortigueira",
+      "name": "Mel de Ortigueira",
+      "origin": "Ortigueira",
+      "state": "PR",
+      "description": "Mel puro de abelhas africanizadas com florada silvestre paranaense.",
+      "category": "Geleias",
+      "image": "https://images.unsplash.com/photo-1571506165871-ee72a35bc9d4?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "geleia-acai-para",
+      "name": "Geleia de Açaí",
+      "origin": "Igarapé-Miri",
+      "state": "PA",
+      "description": "Açaí paraense transformado em geleia concentrada de sabor intenso.",
+      "category": "Geleias",
+      "image": "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "doce-banana-antonina",
+      "name": "Doce de Banana",
+      "origin": "Antonina",
+      "state": "PR",
+      "description": "Banana do litoral paranaense em doce cremoso de tradição caiçara.",
+      "category": "Geleias",
+      "image": "https://images.unsplash.com/photo-1519996529931-28324d5a630e?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "geleia-figo-valinhos",
+      "name": "Geleia de Figo",
+      "origin": "Valinhos",
+      "state": "SP",
+      "description": "Figo roxo de Valinhos em geleia premium, capital nacional do figo.",
+      "category": "Geleias",
+      "image": "https://images.unsplash.com/photo-1597528662465-55ece5734101?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "mel-jandaíra-rn",
+      "name": "Mel de Jandaíra",
+      "origin": "Mossoró",
+      "state": "RN",
+      "description": "Mel de abelha nativa sem ferrão, sabor floral único do sertão.",
+      "category": "Geleias",
+      "image": "https://images.unsplash.com/photo-1607305387299-a3d9611cd469?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "geleia-manga-petrolina",
+      "name": "Geleia de Manga",
+      "origin": "Petrolina",
+      "state": "PE",
+      "description": "Manga do Vale do São Francisco em geleia tropical aromática.",
+      "category": "Geleias",
+      "image": "https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=560&h=560&fit=crop&crop=center"
+    },
+    {
+      "id": "geleia-goiaba-campos-jordao",
+      "name": "Geleia de Goiaba",
+      "origin": "Campos do Jordão",
+      "state": "SP",
+      "description": "Geleia artesanal serrana com goiabas cultivadas em altitude.",
+      "category": "Geleias",
+      "image": "https://images.unsplash.com/photo-1603569283847-aa295f0d016a?w=560&h=560&fit=crop&crop=center"
+    }
+  ]
+}

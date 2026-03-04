@@ -1,0 +1,46 @@
+{
+  "name": "Connection Experience",
+  "tagline": "Experiências que inspiram, conteúdo que transforma.",
+  "description": "Insights criativos e conhecimento vivo, compartilhados por especialistas que impulsionam inovação e valorizam a cultura brasileira.",
+  "eventDate": "JUNHO DE 2026",
+  "eventLocation": "Gramado, Rio Grande do Sul",
+  "eventVenue": "Serra Gaúcha",
+  "socialLinks": {
+    "instagram": "https://instagram.com/connectionexperience",
+    "linkedin": "https://linkedin.com/company/connectionexperience",
+    "facebook": "https://facebook.com/connectionexperience",
+    "youtube": "https://youtube.com/@connectionexperience"
+  },
+  "contact": {
+    "email": "contato@connectionexperience.com.br",
+    "whatsapp": "+5554999999999"
+  },
+  "navigation": [
+    { "label": "Home", "href": "/" },
+    { "label": "Conhecer", "href": "/conhecer" },
+    { "label": "Experimentar", "href": "/experimentar" },
+    { "label": "Negociar", "href": "/negociar" },
+    { "label": "Programação", "href": "/programacao" },
+    { "label": "Blog", "href": "/blog" }
+  ],
+  "statistics": [
+    { "value": "1.800", "label": "Participantes Inscritos" },
+    { "value": "100K", "label": "Projeção de Público Geral" },
+    { "value": "53", "label": "Produtos com IG" },
+    { "value": "25", "label": "Horas de Conteúdo" }
+  ],
+  "partners": {
+    "realizacao": [
+      { "id": "sebrae", "name": "SEBRAE", "logo": "/images/partners/sebrae.png" }
+    ],
+    "cidadeAnfitria": [
+      { "id": "gramado", "name": "Gramado", "logo": "/images/partners/gramado.png" }
+    ],
+    "estadoAnfitriao": [
+      { "id": "rs", "name": "Rio Grande do Sul", "logo": "/images/partners/rs.png" }
+    ],
+    "hotelOficial": [
+      { "id": "laghetto", "name": "Laghetto", "logo": "/images/partners/laghetto.png" }
+    ]
+  }
+}
