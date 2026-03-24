@@ -3,11 +3,19 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        DATABASE_URI: ${DATABASE_URI}
+        PAYLOAD_SECRET: ${PAYLOAD_SECRET}
+        NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL}
     environment:
+      DATABASE_URI: ${DATABASE_URI}
+      PAYLOAD_SECRET: ${PAYLOAD_SECRET}
       NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL:-https://connection.duckstudio.design}
       NODE_ENV: production
     networks:
       - coolify
+    volumes:
+      - media_uploads:/app/public/media
     healthcheck:
       test: ["CMD", "curl", "-sf", "http://localhost:3000/"]
       interval: 30s
@@ -18,3 +26,6 @@ services:
 networks:
   coolify:
     external: true
+
+volumes:
+  media_uploads:
