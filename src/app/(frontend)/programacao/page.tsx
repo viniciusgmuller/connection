@@ -161,7 +161,7 @@ export default function ProgramacaoPage() {
                             {typeLabels[event.type]}
                           </Tag>
                         </div>
-                        {event.speaker && (
+                        {"speaker" in event && event.speaker && (
                           <p className="text-gold text-sm mb-1">com {event.speaker}</p>
                         )}
                         <p className="text-text-muted text-sm flex items-center gap-1">

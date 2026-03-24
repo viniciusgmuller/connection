@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# payload
+/src/app/(payload)/admin/importMap.js
+/src/payload-types.ts
+/public/media
+
+# blog import data (uploaded to CMS, not needed in repo)
+/content/blog-import
