@@ -1,14 +1,7 @@
-import { withPayload } from "@payloadcms/next/withPayload";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // CRITICAL: Without this, the Payload admin panel hangs in production
-  serverExternalPackages: ["payload"],
-
-  turbopack: {
-    root: __dirname,
-  },
-
+  output: "standalone",
   images: {
     remotePatterns: [
       {
@@ -20,17 +13,6 @@ const nextConfig: NextConfig = {
         hostname: "cdn.prod.website-files.com",
       },
     ],
-  },
-
-  async headers() {
-    return [
-      {
-        source: "/admin/:path*",
-        headers: [
-          { key: "Cache-Control", value: "no-store, must-revalidate" },
-        ],
-      },
-    ];
   },
 
   async redirects() {
@@ -53,4 +35,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withPayload(nextConfig);
+export default nextConfig;

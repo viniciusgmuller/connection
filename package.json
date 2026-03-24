@@ -8,15 +8,9 @@
     "start": "next start"
   },
   "dependencies": {
-    "@payloadcms/db-postgres": "^3.80.0",
-    "@payloadcms/graphql": "^3.80.0",
-    "@payloadcms/next": "^3.80.0",
-    "@payloadcms/richtext-lexical": "^3.80.0",
     "clsx": "^2.1.1",
-    "graphql": "^16.13.2",
     "gsap": "^3.14.2",
     "next": "^16.2.1",
-    "payload": "^3.80.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "sharp": "^0.34.5"
