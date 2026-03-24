@@ -29,7 +29,7 @@ export function Hero() {
 
       // Parallax zoom on hero image
       if (heroImageRef.current) {
-        gsap.fromTo(heroImageRef.current.querySelector('img'),
+        gsap.fromTo(heroImageRef.current.querySelector('video'),
           { scale: 1.05 },
           {
             scale: 1,
@@ -183,15 +183,16 @@ export function Hero() {
         </p>
       </div>
 
-      {/* Hero image / video area */}
+      {/* Hero video area */}
       <div className="relative z-10 mx-auto max-w-[1450px] px-4 md:px-5 mt-4">
         <div ref={heroImageRef} className="relative w-full h-[400px] md:h-[600px] lg:h-[810px] rounded-[15px] overflow-hidden">
-          <Image
-            src="/images/hero-bg.jpg"
-            alt="Connection Experience - Terroirs do Brasil"
-            fill
-            className="object-cover"
-            priority
+          <video
+            src="/videos/hero.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
       </div>

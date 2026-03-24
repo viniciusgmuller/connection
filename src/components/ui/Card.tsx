@@ -72,14 +72,18 @@ interface SpeakerCardProps {
 }
 
 export function SpeakerCard({ name, title, bio, image, credentials }: SpeakerCardProps) {
+  const initials = name.split(' ').map(w => w[0]).join('').slice(0, 2);
   return (
     <Card className="text-center" variant="dark">
       <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-2 border-gold">
+        <div className="absolute inset-0 flex items-center justify-center bg-bg-brown">
+          <span className="font-heading text-2xl text-gold">{initials}</span>
+        </div>
         <Image
           src={image}
           alt={name}
           fill
-          className="object-cover"
+          className="object-cover relative z-10"
         />
       </div>
       <h3 className="font-heading text-xl text-text-light mb-1">{name}</h3>

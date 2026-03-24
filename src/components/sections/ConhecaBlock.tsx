@@ -39,11 +39,10 @@ const cards = [
 
 /* ── Data: schedule (during event) ── */
 const days = [
-  { key: '22', day: '22', weekday: 'Ter' },
-  { key: '23', day: '23', weekday: 'Qua' },
-  { key: '24', day: '24', weekday: 'Qui' },
-  { key: '25', day: '25', weekday: 'Sex' },
-  { key: '26', day: '26', weekday: 'Sáb' },
+  { key: '10', day: '10', weekday: 'Qua' },
+  { key: '11', day: '11', weekday: 'Qui' },
+  { key: '12', day: '12', weekday: 'Sex' },
+  { key: '13', day: '13', weekday: 'Sáb' },
 ];
 
 interface ScheduleItem {
@@ -58,29 +57,26 @@ interface ScheduleItem {
 }
 
 const schedule: ScheduleItem[] = [
-  // Dia 22
-  { day: '22', time: '09:00', endTime: '10:00', title: 'Abertura oficial', speaker: 'Organização Connection', category: 'Palestras', location: 'Palco Principal' },
-  { day: '22', time: '10:00', endTime: '12:00', title: 'Terroirs brasileiros: panorama atual', speaker: 'Dr. Eduardo Lima', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Palco Principal' },
-  { day: '22', time: '14:00', endTime: '15:30', title: 'O papel da IG na valorização regional', speaker: 'Conteúdo Connection', category: 'Conteúdos', location: 'Sala de Conteúdo' },
-  { day: '22', time: '16:00', endTime: '17:30', title: 'Podcast ao vivo: Vozes do Terroir', speaker: 'Equipe Connection', speakerImages: ['/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg'], category: 'Podcasts', location: 'Estúdio Podcast' },
-  // Dia 23
-  { day: '23', time: '09:00', endTime: '10:30', title: 'Café do Cerrado: história e futuro', speaker: 'Maria Souza', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Palco Principal' },
-  { day: '23', time: '11:00', endTime: '12:30', title: 'Mesa redonda: sustentabilidade e terroir', speaker: 'Painel com convidados', speakerImages: ['/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg'], category: 'Conteúdos', location: 'Sala de Conteúdo' },
-  { day: '23', time: '14:00', endTime: '15:30', title: 'Indicações Geográficas e turismo', speaker: 'Carlos Mendes', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Palco Principal' },
-  { day: '23', time: '16:00', endTime: '17:30', title: 'Podcast ao vivo: Sabores do Brasil', speaker: 'Equipe Connection', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Podcasts', location: 'Estúdio Podcast' },
-  // Dia 24
-  { day: '24', time: '09:00', endTime: '10:30', title: 'Vinhos da Serra Gaúcha', speaker: 'Ana Vitória', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Palco Principal' },
-  { day: '24', time: '11:00', endTime: '12:30', title: 'Cacau de Rondônia: do produtor ao mundo', speaker: 'Roberto Alves', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Conteúdos', location: 'Sala de Conteúdo' },
-  { day: '24', time: '14:00', endTime: '16:00', title: 'Painel: empreendedorismo e gastronomia', speaker: 'Painel com convidados', speakerImages: ['/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Palco Principal' },
-  { day: '24', time: '16:00', endTime: '17:30', title: 'Podcast ao vivo: Histórias de Origem', speaker: 'Equipe Connection', category: 'Podcasts', location: 'Estúdio Podcast' },
-  // Dia 25
-  { day: '25', time: '09:00', endTime: '10:30', title: 'Queijos artesanais com selo IG', speaker: 'Fernanda Costa', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Palco Principal' },
-  { day: '25', time: '11:00', endTime: '12:30', title: 'Conteúdo especial: tradição e inovação', speaker: 'Conteúdo Connection', category: 'Conteúdos', location: 'Sala de Conteúdo' },
-  { day: '25', time: '14:00', endTime: '16:00', title: 'Roda de conversa: produtores locais', speaker: 'Convidados diversos', speakerImages: ['/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg'], category: 'Conteúdos', location: 'Sala de Conteúdo' },
-  // Dia 26
-  { day: '26', time: '09:00', endTime: '10:30', title: 'Retrospectiva: 5 dias de Connection', speaker: 'Organização Connection', category: 'Conteúdos', location: 'Palco Principal' },
-  { day: '26', time: '11:00', endTime: '12:30', title: 'Palestra de encerramento', speaker: 'A confirmar', category: 'Palestras', location: 'Palco Principal' },
-  { day: '26', time: '14:00', endTime: '15:30', title: 'Podcast ao vivo: episódio especial de encerramento', speaker: 'Equipe Connection', speakerImages: ['/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg'], category: 'Podcasts', location: 'Estúdio Podcast' },
+  // Dia 10 - Terça
+  { day: '10', time: '09:00', endTime: '10:00', title: 'Abertura oficial', speaker: 'Organização Connection', category: 'Palestras', location: 'Palco Principal' },
+  { day: '10', time: '10:00', endTime: '12:00', title: 'Terroirs brasileiros: panorama atual', speaker: 'Dr. Eduardo Lima', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Palco Principal' },
+  { day: '10', time: '14:00', endTime: '15:30', title: 'O papel da IG na valorização regional', speaker: 'Conteúdo Connection', category: 'Conteúdos', location: 'Sala de Conteúdo' },
+  { day: '10', time: '16:00', endTime: '17:30', title: 'Podcast ao vivo: Vozes do Terroir', speaker: 'Equipe Connection', speakerImages: ['/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg'], category: 'Podcasts', location: 'Estúdio Podcast' },
+  // Dia 11 - Quarta
+  { day: '11', time: '09:00', endTime: '10:30', title: 'Café do Cerrado: história e futuro', speaker: 'Maria Souza', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Palco Principal' },
+  { day: '11', time: '11:00', endTime: '12:30', title: 'Mesa redonda: sustentabilidade e terroir', speaker: 'Painel com convidados', speakerImages: ['/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg'], category: 'Conteúdos', location: 'Sala de Conteúdo' },
+  { day: '11', time: '14:00', endTime: '15:30', title: 'Indicações Geográficas e turismo', speaker: 'Carlos Mendes', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Palco Principal' },
+  { day: '11', time: '16:00', endTime: '17:30', title: 'Podcast ao vivo: Sabores do Brasil', speaker: 'Equipe Connection', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Podcasts', location: 'Estúdio Podcast' },
+  // Dia 12 - Quinta
+  { day: '12', time: '09:00', endTime: '10:30', title: 'Vinhos da Serra Gaúcha', speaker: 'Ana Vitória', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Palco Principal' },
+  { day: '12', time: '11:00', endTime: '12:30', title: 'Cacau de Rondônia: do produtor ao mundo', speaker: 'Roberto Alves', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Conteúdos', location: 'Sala de Conteúdo' },
+  { day: '12', time: '14:00', endTime: '16:00', title: 'Painel: empreendedorismo e gastronomia', speaker: 'Painel com convidados', speakerImages: ['/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Palco Principal' },
+  { day: '12', time: '16:00', endTime: '17:30', title: 'Podcast ao vivo: Histórias de Origem', speaker: 'Equipe Connection', category: 'Podcasts', location: 'Estúdio Podcast' },
+  // Dia 13 - Sexta
+  { day: '13', time: '09:00', endTime: '10:30', title: 'Queijos artesanais com selo IG', speaker: 'Fernanda Costa', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Palco Principal' },
+  { day: '13', time: '11:00', endTime: '12:30', title: 'Conteúdo especial: tradição e inovação', speaker: 'Conteúdo Connection', category: 'Conteúdos', location: 'Sala de Conteúdo' },
+  { day: '13', time: '14:00', endTime: '15:30', title: 'Palestra de encerramento', speaker: 'A confirmar', category: 'Palestras', location: 'Palco Principal' },
+  { day: '13', time: '16:00', endTime: '17:30', title: 'Podcast ao vivo: episódio especial de encerramento', speaker: 'Equipe Connection', speakerImages: ['/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg'], category: 'Podcasts', location: 'Estúdio Podcast' },
 ];
 
 const locations = [...new Set(schedule.map((s) => s.location).filter(Boolean))] as string[];
@@ -88,7 +84,7 @@ const locations = [...new Set(schedule.map((s) => s.location).filter(Boolean))] 
 /* ── Component ── */
 export function ConhecaBlock() {
   const [activeCategory, setActiveCategory] = useState<Category | null>(null);
-  const [activeDay, setActiveDay] = useState(days[0].key);
+  const [activeDay, setActiveDay] = useState('10');
   const [activeLocation, setActiveLocation] = useState<string | null>(null);
   const [locationOpen, setLocationOpen] = useState(false);
   const [search, setSearch] = useState('');
