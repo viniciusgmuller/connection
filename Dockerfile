@@ -12,16 +12,13 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-
 ARG DATABASE_URI
 ARG PAYLOAD_SECRET
 ARG NEXT_PUBLIC_SERVER_URL
-
 ENV DATABASE_URI=${DATABASE_URI}
 ENV PAYLOAD_SECRET=${PAYLOAD_SECRET}
 ENV NEXT_PUBLIC_SERVER_URL=${NEXT_PUBLIC_SERVER_URL}
 ENV NEXT_TELEMETRY_DISABLED=1
-
 RUN npm run build
 
 # Runner
@@ -33,16 +30,21 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
+RUN mkdir -p ./public/media && chown -R nextjs:nodejs ./public/media
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/next.config.ts ./
 COPY --from=builder /app/src ./src
+COPY --from=builder /app/tsconfig.json ./
+COPY --from=builder /app/scripts ./scripts
 
 USER nextjs
 
-HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-  CMD curl -sf http://localhost:3000/ || exit 1
+HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=5 \
+  CMD curl -sf http://localhost:3000/api/health || exit 1
 
 EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
-CMD ["node", "server.js"]
+CMD ["sh", "./scripts/start.sh"]
