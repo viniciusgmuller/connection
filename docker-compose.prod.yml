@@ -6,8 +6,6 @@ services:
     environment:
       NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL:-https://connection.duckstudio.design}
       NODE_ENV: production
-    ports:
-      - "3000:3000"
     networks:
       - coolify
     healthcheck:
