@@ -8,6 +8,10 @@ import { Button } from '@/components/ui/Button';
 
 export const dynamic = 'force-dynamic';
 
+function mediaUrl(filename: string) {
+  return `/media/${encodeURIComponent(filename)}`;
+}
+
 export const metadata: Metadata = {
   title: 'Blog | Connection Experience',
   description: 'Artigos, notícias e conteúdos sobre Indicações Geográficas, terroirs brasileiros, gastronomia e turismo.',
@@ -63,7 +67,7 @@ export default async function BlogPage() {
                     <div className="aspect-video bg-bg-brown relative overflow-hidden">
                       {featuredImage?.filename ? (
                         <Image
-                          src={`/media/${featuredImage.filename}`}
+                          src={mediaUrl(featuredImage.filename)}
                           alt={featuredImage.alt || post.title}
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-500"

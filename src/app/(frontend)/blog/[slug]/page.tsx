@@ -7,6 +7,11 @@ import config from '@payload-config';
 
 export const dynamic = 'force-dynamic';
 
+/** Encode filename for URL — handles filenames that already contain %20 etc. */
+function mediaUrl(filename: string) {
+  return `/media/${encodeURIComponent(filename)}`;
+}
+
 type Props = { params: Promise<{ slug: string }> };
 
 async function getPost(slug: string) {
@@ -86,7 +91,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
             <div className="aspect-video relative rounded-2xl overflow-hidden -mt-4">
               <Image
-                src={`/media/${featuredImage.filename}`}
+                src={mediaUrl(featuredImage.filename)}
                 alt={featuredImage.alt || post.title}
                 fill
                 className="object-cover"
@@ -109,12 +114,15 @@ export default async function BlogPostPage({ params }: Props) {
 
           {post.legacyHtml ? (
             <div
-              className="prose prose-invert prose-gold max-w-none
-                prose-headings:font-heading prose-headings:text-text-light
-                prose-p:text-text-cream prose-p:leading-relaxed
+              className="prose prose-lg prose-invert max-w-none
+                prose-headings:font-heading prose-headings:text-text-light prose-headings:mt-10 prose-headings:mb-4
+                prose-p:text-text-cream/90 prose-p:leading-[1.8] prose-p:mb-6
                 prose-a:text-gold prose-a:no-underline hover:prose-a:underline
-                prose-img:rounded-xl prose-img:mx-auto
-                prose-strong:text-text-light"
+                prose-img:rounded-xl prose-img:mx-auto prose-img:my-8
+                prose-strong:text-text-light prose-strong:font-semibold
+                prose-blockquote:border-gold prose-blockquote:text-text-cream/80
+                prose-li:text-text-cream/90 prose-li:leading-[1.8]
+                prose-hr:border-gold/20"
               dangerouslySetInnerHTML={{ __html: post.legacyHtml }}
             />
           ) : (
