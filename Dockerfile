@@ -31,6 +31,7 @@ RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
 RUN mkdir -p ./public/media && chown -R nextjs:nodejs ./public/media
+RUN chown nextjs:nodejs /app
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./

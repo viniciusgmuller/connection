@@ -62,6 +62,45 @@ describe("Payload CMS - BlogPosts collection", () => {
   });
 });
 
+describe("Payload CMS - BlogPosts data integrity", () => {
+  it("has imported blog posts from Webflow (148 expected)", async () => {
+    const { data } = await api("/api/blog-posts?limit=0");
+    expect(data.totalDocs).toBeGreaterThanOrEqual(148);
+  });
+
+  it("blog posts have required fields populated", async () => {
+    const { data } = await api("/api/blog-posts?limit=5");
+    for (const doc of data.docs) {
+      expect(doc.title).toBeTruthy();
+      expect(doc.slug).toBeTruthy();
+      expect(doc.status).toBe("published");
+    }
+  });
+
+  it("blog posts have SEO metadata", async () => {
+    const { data } = await api("/api/blog-posts?limit=5");
+    for (const doc of data.docs) {
+      expect(doc.seo).toBeDefined();
+      expect(doc.seo.metaTitle).toBeTruthy();
+    }
+  });
+
+  it("blog posts have legacyHtml from Webflow", async () => {
+    const { data } = await api("/api/blog-posts?limit=3");
+    const withHtml = data.docs.filter(
+      (d: any) => d.legacyHtml && d.legacyHtml.length > 0
+    );
+    expect(withHtml.length).toBeGreaterThan(0);
+  });
+
+  it("slugs are unique (no duplicates in first page)", async () => {
+    const { data } = await api("/api/blog-posts?limit=50");
+    const slugs = data.docs.map((d: any) => d.slug);
+    const uniqueSlugs = new Set(slugs);
+    expect(uniqueSlugs.size).toBe(slugs.length);
+  });
+});
+
 describe("Payload CMS - Media collection", () => {
   it("REST API /api/media endpoint exists and responds", async () => {
     const { status, data } = await api("/api/media?limit=1");
