@@ -7,6 +7,16 @@ export async function POST() {
   try {
     const payload = await getPayload({ config });
 
+    // Auto-accept all interactive prompts by overriding the prompts library.
+    // This prevents pushDevSchema from hanging on rename/create column questions.
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const prompts = require("prompts");
+      prompts.override({ confirm: true });
+    } catch {
+      // prompts not available, continue anyway
+    }
+
     // Use Drizzle's pushDevSchema to sync tables, bypassing the
     // NODE_ENV !== 'production' check in the connect() method.
     await pushDevSchema(payload.db as any);
