@@ -12,6 +12,7 @@ services:
       PAYLOAD_SECRET: ${PAYLOAD_SECRET}
       NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL:-https://connection.duckstudio.design}
       NODE_ENV: production
+      PAYLOAD_FORCE_DRIZZLE_PUSH: "true"
     networks:
       - coolify
     volumes:
