@@ -11,10 +11,35 @@ async function api(path: string) {
 }
 
 describe("Site Settings global", () => {
-  it("endpoint exists and returns data", async () => {
+  it("endpoint exists and returns all groups", async () => {
     const { status, data } = await api("/api/globals/site-settings");
     expect(status).toBe(200);
-    expect(data).toBeDefined();
-    expect(data.globalType).toBe("site-settings");
+    expect(data).toHaveProperty("event");
+    expect(data).toHaveProperty("contact");
+    expect(data).toHaveProperty("hospitality");
+  });
+
+  it("returns Event group with correct fields", async () => {
+    const { data } = await api("/api/globals/site-settings");
+    const { event } = data;
+    expect(event.eventName).toBe("Connection Experience");
+    expect(event.location).toBe("Gramado, Rio Grande do Sul");
+    expect(event.venue).toBe("Serra Gaúcha");
+    expect(event.edition).toBe("2026");
+    expect(event.phase).toBe("pre-event");
+  });
+
+  it("returns Contact group with correct fields", async () => {
+    const { data } = await api("/api/globals/site-settings");
+    const { contact } = data;
+    expect(contact.mainEmail).toBe("contato@connectionexperience.com.br");
+    expect(contact.businessEmail).toBe("negocios@connectionexperience.com.br");
+    expect(contact.groupSalesEmail).toBe("grupos@connectionexperience.com.br");
+    expect(contact.whatsapp).toBe("5554999999999");
+  });
+
+  it("returns Hospitality group with correct fields", async () => {
+    const { data } = await api("/api/globals/site-settings");
+    expect(data.hospitality.officialHotel).toBe("Laghetto");
   });
 });
