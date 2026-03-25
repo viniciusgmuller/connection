@@ -4,5 +4,8 @@ export const Media: CollectionConfig = {
   slug: 'media',
   upload: { mimeTypes: ['image/*', 'video/*', 'application/pdf'] },
   admin: { useAsTitle: 'alt' },
+  access: {
+    read: () => true,
+  },
   fields: [{ name: 'alt', type: 'text', required: true }],
 };
