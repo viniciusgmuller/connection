@@ -55,9 +55,9 @@ export default async function BlogPostPage({ params }: Props) {
     : null;
 
   return (
-    <div className="pt-24">
+    <div className="pt-32">
       {/* Header */}
-      <section className="py-16 bg-bg-dark">
+      <section className="py-16 pb-12 bg-bg-dark">
         <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
           <Link
             href="/blog"
@@ -87,9 +87,9 @@ export default async function BlogPostPage({ params }: Props) {
 
       {/* Featured Image */}
       {featuredImage?.filename && (
-        <section className="bg-bg-darker">
+        <section className="pt-8 bg-bg-darker">
           <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
-            <div className="aspect-video relative rounded-2xl overflow-hidden -mt-4">
+            <div className="aspect-video relative rounded-2xl overflow-hidden">
               <Image
                 src={mediaUrl(featuredImage.filename)}
                 alt={featuredImage.alt || post.title}
