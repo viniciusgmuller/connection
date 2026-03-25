@@ -24,6 +24,19 @@ export function Hero({ siteSettings, pageHome }: HeroProps) {
     ? new Date(event.startDate).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric', timeZone: 'UTC' })
     : 'Junho 2026';
   const location = event?.location || 'Gramado, Rio Grande do Sul';
+
+  // Hero content from CMS
+  const headline = hero?.headline || 'Deguste, conheça e sinta os melhores produtos de origem do Brasil.';
+  const subtitle = hero?.subtitle || 'O maior evento de produtos de origem do Brasil. Quatro dias de experiências gastronômicas, culturais e de conteúdo em Gramado.';
+  const videoUrl = hero?.videoUrl || '/videos/hero.mp4';
+  const secondaryText = hero?.secondaryButtonText || 'Saiba mais';
+  const secondaryLink = hero?.secondaryButtonLink || '#sobre';
+  const preEventText = hero?.preEventCta?.buttonText || 'Garanta seu Ingresso';
+  const preEventLink = hero?.preEventCta?.buttonLink || '/ingressos';
+  const duringText = hero?.duringEventCta?.buttonText || 'Confira a Programação';
+  const duringLink = hero?.duringEventCta?.buttonLink || '/programacao';
+  const postText = hero?.postEventCta?.buttonText || 'Reviva a Experiência';
+  const postLink = hero?.postEventCta?.buttonLink || '/blog';
   const sectionRef = useRef<HTMLDivElement>(null);
   const heroImageRef = useRef<HTMLDivElement>(null);
   const decorativeRef = useGSAPParallax<HTMLDivElement>(80);
@@ -98,18 +111,13 @@ export function Hero({ siteSettings, pageHome }: HeroProps) {
           {/* Headline */}
           <div className="hero-headline opacity-0">
             <h1 className="font-heading font-normal text-[#FFF5EC] text-4xl sm:text-5xl md:text-6xl lg:text-[78.85px] leading-[1.02]">
-              Deguste, conheça e{' '}
-              <em className="font-heading italic">sinta</em>
-              <br />
-              os melhores produtos de
-              <br />
-              <em className="font-heading italic">origem do Brasil.</em>
+              {headline}
             </h1>
           </div>
 
           {/* Subtitle */}
           <p className="hero-subtitle opacity-0 font-just-sans font-normal text-lg md:text-xl lg:text-[24px] text-[#FFF5EC]/60 max-w-[604px] mt-6 md:mt-8">
-            O maior evento de produtos de origem do Brasil. Quatro dias de experiências gastronômicas, culturais e de conteúdo em Gramado.
+            {subtitle}
           </p>
 
           {/* CTAs + Navigation tabs row */}
@@ -119,34 +127,34 @@ export function Hero({ siteSettings, pageHome }: HeroProps) {
               <PhaseConditional
                 preEvent={
                   <Link
-                    href="/ingressos"
+                    href={preEventLink}
                     className="inline-flex items-center justify-center flex-1 sm:flex-none sm:w-[200px] p-[15px] bg-[#FFF5EC] rounded-full font-just-sans font-semibold text-[16px] text-[#3D2E1E] text-center hover:bg-[#FFF5EC]/90 transition-colors"
                   >
-                    Garanta seu Ingresso
+                    {preEventText}
                   </Link>
                 }
                 duringEvent={
                   <Link
-                    href="/programacao"
+                    href={duringLink}
                     className="inline-flex items-center justify-center flex-1 sm:flex-none sm:w-[200px] p-[15px] bg-[#FFF5EC] rounded-full font-just-sans font-semibold text-[16px] text-[#3D2E1E] text-center hover:bg-[#FFF5EC]/90 transition-colors"
                   >
-                    Confira a Programação
+                    {duringText}
                   </Link>
                 }
                 postEvent={
                   <Link
-                    href="/programacao"
+                    href={postLink}
                     className="inline-flex items-center justify-center flex-1 sm:flex-none sm:w-[200px] p-[15px] bg-[#FFF5EC] rounded-full font-just-sans font-semibold text-[16px] text-[#3D2E1E] text-center hover:bg-[#FFF5EC]/90 transition-colors"
                   >
-                    Reviva a Experiência
+                    {postText}
                   </Link>
                 }
               />
               <Link
-                href="#sobre"
+                href={secondaryLink}
                 className="inline-flex items-center justify-center flex-1 sm:flex-none sm:w-[200px] p-[15px] border border-[#FFF5EC] rounded-full font-just-sans font-semibold text-[16px] text-[#FFF5EC] text-center hover:bg-[#FFF5EC]/10 transition-colors"
               >
-                Saiba mais
+                {secondaryText}
               </Link>
             </div>
 
@@ -200,7 +208,7 @@ export function Hero({ siteSettings, pageHome }: HeroProps) {
       <div className="relative z-10 mx-auto max-w-[1450px] px-4 md:px-5 mt-4">
         <div ref={heroImageRef} className="relative w-full h-[400px] md:h-[600px] lg:h-[810px] rounded-[15px] overflow-hidden">
           <video
-            src="/videos/hero.mp4"
+            src={videoUrl}
             autoPlay
             muted
             loop
