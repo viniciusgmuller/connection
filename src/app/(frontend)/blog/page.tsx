@@ -61,9 +61,9 @@ export default async function BlogPage() {
                   >
                     {/* Image */}
                     <div className="aspect-video bg-bg-brown relative overflow-hidden">
-                      {featuredImage?.url ? (
+                      {featuredImage?.filename ? (
                         <Image
-                          src={featuredImage.url}
+                          src={`/media/${featuredImage.filename}`}
                           alt={featuredImage.alt || post.title}
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
