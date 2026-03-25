@@ -1,68 +1,36 @@
 import { Metadata } from 'next';
+import { getPayload } from 'payload';
+import config from '@payload-config';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Button } from '@/components/ui/Button';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Ingressos | Connection Experience',
-  description: 'Garanta seu ingresso para o Connection Experience 2026 - A maior vitrine de produtos com Indicação Geográfica do Brasil.',
+  description: 'Garanta seu ingresso para o Connection Experience 2026.',
 };
 
-const tickets = [
-  {
-    id: 'day-pass',
-    name: 'Day Pass',
-    price: 290,
-    description: 'Acesso a um dia do evento',
-    features: [
-      'Acesso às palestras do dia',
-      'Acesso à feira de expositores',
-      'Acesso às degustações',
-      'Material do evento',
-      'Coffee break incluso',
-    ],
-    available: true,
-    highlighted: false,
-  },
-  {
-    id: 'full-pass',
-    name: 'Full Pass',
-    price: 690,
-    originalPrice: 890,
-    description: 'Acesso completo aos 3 dias',
-    features: [
-      'Acesso total aos 3 dias',
-      'Todas as palestras e painéis',
-      'Workshops exclusivos',
-      'Rodadas de negócio (mediante inscrição)',
-      'Degustações guiadas',
-      'Kit participante completo',
-      'Acesso à área VIP',
-      'Almoços inclusos',
-    ],
-    available: true,
-    highlighted: true,
-  },
-  {
-    id: 'vip',
-    name: 'VIP Experience',
-    price: 1490,
-    description: 'Experiência premium exclusiva',
-    features: [
-      'Todos os benefícios do Full Pass',
-      'Acesso prioritário às atividades',
-      'Jantar de gala incluso',
-      'Meet & greet com palestrantes',
-      'Lounge VIP com open bar',
-      'Transfer hotel-evento',
-      'Concierge dedicado',
-      'Brindes exclusivos',
-    ],
-    available: true,
-    highlighted: false,
-  },
-];
+export default async function IngressosPage() {
+  const payload = await getPayload({ config });
 
-export default function IngressosPage() {
+  const { docs: tickets } = await payload.find({
+    collection: 'tickets',
+    sort: 'order',
+    limit: 10,
+  });
+
+  const { docs: faqItems } = await payload.find({
+    collection: 'faq',
+    sort: 'order',
+    limit: 20,
+  });
+
+  const settings = await payload.findGlobal({ slug: 'site-settings' });
+  const groupEmail = settings.contact?.groupSalesEmail || 'grupos@connectionexperience.com.br';
+  const whatsapp = settings.contact?.whatsapp || '5554999999999';
+  const mainEmail = settings.contact?.mainEmail || 'contato@connectionexperience.com.br';
+
   return (
     <div className="pt-24">
       {/* Hero */}
@@ -107,9 +75,9 @@ export default function IngressosPage() {
                 </div>
 
                 <div className="text-center mb-6">
-                  {ticket.originalPrice && (
+                  {ticket.previousPrice && (
                     <span className={`text-lg line-through ${ticket.highlighted ? 'text-bg-dark/50' : 'text-text-muted'}`}>
-                      R$ {ticket.originalPrice}
+                      R$ {ticket.previousPrice}
                     </span>
                   )}
                   <div className="flex items-baseline justify-center gap-1">
@@ -121,18 +89,16 @@ export default function IngressosPage() {
                 </div>
 
                 <ul className="space-y-3 mb-8">
-                  {ticket.features.map((feature, index) => (
+                  {(ticket.features as any[])?.map((f: any, index: number) => (
                     <li key={index} className="flex items-start gap-3">
                       <svg
                         className={`w-5 h-5 shrink-0 mt-0.5 ${ticket.highlighted ? 'text-bg-darker' : 'text-gold'}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24"
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                       <span className={`text-sm ${ticket.highlighted ? 'text-bg-dark/80' : 'text-text-cream'}`}>
-                        {feature}
+                        {f.feature}
                       </span>
                     </li>
                   ))}
@@ -143,7 +109,7 @@ export default function IngressosPage() {
                   variant={ticket.highlighted ? 'secondary' : 'primary'}
                   className={`w-full ${ticket.highlighted ? 'bg-bg-darker text-gold hover:bg-bg-dark' : ''}`}
                 >
-                  {ticket.available ? 'Comprar agora' : 'Esgotado'}
+                  Comprar agora
                 </Button>
               </div>
             ))}
@@ -159,7 +125,7 @@ export default function IngressosPage() {
             <p className="text-text-cream mb-8">
               Levando sua equipe para o Connection Experience? Oferecemos condições especiais para grupos a partir de 5 pessoas.
             </p>
-            <Button href="mailto:grupos@connectionexperience.com.br" variant="outline">
+            <Button href={`mailto:${groupEmail}`} variant="outline">
               Solicitar orçamento para grupos
             </Button>
           </div>
@@ -167,45 +133,32 @@ export default function IngressosPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 bg-bg-dark">
-        <div className="container mx-auto px-4 lg:px-8">
-          <SectionTitle title="Perguntas Frequentes" align="center" />
-          <div className="max-w-3xl mx-auto space-y-6">
-            <div className="p-6 rounded-xl bg-bg-darker border border-gold/10">
-              <h3 className="font-heading text-lg text-text-light mb-2">
-                Posso transferir meu ingresso?
-              </h3>
-              <p className="text-text-cream text-sm">
-                Sim, você pode transferir seu ingresso para outra pessoa até 7 dias antes do evento, mediante solicitação por email.
-              </p>
-            </div>
-            <div className="p-6 rounded-xl bg-bg-darker border border-gold/10">
-              <h3 className="font-heading text-lg text-text-light mb-2">
-                Qual a política de cancelamento?
-              </h3>
-              <p className="text-text-cream text-sm">
-                Cancelamentos com mais de 30 dias: reembolso integral. Entre 15-30 dias: 50% do valor. Menos de 15 dias: sem reembolso, mas com possibilidade de transferência.
-              </p>
-            </div>
-            <div className="p-6 rounded-xl bg-bg-darker border border-gold/10">
-              <h3 className="font-heading text-lg text-text-light mb-2">
-                O que está incluso no ingresso?
-              </h3>
-              <p className="text-text-cream text-sm">
-                Cada categoria de ingresso tem benefícios específicos listados acima. Hospedagem e transporte aéreo não estão inclusos em nenhuma categoria.
-              </p>
-            </div>
-            <div className="p-6 rounded-xl bg-bg-darker border border-gold/10">
-              <h3 className="font-heading text-lg text-text-light mb-2">
-                Como funcionam as Rodadas de Negócio?
-              </h3>
-              <p className="text-text-cream text-sm">
-                Portadores do Full Pass e VIP podem se inscrever gratuitamente. A participação é confirmada após análise do perfil e cruzamento de interesses.
-              </p>
+      {faqItems.length > 0 && (
+        <section className="py-16 bg-bg-dark">
+          <div className="container mx-auto px-4 lg:px-8">
+            <SectionTitle title="Perguntas Frequentes" align="center" />
+            <div className="max-w-3xl mx-auto space-y-6">
+              {faqItems.map((faq) => (
+                <div key={faq.id} className="p-6 rounded-xl bg-bg-darker border border-gold/10">
+                  <h3 className="font-heading text-lg text-text-light mb-2">
+                    {faq.question}
+                  </h3>
+                  <p className="text-text-cream text-sm">
+                    {/* Extract text from richText root */}
+                    {(() => {
+                      const root = (faq.answer as any)?.root;
+                      if (!root?.children) return '';
+                      return root.children
+                        .map((p: any) => p.children?.map((t: any) => t.text).join('') || '')
+                        .join(' ');
+                    })()}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="py-20 bg-gold">
@@ -218,7 +171,7 @@ export default function IngressosPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
-              href="https://wa.me/5554999999999"
+              href={`https://wa.me/${whatsapp}`}
               external
               variant="secondary"
               size="lg"
@@ -227,7 +180,7 @@ export default function IngressosPage() {
               Falar pelo WhatsApp
             </Button>
             <Button
-              href="mailto:contato@connectionexperience.com.br"
+              href={`mailto:${mainEmail}`}
               variant="ghost"
               size="lg"
               className="text-bg-darker border-2 border-bg-darker/20"

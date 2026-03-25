@@ -1,18 +1,38 @@
 import { Metadata } from 'next';
+import { getPayload } from 'payload';
+import config from '@payload-config';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Card, SpeakerCard } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Testimonial } from '@/components/ui/Testimonial';
-import { getConhecerContent, getTestimonialsByAxis } from '@/lib/content';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Conhecer | Connection Experience',
-  description: 'Descubra o universo das Indicações Geográficas brasileiras através de conteúdo exclusivo, palestras transformadoras e conhecimento que valoriza nossa cultura.',
+  description: 'Descubra o universo das Indicações Geográficas brasileiras.',
 };
 
-export default function ConhecerPage() {
-  const content = getConhecerContent();
-  const testimonials = getTestimonialsByAxis('conhecer');
+export default async function ConhecerPage() {
+  const payload = await getPayload({ config });
+
+  const { docs: speakers } = await payload.find({
+    collection: 'speakers',
+    sort: 'order',
+    limit: 20,
+    depth: 1,
+  });
+
+  const { docs: testimonials } = await payload.find({
+    collection: 'testimonials',
+    where: { axis: { equals: 'conhecer' } },
+    limit: 10,
+    depth: 1,
+  });
+
+  const pageData = await payload.findGlobal({ slug: 'page-conhecer' });
+
+  const features = (pageData.features as any)?.items || [];
 
   return (
     <div className="pt-24">
@@ -26,64 +46,75 @@ export default function ConhecerPage() {
         </div>
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <SectionTitle
-            tag="EIXO 1"
-            title={content.title}
-            subtitle={content.description}
+            tag={pageData.hero?.subtitle || "EIXO 1"}
+            title={pageData.hero?.title || "Conhecer"}
+            subtitle={pageData.hero?.description || "Descubra o universo das Indicações Geográficas brasileiras"}
             align="center"
           />
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-bg-dark">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8">
-            {content.features.map((feature, index) => (
-              <Card key={index} variant="bordered">
-                <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center shrink-0">
-                    <FeatureIcon name={feature.icon} />
+      {features.length > 0 && (
+        <section className="py-20 bg-bg-dark">
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="grid md:grid-cols-2 gap-8">
+              {features.map((feature: any, index: number) => (
+                <Card key={index} variant="bordered">
+                  <div className="flex items-start gap-4">
+                    <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center shrink-0">
+                      <FeatureIcon name={feature.icon} />
+                    </div>
+                    <div>
+                      <h3 className="font-heading text-2xl text-text-light mb-2">{feature.title}</h3>
+                      <p className="text-text-cream">{feature.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-heading text-2xl text-text-light mb-2">{feature.title}</h3>
-                    <p className="text-text-cream">{feature.description}</p>
-                  </div>
-                </div>
-              </Card>
-            ))}
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Speakers Section */}
-      <section className="py-20 bg-bg-darker">
-        <div className="container mx-auto px-4 lg:px-8">
-          <SectionTitle
-            title="Palestrantes"
-            subtitle="Conheça os especialistas que compartilham conhecimento e inspiração no Connection Experience"
-            align="center"
-          />
-          <div className="grid md:grid-cols-3 gap-8">
-            {content.speakers.map((speaker) => (
-              <SpeakerCard
-                key={speaker.id}
-                name={speaker.name}
-                title={speaker.title}
-                bio={speaker.bio}
-                image={speaker.image}
-                credentials={speaker.credentials}
-              />
-            ))}
+      {speakers.length > 0 && (
+        <section className="py-20 bg-bg-darker">
+          <div className="container mx-auto px-4 lg:px-8">
+            <SectionTitle
+              title={pageData.speakersSection?.title || "Palestrantes"}
+              subtitle={pageData.speakersSection?.subtitle || "Conheça os especialistas que compartilham conhecimento"}
+              align="center"
+            />
+            <div className="grid md:grid-cols-3 gap-8">
+              {speakers.map((speaker) => {
+                const photo = typeof speaker.photo === 'object' && speaker.photo !== null
+                  ? `/media/${encodeURIComponent((speaker.photo as any).filename)}`
+                  : speaker.photo;
+                const creds = (speaker.credentials as any[])?.map((c: any) => c.credential) || [];
+
+                return (
+                  <SpeakerCard
+                    key={speaker.id}
+                    name={speaker.name}
+                    title={speaker.title || ''}
+                    bio={speaker.bio || ''}
+                    image={photo as string}
+                    credentials={creds}
+                  />
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Testimonials */}
       {testimonials.length > 0 && (
         <section className="py-20 bg-bg-dark">
           <div className="container mx-auto px-4 lg:px-8">
             <SectionTitle
-              title="O que dizem os participantes"
+              title={pageData.testimonialsSection?.title || "O que dizem os participantes"}
               align="center"
             />
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -91,10 +122,10 @@ export default function ConhecerPage() {
                 <Testimonial
                   key={t.id}
                   name={t.name}
-                  role={t.role}
-                  company={t.company}
+                  role={t.role || ''}
+                  company={t.company || ''}
                   quote={t.quote}
-                  image={t.image}
+                  image=""
                   variant="featured"
                 />
               ))}
@@ -107,10 +138,10 @@ export default function ConhecerPage() {
       <section className="py-20 bg-gold">
         <div className="container mx-auto px-4 lg:px-8 text-center">
           <h2 className="font-heading text-4xl text-bg-darker mb-6">
-            Pronto para transformar seu conhecimento?
+            {pageData.cta?.headline || "Pronto para transformar seu conhecimento?"}
           </h2>
-          <Button href="/ingressos" variant="secondary" size="lg" className="bg-bg-darker text-gold">
-            Garantir meu ingresso
+          <Button href={pageData.cta?.buttonLink || "/ingressos"} variant="secondary" size="lg" className="bg-bg-darker text-gold">
+            {pageData.cta?.buttonText || "Garantir meu ingresso"}
           </Button>
         </div>
       </section>
