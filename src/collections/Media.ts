@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload';
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  labels: { singular: 'Mídia', plural: 'Mídias' },
   upload: {
     mimeTypes: ['image/*', 'video/*', 'application/pdf'],
     staticDir: path.resolve(process.cwd(), 'public/media'),
@@ -11,5 +12,5 @@ export const Media: CollectionConfig = {
   access: {
     read: () => true,
   },
-  fields: [{ name: 'alt', type: 'text', required: true }],
+  fields: [{ name: 'alt', type: 'text', required: true, label: 'Texto Alternativo' }],
 };
