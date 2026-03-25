@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import { useGSAPScroll } from '@/hooks/useGSAP';
 
-export function OQueEIG() {
+interface OQueEIGProps { pageHome?: any; }
+export function OQueEIG({ pageHome }: OQueEIGProps) {
   const containerRef = useGSAPScroll<HTMLDivElement>({ animation: 'scaleIn', duration: 0.9 });
   const diagramRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeLeft', distance: 50, duration: 0.8, delay: 0.2 });
   const textRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeRight', distance: 50, duration: 0.8, delay: 0.3 });

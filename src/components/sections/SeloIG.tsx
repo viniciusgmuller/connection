@@ -8,14 +8,24 @@ import { useGSAPScroll, useGSAPTimeline, useGSAPParallax } from '@/hooks/useGSAP
 
 gsap.registerPlugin(ScrollTrigger);
 
-const stats = [
-  { number: 53, suffix: '+', label: 'Produtos com Selo IG' },
-  { number: 27, suffix: '', label: 'Estados Representados' },
-  { number: 100, suffix: '+', label: 'Produtores Presentes' },
-  { number: 4, suffix: '', label: 'Dias de Evento' },
+const defaultStats = [
+  { number: '53', suffix: '+', label: 'Produtos com Selo IG' },
+  { number: '27', suffix: '', label: 'Estados Representados' },
+  { number: '100', suffix: '+', label: 'Produtores Presentes' },
+  { number: '4', suffix: '', label: 'Dias de Evento' },
 ];
 
-export function SeloIG() {
+interface SeloIGProps {
+  pageHome?: any;
+}
+
+export function SeloIG({ pageHome }: SeloIGProps) {
+  const cmsStats = pageHome?.seloIG?.stats;
+  const stats = (cmsStats && cmsStats.length > 0 ? cmsStats : defaultStats).map((s: any) => ({
+    number: Number(s.number) || 0,
+    suffix: s.suffix || '',
+    label: s.label || '',
+  }));
   const headlineRef = useGSAPScroll<HTMLHeadingElement>({ animation: 'fadeUp', distance: 50, duration: 0.9 });
   const statsGridRef = useRef<HTMLDivElement>(null);
   const leafRef1 = useGSAPParallax<HTMLImageElement>(40);
@@ -104,7 +114,7 @@ export function SeloIG() {
             Brasil
           </h2>
           <div ref={statsGridRef} className="grid grid-cols-2 gap-x-16 gap-y-10 lg:gap-x-[141px] lg:gap-y-[59px]">
-            {stats.map((stat) => (
+            {stats.map((stat: { number: number; suffix: string; label: string }) => (
               <div key={stat.label} className="stat-item flex w-[199px] flex-col gap-[35px] opacity-0">
                 <span className="stat-number font-heading text-[60px] leading-[60px] lg:text-[100px] lg:leading-[60px]">
                   0{stat.suffix}

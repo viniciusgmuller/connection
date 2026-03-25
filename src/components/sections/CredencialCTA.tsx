@@ -26,7 +26,8 @@ const beneficios = [
   },
 ];
 
-export function CredencialCTA() {
+interface CredencialCTAProps { pageHome?: any; }
+export function CredencialCTA({ pageHome }: CredencialCTAProps) {
   const headerRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeUp', distance: 50, duration: 0.8 });
   const gridRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeUp', children: true, stagger: 0.12 });
   const ctaRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeUp', delay: 0.1 });

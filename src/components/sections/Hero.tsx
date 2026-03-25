@@ -10,7 +10,20 @@ import { useGSAPParallax } from '@/hooks/useGSAP';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function Hero() {
+interface HeroProps {
+  siteSettings?: any;
+  pageHome?: any;
+}
+
+export function Hero({ siteSettings, pageHome }: HeroProps) {
+  const hero = pageHome?.hero;
+  const event = siteSettings?.event;
+  const startDay = event?.startDate ? new Date(event.startDate).getUTCDate() : 10;
+  const endDay = event?.endDate ? new Date(event.endDate).getUTCDate() : 13;
+  const monthYear = event?.startDate
+    ? new Date(event.startDate).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric', timeZone: 'UTC' })
+    : 'Junho 2026';
+  const location = event?.location || 'Gramado, Rio Grande do Sul';
   const sectionRef = useRef<HTMLDivElement>(null);
   const heroImageRef = useRef<HTMLDivElement>(null);
   const decorativeRef = useGSAPParallax<HTMLDivElement>(80);
@@ -171,15 +184,15 @@ export function Hero() {
           height={24}
         />
         <p className="font-heading font-bold text-[#FFF5EC] text-center w-full">
-          <span className="text-[48px] leading-[24px]">10 </span>
+          <span className="text-[48px] leading-[24px]">{startDay} </span>
           <span className="text-[24px] leading-[24px]">a</span>
-          <span className="text-[48px] leading-[24px]"> 13</span>
+          <span className="text-[48px] leading-[24px]"> {endDay}</span>
         </p>
         <p className="font-heading font-bold text-[24px] leading-[24px] text-[#FFF5EC] text-center w-full">
-          de Junho 2026
+          de {monthYear}
         </p>
         <p className="font-just-sans font-normal text-[11px] text-[#FFF5EC] text-center w-full">
-          Gramado, Rio Grande do Sul
+          {location}
         </p>
       </div>
 

@@ -109,7 +109,26 @@ const tierStyles: Record<Tier, { card: string; inner: string; label: string }> =
   },
 };
 
-export function Parceiros() {
+interface ParceirosProps {
+  partners?: any[];
+}
+
+export function Parceiros({ partners: cmsPartners }: ParceirosProps) {
+  // If CMS partners exist, group them by tier and use CMS data
+  const displayPartners = (cmsPartners && cmsPartners.length > 0)
+    ? cmsPartners.map((p: any) => {
+        const tier = typeof p.tier === 'object' ? p.tier : null;
+        const tierOrder = tier?.order || 99;
+        const logo = typeof p.logo === 'object' && p.logo !== null ? p.logo : null;
+        const logoSrc = logo?.filename ? `/media/${encodeURIComponent(logo.filename)}` : '';
+        return {
+          label: tier?.name || '',
+          logos: [{ src: logoSrc, alt: p.name }],
+          tier: (tierOrder <= 3 ? 1 : tierOrder <= 5 ? 2 : 3) as Tier,
+          sortOrder: tierOrder * 100 + (p.order || 0),
+        };
+      }).sort((a: any, b: any) => a.sortOrder - b.sortOrder)
+    : partners;
   const listRef = useGSAPScroll<HTMLDivElement>({
     animation: 'fadeUp',
     children: true,
@@ -120,7 +139,7 @@ export function Parceiros() {
   return (
     <section className="bg-[#131415] px-6 py-[103px] lg:px-0">
       <div ref={listRef} className="mx-auto flex max-w-[1113px] flex-col gap-[37px]">
-        {partners.map((partner, i) => {
+        {displayPartners.map((partner, i) => {
           const styles = tierStyles[partner.tier];
           return (
             <div

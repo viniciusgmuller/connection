@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import { useGSAPScroll, useGSAPParallax } from '@/hooks/useGSAP';
 
-export function CTA() {
+interface CTAProps { pageHome?: any; }
+export function CTA({ pageHome }: CTAProps) {
   const contentRef = useGSAPScroll<HTMLDivElement>({ animation: 'scaleIn', duration: 1 });
   const headlineRef = useGSAPScroll<HTMLHeadingElement>({ animation: 'fadeUp', distance: 40, duration: 0.9, delay: 0.1 });
   const subtitleRef = useGSAPScroll<HTMLParagraphElement>({ animation: 'fadeUp', distance: 30, delay: 0.3 });

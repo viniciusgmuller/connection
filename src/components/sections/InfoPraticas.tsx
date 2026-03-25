@@ -8,34 +8,26 @@ import { useGSAPScroll } from '@/hooks/useGSAP';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const infoItems = [
-  {
-    icon: '/images/info-icons/calendar.svg',
-    title: 'Data',
-    text: '10 a 13 de Junho de 2026',
-    sub: 'Quarta a Sábado',
-  },
-  {
-    icon: '/images/info-icons/location.svg',
-    title: 'Local',
-    text: 'Gramado, Rio Grande do Sul',
-    sub: 'Serra Gaúcha',
-  },
-  {
-    icon: '/images/info-icons/hotel.svg',
-    title: 'Hospedagem',
-    text: 'Hotel Oficial: Laghetto',
-    sub: 'Condições especiais para participantes',
-  },
-  {
-    icon: '/images/info-icons/email.svg',
-    title: 'Contato',
-    text: 'contato@connectionexperience.com.br',
-    sub: 'Atendimento em horário comercial',
-  },
-];
+interface InfoPraticasProps {
+  siteSettings?: any;
+  pageHome?: any;
+}
 
-export function InfoPraticas() {
+export function InfoPraticas({ siteSettings, pageHome }: InfoPraticasProps) {
+  const event = siteSettings?.event;
+  const contact = siteSettings?.contact;
+  const hotel = siteSettings?.hospitality?.officialHotel || 'Laghetto';
+
+  const dateText = event?.startDate && event?.endDate
+    ? `${new Date(event.startDate).getUTCDate()} a ${new Date(event.endDate).getUTCDate()} de ${new Date(event.startDate).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric', timeZone: 'UTC' })}`
+    : '10 a 13 de Junho de 2026';
+
+  const infoItems = [
+    { icon: '/images/info-icons/calendar.svg', title: 'Data', text: dateText, sub: 'Quarta a Sábado' },
+    { icon: '/images/info-icons/location.svg', title: 'Local', text: event?.location || 'Gramado, Rio Grande do Sul', sub: event?.venue || 'Serra Gaúcha' },
+    { icon: '/images/info-icons/hotel.svg', title: 'Hospedagem', text: `Hotel Oficial: ${hotel}`, sub: 'Condições especiais para participantes' },
+    { icon: '/images/info-icons/email.svg', title: 'Contato', text: contact?.mainEmail || 'contato@connectionexperience.com.br', sub: 'Atendimento em horário comercial' },
+  ];
   const containerRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeUp', distance: 50, duration: 0.9 });
   const itemsRef = useRef<HTMLDivElement>(null);
   const mapRef = useGSAPScroll<HTMLDivElement>({ animation: 'scaleIn', duration: 0.8, delay: 0.3 });
