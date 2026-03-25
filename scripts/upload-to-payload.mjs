@@ -138,7 +138,8 @@ class PayloadUploader {
 
     const formData = new FormData();
     formData.append("file", new Blob([fileBuffer], { type: mimeType }), fileName);
-    formData.append("alt", altText || fileName.replace(/[-_%]/g, " ").replace(/\.[^.]+$/, "") || "Imagem do blog");
+    const alt = altText || fileName.replace(/[-_%]/g, " ").replace(/\.[^.]+$/, "") || "Imagem do blog";
+    formData.append("_payload", JSON.stringify({ alt }));
 
     const res = await fetch(`${this.serverUrl}/api/media`, {
       method: "POST",
