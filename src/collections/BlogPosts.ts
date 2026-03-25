@@ -11,7 +11,7 @@ export const BlogPosts: CollectionConfig = {
     { name: 'slug', type: 'text', required: true, unique: true },
     { name: 'publishedAt', type: 'date' },
     { name: 'status', type: 'select', options: ['draft', 'published'], defaultValue: 'draft' },
-    { name: 'author', type: 'text' },
+    { name: 'author', type: 'relationship', relationTo: 'authors' },
     { name: 'excerpt', type: 'textarea' },
     { name: 'featuredImage', type: 'upload', relationTo: 'media' },
     { name: 'content', type: 'richText' },
