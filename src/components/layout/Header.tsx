@@ -207,7 +207,12 @@ const navigation: NavItem[] = [
   },
 ];
 
-export function Header() {
+interface HeaderProps {
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+export function Header({ ctaText = 'Garantir Ingresso', ctaLink = '/ingressos' }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -377,10 +382,10 @@ export function Header() {
             {/* CTA Button */}
             <div className="hidden lg:block">
               <Link
-                href="/ingressos"
+                href={ctaLink}
                 className="inline-flex items-center justify-center px-[25px] py-[10px] bg-[#FFF5EC] rounded-full font-just-sans font-semibold text-[14px] text-[#4D564D] text-center hover:bg-[#FFF5EC]/90 transition-colors"
               >
-                Garantir Ingresso
+                {ctaText}
               </Link>
             </div>
 

@@ -6,6 +6,8 @@ export const NavigationFooter: GlobalConfig = {
   access: { read: () => true },
   fields: [
     { type: "group", name: "navigation", label: "Navegação", fields: [
+      { name: "ctaText", type: "text", label: "Texto do Botão CTA", defaultValue: "Garantir Ingresso" },
+      { name: "ctaLink", type: "text", label: "Link do Botão CTA", defaultValue: "/ingressos" },
       { name: "menuItems", type: "array", label: "Itens do Menu", fields: [
         { name: "label", type: "text", label: "Rótulo" },
         { name: "href", type: "text", label: "Link" },

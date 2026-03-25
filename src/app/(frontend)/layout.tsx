@@ -94,7 +94,10 @@ export default async function FrontendLayout({
       <body
         className={`${playfair.variable} ${inter.variable} ${cormorant.variable} ${boska.variable} ${justSans.variable} antialiased`}
       >
-        <Header />
+        <Header
+          ctaText={navFooterData?.navigation?.ctaText || undefined}
+          ctaLink={navFooterData?.navigation?.ctaLink || undefined}
+        />
         <main>{children}</main>
         <Footer cmsData={navFooterData} />
       </body>
