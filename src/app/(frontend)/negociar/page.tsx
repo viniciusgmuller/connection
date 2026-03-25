@@ -1,18 +1,50 @@
 import { Metadata } from 'next';
+import { getPayload } from 'payload';
+import config from '@payload-config';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Testimonial } from '@/components/ui/Testimonial';
-import { getNegociarContent, getTestimonialsByAxis } from '@/lib/content';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Negociar | Connection Experience',
-  description: 'Conecte-se com oportunidades de negócio, participe de rodadas de negociação e estabeleça parcerias estratégicas com produtores e compradores.',
+  description: 'Conecte-se com oportunidades de negócio no Connection Experience.',
 };
 
-export default function NegociarPage() {
-  const content = getNegociarContent();
-  const testimonials = getTestimonialsByAxis('negociar');
+export default async function NegociarPage() {
+  const payload = await getPayload({ config });
+
+  const { docs: testimonials } = await payload.find({
+    collection: 'testimonials',
+    where: { axis: { equals: 'negociar' } },
+    limit: 10,
+  });
+
+  const pageData = await payload.findGlobal({ slug: 'page-negociar' });
+  const settings = await payload.findGlobal({ slug: 'site-settings' });
+
+  const features = (pageData.features as any)?.items || [];
+  const benefitGroups = (pageData.benefits as any)?.groups || [];
+  const processSteps = (pageData.process as any)?.steps || [];
+  const businessEmail = settings.contact?.businessEmail || 'negocios@connectionexperience.com.br';
+
+  // Fallback hardcoded benefits if CMS is empty
+  const defaultBenefits = [
+    { title: "Para Produtores", items: [{ text: "Exposição para compradores qualificados" }, { text: "Networking com o mercado" }, { text: "Visibilidade para seu produto IG" }, { text: "Oportunidades de negócio diretas" }] },
+    { title: "Para Compradores", items: [{ text: "Acesso a produtos certificados" }, { text: "Contato direto com produtores" }, { text: "Condições exclusivas do evento" }, { text: "Diversidade de produtos IG" }] },
+  ];
+
+  const defaultSteps = [
+    { title: "Inscrição", description: "Cadastre-se como produtor ou comprador" },
+    { title: "Matchmaking", description: "Nossa equipe cruza interesses e perfis" },
+    { title: "Agenda", description: "Receba sua agenda de reuniões personalizada" },
+    { title: "Negociação", description: "Encontre parceiros e feche negócios" },
+  ];
+
+  const benefits = benefitGroups.length > 0 ? benefitGroups : defaultBenefits;
+  const steps = processSteps.length > 0 ? processSteps : defaultSteps;
 
   return (
     <div className="pt-24">
@@ -21,58 +53,57 @@ export default function NegociarPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-transparent" />
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <SectionTitle
-            tag="EIXO 3"
-            title={content.title}
-            subtitle={content.description}
+            tag={pageData.hero?.subtitle || "EIXO 3"}
+            title={pageData.hero?.title || "Negociar"}
+            subtitle={pageData.hero?.description || "Conecte-se com oportunidades de negócio"}
             align="center"
           />
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-bg-darker">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8">
-            {content.features.map((feature, index) => (
-              <Card key={index} variant="bordered">
-                <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center shrink-0">
-                    <FeatureIcon name={feature.icon} />
+      {features.length > 0 && (
+        <section className="py-20 bg-bg-darker">
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="grid md:grid-cols-2 gap-8">
+              {features.map((feature: any, index: number) => (
+                <Card key={index} variant="bordered">
+                  <div className="flex items-start gap-4">
+                    <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center shrink-0">
+                      <FeatureIcon name={feature.icon} />
+                    </div>
+                    <div>
+                      <h3 className="font-heading text-2xl text-text-light mb-2">{feature.title}</h3>
+                      <p className="text-text-cream">{feature.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-heading text-2xl text-text-light mb-2">{feature.title}</h3>
-                    <p className="text-text-cream">{feature.description}</p>
-                  </div>
-                </div>
-              </Card>
-            ))}
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Benefits Section */}
       <section className="py-20 bg-bg-brown">
         <div className="container mx-auto px-4 lg:px-8">
           <SectionTitle
-            title="Benefícios para você"
+            title={pageData.benefits?.title || "Benefícios para você"}
             align="center"
           />
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {content.benefits.map((benefit, index) => (
-              <div
-                key={index}
-                className="p-8 rounded-2xl bg-bg-dark/50 border border-gold/10"
-              >
+            {benefits.map((benefit: any, index: number) => (
+              <div key={index} className="p-8 rounded-2xl bg-bg-dark/50 border border-gold/10">
                 <h3 className="font-heading text-2xl text-gold mb-6">{benefit.title}</h3>
                 <ul className="space-y-4">
-                  {benefit.items.map((item, i) => (
+                  {(benefit.items || []).map((item: any, i: number) => (
                     <li key={i} className="flex items-start gap-3">
                       <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-0.5">
                         <svg className="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
-                      <span className="text-text-cream">{item}</span>
+                      <span className="text-text-cream">{typeof item === 'string' ? item : item.text}</span>
                     </li>
                   ))}
                 </ul>
@@ -86,38 +117,19 @@ export default function NegociarPage() {
       <section className="py-20 bg-bg-dark">
         <div className="container mx-auto px-4 lg:px-8">
           <SectionTitle
-            title="Como funcionam as Rodadas de Negócio"
+            title={pageData.process?.title || "Como funcionam as Rodadas de Negócio"}
             align="center"
           />
           <div className="grid md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gold flex items-center justify-center">
-                <span className="font-heading text-2xl text-bg-darker">1</span>
+            {steps.map((step: any, index: number) => (
+              <div key={index} className="text-center">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gold flex items-center justify-center">
+                  <span className="font-heading text-2xl text-bg-darker">{index + 1}</span>
+                </div>
+                <h4 className="font-heading text-lg text-text-light mb-2">{step.title}</h4>
+                <p className="text-text-muted text-sm">{step.description}</p>
               </div>
-              <h4 className="font-heading text-lg text-text-light mb-2">Inscrição</h4>
-              <p className="text-text-muted text-sm">Cadastre-se como produtor ou comprador</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gold flex items-center justify-center">
-                <span className="font-heading text-2xl text-bg-darker">2</span>
-              </div>
-              <h4 className="font-heading text-lg text-text-light mb-2">Matchmaking</h4>
-              <p className="text-text-muted text-sm">Nossa equipe cruza interesses e perfis</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gold flex items-center justify-center">
-                <span className="font-heading text-2xl text-bg-darker">3</span>
-              </div>
-              <h4 className="font-heading text-lg text-text-light mb-2">Agenda</h4>
-              <p className="text-text-muted text-sm">Receba sua agenda de reuniões personalizada</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gold flex items-center justify-center">
-                <span className="font-heading text-2xl text-bg-darker">4</span>
-              </div>
-              <h4 className="font-heading text-lg text-text-light mb-2">Negociação</h4>
-              <p className="text-text-muted text-sm">Encontre parceiros e feche negócios</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -127,7 +139,7 @@ export default function NegociarPage() {
         <section className="py-20 bg-bg-darker">
           <div className="container mx-auto px-4 lg:px-8">
             <SectionTitle
-              title="Resultados reais"
+              title={pageData.testimonialsSection?.title || "Resultados reais"}
               align="center"
             />
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -135,10 +147,10 @@ export default function NegociarPage() {
                 <Testimonial
                   key={t.id}
                   name={t.name}
-                  role={t.role}
-                  company={t.company}
+                  role={t.role || ''}
+                  company={t.company || ''}
                   quote={t.quote}
-                  image={t.image}
+                  image=""
                   variant="featured"
                 />
               ))}
@@ -151,17 +163,17 @@ export default function NegociarPage() {
       <section className="py-20 bg-gold">
         <div className="container mx-auto px-4 lg:px-8 text-center">
           <h2 className="font-heading text-4xl text-bg-darker mb-4">
-            Pronto para expandir seus negócios?
+            {pageData.cta?.headline || "Pronto para expandir seus negócios?"}
           </h2>
           <p className="text-bg-dark/80 text-lg mb-8 max-w-xl mx-auto">
-            Seja você produtor ou comprador, o Connection Experience é o lugar para fazer bons negócios.
+            {pageData.cta?.description || "Seja você produtor ou comprador, o Connection Experience é o lugar para fazer bons negócios."}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button href="/ingressos" variant="secondary" size="lg" className="bg-bg-darker text-gold">
-              Quero participar
+            <Button href={pageData.cta?.buttonLink || "/ingressos"} variant="secondary" size="lg" className="bg-bg-darker text-gold">
+              {pageData.cta?.buttonText || "Quero participar"}
             </Button>
-            <Button href="mailto:negocios@connectionexperience.com.br" variant="ghost" size="lg" className="text-bg-darker border-2 border-bg-darker/20">
-              Falar com nossa equipe
+            <Button href={`mailto:${businessEmail}`} variant="ghost" size="lg" className="text-bg-darker border-2 border-bg-darker/20">
+              {pageData.cta?.contactButtonText || "Falar com nossa equipe"}
             </Button>
           </div>
         </div>
