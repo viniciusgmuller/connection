@@ -54,6 +54,11 @@ export default async function BlogPostPage({ params }: Props) {
       })
     : null;
 
+  // Calculate reading time from content
+  const textContent = (post.legacyHtml as string || '').replace(/<[^>]*>/g, '');
+  const wordCount = textContent.split(/\s+/).filter(Boolean).length;
+  const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
   return (
     <div className="pt-32">
       {/* Header */}
@@ -81,6 +86,8 @@ export default async function BlogPostPage({ params }: Props) {
                 <span>{post.author}</span>
               </>
             )}
+            <span>•</span>
+            <span>{readingTime} min de leitura</span>
           </div>
         </div>
       </section>

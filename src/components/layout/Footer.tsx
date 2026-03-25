@@ -43,7 +43,23 @@ const socials = [
   },
 ];
 
-export function Footer() {
+interface FooterProps {
+  cmsData?: any;
+}
+
+export function Footer({ cmsData }: FooterProps) {
+  const cmsFooter = cmsData?.footer;
+  const tagline = cmsFooter?.tagline || 'Experiências que inspiram, conteúdo que transforma. A maior vitrine de produtos com Indicação Geográfica do Brasil.';
+  const cmsLinkGroups = cmsFooter?.linkGroups;
+  const cmsSocials = cmsFooter?.socialLinks;
+
+  const displaySocials = (cmsSocials && cmsSocials.length > 0)
+    ? cmsSocials.map((s: any) => ({
+        label: s.platform?.charAt(0).toUpperCase() + s.platform?.slice(1),
+        href: s.url,
+        icon: `/images/footer/${s.platform}.svg`,
+      }))
+    : socials;
   return (
     <footer className="border-t border-[#C9A962]/10 bg-[#131415]">
       {/* Main Footer */}
@@ -61,14 +77,13 @@ export function Footer() {
               />
             </Link>
             <p className="font-just-sans text-[14px] leading-normal text-[#FFF5EC]">
-              Experiências que inspiram, conteúdo que transforma. A maior vitrine
-              de produtos com Indicação Geográfica do Brasil.
+              {tagline}
             </p>
           </div>
 
           {/* Social Icons */}
           <div className="flex items-center gap-[12px]">
-            {socials.map((social) => (
+            {displaySocials.map((social: any) => (
               <a
                 key={social.label}
                 href={social.href}
@@ -91,9 +106,16 @@ export function Footer() {
 
         {/* Link Columns */}
         <div className="flex flex-1 flex-wrap gap-10 md:gap-[48px]">
-          <FooterColumn title="Evento" links={footerLinks.evento} />
-          <FooterColumn title="Eixos" links={footerLinks.eixos} />
-          <FooterColumn title="Conteúdo" links={footerLinks.conteudo} />
+          {(cmsLinkGroups && cmsLinkGroups.length > 0)
+            ? cmsLinkGroups.map((group: any, i: number) => (
+                <FooterColumn key={i} title={group.title} links={group.links || []} />
+              ))
+            : <>
+                <FooterColumn title="Evento" links={footerLinks.evento} />
+                <FooterColumn title="Eixos" links={footerLinks.eixos} />
+                <FooterColumn title="Conteúdo" links={footerLinks.conteudo} />
+              </>
+          }
         </div>
       </div>
 

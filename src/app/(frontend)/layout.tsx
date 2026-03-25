@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter, Cormorant_Garamond } from "next/font/google";
 import localFont from "next/font/local";
+import { getPayload } from "payload";
+import config from "@payload-config";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "../globals.css";
@@ -74,11 +76,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function FrontendLayout({
+export default async function FrontendLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  let navFooterData = null;
+  try {
+    const payload = await getPayload({ config });
+    navFooterData = await payload.findGlobal({ slug: 'navigation-footer' });
+  } catch {
+    // CMS unavailable, use fallback
+  }
+
   return (
     <html lang="pt-BR" className="scroll-smooth">
       <body
@@ -86,7 +96,7 @@ export default function FrontendLayout({
       >
         <Header />
         <main>{children}</main>
-        <Footer />
+        <Footer cmsData={navFooterData} />
       </body>
     </html>
   );

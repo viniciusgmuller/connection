@@ -91,6 +91,11 @@ export default async function BlogPage() {
                             <span>{post.author}</span>
                           </>
                         )}
+                        {(() => {
+                          const text = ((post.legacyHtml as string) || '').replace(/<[^>]*>/g, '');
+                          const mins = Math.max(1, Math.ceil(text.split(/\s+/).filter(Boolean).length / 200));
+                          return <><span>•</span><span>{mins} min</span></>;
+                        })()}
                       </div>
                       <h2 className="font-heading text-xl text-text-light mb-2 group-hover:text-gold transition-colors">
                         <Link href={`/blog/${post.slug}`}>{post.title}</Link>
