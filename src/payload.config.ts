@@ -36,6 +36,16 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    livePreview: {
+      url: process.env.NEXT_PUBLIC_SERVER_URL || "https://connection.duckstudio.design",
+      collections: ["blog-posts", "speakers", "schedule-events", "tickets", "partners", "products", "testimonials", "faq", "authors"],
+      globals: ["site-settings", "page-home", "page-conhecer", "page-experimentar", "page-negociar", "page-ingressos", "page-programacao", "navigation-footer"],
+      breakpoints: [
+        { label: "Mobile", name: "mobile", width: 375, height: 667 },
+        { label: "Tablet", name: "tablet", width: 768, height: 1024 },
+        { label: "Desktop", name: "desktop", width: 1440, height: 900 },
+      ],
+    },
   },
   collections: [
     Users,
