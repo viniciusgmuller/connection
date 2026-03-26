@@ -15,22 +15,26 @@ export const dynamic = 'force-dynamic';
 export default async function Home() {
   const payload = await getPayload({ config });
 
-  const [siteSettings, pageHome, partners] = await Promise.all([
+  const [siteSettings, pageHome, partners, scheduleEvents] = await Promise.all([
     payload.findGlobal({ slug: 'site-settings' }),
     payload.findGlobal({ slug: 'page-home' }),
     payload.find({ collection: 'partners', sort: 'order', limit: 50, depth: 2 }),
+    payload.find({ collection: 'schedule-events', sort: 'date', limit: 200, depth: 1 }),
   ]);
+
+  // Attach schedule to pageHome for SeloIG > ConhecaBlock
+  const pageHomeWithSchedule = { ...pageHome, schedulePreview: scheduleEvents.docs };
 
   return (
     <>
-      <Hero siteSettings={siteSettings} pageHome={pageHome} />
-      <SeloIG pageHome={pageHome} />
-      <CredencialCTA pageHome={pageHome} />
+      <Hero siteSettings={siteSettings} pageHome={pageHomeWithSchedule} />
+      <SeloIG pageHome={pageHomeWithSchedule} />
+      <CredencialCTA pageHome={pageHomeWithSchedule} />
       <Experimentar />
       <Negociar />
-      <OQueEIG pageHome={pageHome} />
-      <CTA pageHome={pageHome} />
-      <InfoPraticas siteSettings={siteSettings} pageHome={pageHome} />
+      <OQueEIG pageHome={pageHomeWithSchedule} />
+      <CTA pageHome={pageHomeWithSchedule} />
+      <InfoPraticas siteSettings={siteSettings} pageHome={pageHomeWithSchedule} />
       <Parceiros partners={partners.docs} />
     </>
   );

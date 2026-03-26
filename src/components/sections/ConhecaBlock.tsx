@@ -79,19 +79,47 @@ const schedule: ScheduleItem[] = [
   { day: '13', time: '16:00', endTime: '17:30', title: 'Podcast ao vivo: episódio especial de encerramento', speaker: 'Equipe Connection', speakerImages: ['/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg'], category: 'Podcasts', location: 'Estúdio Podcast' },
 ];
 
-const locations = [...new Set(schedule.map((s) => s.location).filter(Boolean))] as string[];
+const defaultLocations = [...new Set(schedule.map((s) => s.location).filter(Boolean))] as string[];
 
 /* ── Component ── */
-export function ConhecaBlock() {
+interface ConhecaBlockProps {
+  cmsSchedule?: any[];
+}
+
+export function ConhecaBlock({ cmsSchedule }: ConhecaBlockProps) {
+  // Use CMS schedule data if available, mapping to internal format
+  const effectiveSchedule: ScheduleItem[] = (cmsSchedule && cmsSchedule.length > 0)
+    ? cmsSchedule.map((evt: any) => {
+        const d = evt.date ? new Date(evt.date).getUTCDate().toString() : '10';
+        const speakerName = typeof evt.speaker === 'object' && evt.speaker?.name ? evt.speaker.name : '';
+        return {
+          day: d,
+          time: evt.startTime || '',
+          endTime: evt.endTime || '',
+          title: evt.title || '',
+          speaker: speakerName,
+          category: (evt.type === 'palestra' ? 'Palestras' : evt.type === 'workshop' ? 'Conteúdos' : 'Podcasts') as Category,
+          location: evt.location || '',
+        };
+      })
+    : schedule;
+
+  const effectiveDays = (cmsSchedule && cmsSchedule.length > 0)
+    ? [...new Set(effectiveSchedule.map(s => s.day))].sort().map(d => ({
+        key: d, day: d, weekday: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'][new Date(2026, 5, Number(d)).getDay()] || d,
+      }))
+    : days;
+  const effectiveLocations = [...new Set(effectiveSchedule.map(s => s.location).filter(Boolean))] as string[];
+
   const [activeCategory, setActiveCategory] = useState<Category | null>(null);
-  const [activeDay, setActiveDay] = useState('10');
+  const [activeDay, setActiveDay] = useState(effectiveDays[0]?.key || '10');
   const [activeLocation, setActiveLocation] = useState<string | null>(null);
   const [locationOpen, setLocationOpen] = useState(false);
   const [search, setSearch] = useState('');
 
   const searchLower = search.toLowerCase().trim();
 
-  const filteredSchedule = schedule.filter((item) => {
+  const filteredSchedule = effectiveSchedule.filter((item) => {
     if (item.day !== activeDay) return false;
     if (activeCategory && item.category !== activeCategory) return false;
     if (activeLocation && item.location !== activeLocation) return false;
@@ -191,7 +219,7 @@ export function ConhecaBlock() {
                     >
                       Todos os palcos
                     </button>
-                    {locations.map((loc) => (
+                    {effectiveLocations.map((loc) => (
                       <button
                         key={loc}
                         onClick={() => { setActiveLocation(loc); setLocationOpen(false); }}
@@ -262,7 +290,7 @@ export function ConhecaBlock() {
         <div>
           {/* Day selector */}
           <div className="flex w-full items-end gap-[40px]">
-            {days.map((day) => (
+            {effectiveDays.map((day) => (
               <button
                 key={day.key}
                 onClick={() => setActiveDay(day.key)}
