@@ -410,6 +410,8 @@ export function Header({ ctaText = 'Garantir Ingresso', ctaLink = '/ingressos' }
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
         navigation={navigation}
+        ctaText={ctaText}
+        ctaLink={ctaLink}
       />
     </>
   );

@@ -7,8 +7,13 @@ import type { Participant } from '@/components/ui/ParticipantCard';
 import { ProductsIG } from '@/components/sections/ProductsIG';
 import { useGSAPScroll } from '@/hooks/useGSAP';
 
-export function Experimentar() {
-  const content = getExperimentarContent();
+interface ExperimentarProps {
+  cmsData?: { title?: string; description?: string; features?: any[]; participants?: any[] };
+}
+
+export function Experimentar({ cmsData }: ExperimentarProps) {
+  const jsonContent = getExperimentarContent();
+  const content = cmsData ? { ...jsonContent, ...cmsData } : jsonContent;
   const titleRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeUp', distance: 50, duration: 0.9 });
   const cardRef = useGSAPScroll<HTMLDivElement>({ animation: 'scaleIn', duration: 0.9 });
   const productsRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeUp', distance: 40 });

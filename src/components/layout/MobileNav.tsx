@@ -10,9 +10,11 @@ interface MobileNavProps {
   isOpen: boolean;
   onClose: () => void;
   navigation: NavItem[];
+  ctaText?: string;
+  ctaLink?: string;
 }
 
-export function MobileNav({ isOpen, onClose, navigation }: MobileNavProps) {
+export function MobileNav({ isOpen, onClose, navigation, ctaText = 'Garantir Ingresso', ctaLink = '/ingressos' }: MobileNavProps) {
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
 
   // Prevent body scroll when menu is open
@@ -158,8 +160,8 @@ export function MobileNav({ isOpen, onClose, navigation }: MobileNavProps) {
 
           {/* Footer */}
           <div className="p-6 border-t border-gold/10 space-y-4">
-            <Button href="/ingressos" className="w-full" onClick={onClose}>
-              Garantir Ingresso
+            <Button href={ctaLink} className="w-full" onClick={onClose}>
+              {ctaText}
             </Button>
             <div className="flex items-center justify-center gap-4">
               <a

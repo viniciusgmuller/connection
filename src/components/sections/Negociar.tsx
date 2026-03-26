@@ -12,8 +12,13 @@ const featureIcons: Record<string, string> = {
   partnership: '/images/negociar/icons/parcerias.svg',
 };
 
-export function Negociar() {
-  const content = getNegociarContent();
+interface NegociarSectionProps {
+  cmsData?: { title?: string; description?: string; features?: any[]; benefits?: any[] };
+}
+
+export function Negociar({ cmsData }: NegociarSectionProps) {
+  const jsonContent = getNegociarContent();
+  const content = cmsData ? { ...jsonContent, ...cmsData } : jsonContent;
   const headerRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeUp', distance: 50, duration: 0.9 });
   const featuresRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeUp', children: true, stagger: 0.15 });
   const card1Ref = useGSAPScroll<HTMLDivElement>({ animation: 'fadeUp', distance: 50, duration: 0.9 });
@@ -112,7 +117,7 @@ export function Negociar() {
               </div>
 
               <div className="flex flex-col">
-                {content.benefits[0].items.map((item, i) => (
+                {content.benefits[0].items.map((item: string, i: number) => (
                   <div key={i}>
                     <div className="h-px w-full bg-white/15" />
                     <div className="flex items-center gap-[10px] px-[5px] py-[7px]">
@@ -171,7 +176,7 @@ export function Negociar() {
               </div>
 
               <div className="flex flex-col">
-                {content.benefits[1].items.map((item, i) => (
+                {content.benefits[1].items.map((item: string, i: number) => (
                   <div key={i}>
                     <div className="h-px w-full bg-white/15" />
                     <div className="flex items-center gap-[10px] px-[5px] py-[7px]">
