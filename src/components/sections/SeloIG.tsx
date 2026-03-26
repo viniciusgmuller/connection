@@ -109,9 +109,7 @@ export function SeloIG({ pageHome }: SeloIGProps) {
         {/* ─── 1. Stats + Headline ─── */}
         <div className="flex flex-col gap-12 text-[#FFF5EC] lg:flex-row lg:items-center lg:gap-[116px]">
           <h2 ref={headlineRef} className="font-heading text-[36px] font-normal leading-[1] md:text-[48px] lg:w-[411px] lg:shrink-0 lg:text-[60px] opacity-0">
-            A maior vitrine de{' '}
-            <span className="text-[#956A47]">produtos de origem</span> do
-            Brasil
+            {pageHome?.seloIG?.headline || 'A maior vitrine de produtos de origem do Brasil'}
           </h2>
           <div ref={statsGridRef} className="grid grid-cols-2 gap-x-16 gap-y-10 lg:gap-x-[141px] lg:gap-y-[59px]">
             {stats.map((stat: { number: number; suffix: string; label: string }) => (

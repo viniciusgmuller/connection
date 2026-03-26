@@ -5,6 +5,10 @@ import { useGSAPScroll } from '@/hooks/useGSAP';
 
 interface OQueEIGProps { pageHome?: any; }
 export function OQueEIG({ pageHome }: OQueEIGProps) {
+  const cms = pageHome?.oQueEIG;
+  const igTitle = cms?.title || 'O que é Indicação Geográfica?';
+  const igCtaText = cms?.ctaText || 'Saiba mais';
+  const igCtaLink = cms?.ctaLink || '/conhecer#ig';
   const containerRef = useGSAPScroll<HTMLDivElement>({ animation: 'scaleIn', duration: 0.9 });
   const diagramRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeLeft', distance: 50, duration: 0.8, delay: 0.2 });
   const textRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeRight', distance: 50, duration: 0.8, delay: 0.3 });

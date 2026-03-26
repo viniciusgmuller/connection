@@ -5,6 +5,10 @@ import { useGSAPScroll, useGSAPParallax } from '@/hooks/useGSAP';
 
 interface CTAProps { pageHome?: any; }
 export function CTA({ pageHome }: CTAProps) {
+  const cms = pageHome?.ctaFinal;
+  const ctaHeadline = cms?.headline || 'Garante sua presença na maior vitrine de produtos com Indicação Geográfica do Brasil';
+  const ctaSubtitle = cms?.subtitle || 'Conheça produtos únicos certificados, conecte-se com produtores e descubra oportunidades de negócio.';
+  const cmsButtons = cms?.buttons;
   const contentRef = useGSAPScroll<HTMLDivElement>({ animation: 'scaleIn', duration: 1 });
   const headlineRef = useGSAPScroll<HTMLHeadingElement>({ animation: 'fadeUp', distance: 40, duration: 0.9, delay: 0.1 });
   const subtitleRef = useGSAPScroll<HTMLParagraphElement>({ animation: 'fadeUp', distance: 30, delay: 0.3 });
@@ -51,34 +55,38 @@ export function CTA({ pageHome }: CTAProps) {
       >
         {/* Headline */}
         <h2 ref={headlineRef} className="text-center font-heading text-[40px] font-normal leading-[1.02] text-[#FFF5EC] sm:text-[55px] md:text-[65px] lg:text-[78.85px] lg:leading-[80px] opacity-0">
-          Garanta sua presença na{' '}
-          <em className="font-heading italic">maior{' '}</em>
-          <em className="font-heading italic text-[#E07B39]">vitrine</em>
-          <span className="text-[#E07B39]"> de produtos</span> com{' '}
-          <em className="font-heading italic text-[#E07B39]">Indicação Geográfica</em>{' '}
-          do Brasil
+          {ctaHeadline}
         </h2>
 
         {/* Subtitle */}
         <p ref={subtitleRef} className="max-w-[700px] text-center font-just-sans text-lg text-[#FFF5EC]/90 md:text-[24px] md:leading-normal opacity-0">
-          Conheça produtos únicos certificados, conecte-se com produtores e
-          descubra oportunidades de negócio.
+          {ctaSubtitle}
         </p>
 
         {/* CTA Buttons */}
         <div ref={buttonsRef} className="flex w-full max-w-[700px] flex-col items-center gap-[18px] sm:flex-row opacity-0">
-          <Link
-            href="/ingressos"
-            className="flex w-full sm:w-[280px] md:w-[330px] items-center justify-center rounded-full bg-[#FFF5EC] p-[20px] font-just-sans text-lg font-semibold text-[#3D2E1E] transition-colors hover:bg-[#FFF5EC]/90 md:p-[25px] md:text-[24px]"
-          >
-            Garantir meu ingresso
-          </Link>
-          <Link
-            href="/negociar"
-            className="flex w-full sm:w-[280px] md:w-[330px] items-center justify-center rounded-full border border-[#FFF5EC] p-[20px] font-just-sans text-lg font-semibold text-[#FFF5EC] transition-colors hover:bg-[#FFF5EC]/10 md:p-[25px] md:text-[24px]"
-          >
-            Quero ser expositor
-          </Link>
+          {(cmsButtons && cmsButtons.length > 0) ? cmsButtons.map((btn: any, i: number) => (
+            <Link
+              key={i}
+              href={btn.link || '/ingressos'}
+              className={`flex w-full sm:w-[280px] md:w-[330px] items-center justify-center rounded-full p-[20px] font-just-sans text-lg font-semibold transition-colors md:p-[25px] md:text-[24px] ${
+                btn.variant === 'outline'
+                  ? 'border border-[#FFF5EC] text-[#FFF5EC] hover:bg-[#FFF5EC]/10'
+                  : 'bg-[#FFF5EC] text-[#3D2E1E] hover:bg-[#FFF5EC]/90'
+              }`}
+            >
+              {btn.text}
+            </Link>
+          )) : (
+            <>
+              <Link href="/ingressos" className="flex w-full sm:w-[280px] md:w-[330px] items-center justify-center rounded-full bg-[#FFF5EC] p-[20px] font-just-sans text-lg font-semibold text-[#3D2E1E] transition-colors hover:bg-[#FFF5EC]/90 md:p-[25px] md:text-[24px]">
+                Garantir meu ingresso
+              </Link>
+              <Link href="/negociar" className="flex w-full sm:w-[280px] md:w-[330px] items-center justify-center rounded-full border border-[#FFF5EC] p-[20px] font-just-sans text-lg font-semibold text-[#FFF5EC] transition-colors hover:bg-[#FFF5EC]/10 md:p-[25px] md:text-[24px]">
+                Quero ser expositor
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </section>

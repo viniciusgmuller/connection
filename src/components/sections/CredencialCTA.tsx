@@ -28,6 +28,13 @@ const beneficios = [
 
 interface CredencialCTAProps { pageHome?: any; }
 export function CredencialCTA({ pageHome }: CredencialCTAProps) {
+  const cms = pageHome?.credencialCta;
+  const cmsBenefits = cms?.benefits;
+  const displayBenefits = (cmsBenefits && cmsBenefits.length > 0)
+    ? cmsBenefits.map((b: any) => ({ icon: b.icon || 'content', title: b.title, description: b.description }))
+    : beneficios;
+  const headline = cms?.headline || 'Viva o Connection por completo';
+  const description = cms?.description || 'O Connection tem uma área pública e gratuita com exposição na Rua Coberta. Mas a experiência completa — com conteúdo, degustações exclusivas e networking — é para credenciados.';
   const headerRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeUp', distance: 50, duration: 0.8 });
   const gridRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeUp', children: true, stagger: 0.12 });
   const ctaRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeUp', delay: 0.1 });
@@ -45,18 +52,12 @@ export function CredencialCTA({ pageHome }: CredencialCTAProps) {
               Garanta sua vaga
             </span>
             <h2 className="font-heading text-3xl text-[#FFF5EC] leading-[1.1] md:text-4xl lg:text-5xl">
-              Viva o Connection
-              <br />
-              <em className="italic text-[#C9A962]">por completo</em>
+              {headline}
             </h2>
           </div>
           <div className="max-w-xl flex-1">
             <p className="font-just-sans text-lg leading-relaxed text-[#FFF5EC]/70">
-              O Connection tem uma{' '}
-              <strong className="font-bold text-[#FFF5EC]">área pública e gratuita</strong> com
-              exposição na Rua Coberta. Mas a experiência completa — com conteúdo,
-              degustações exclusivas e networking — é para{' '}
-              <strong className="font-bold text-[#FFF5EC] underline">credenciados</strong>.
+              {description}
             </p>
           </div>
         </div>
@@ -66,7 +67,7 @@ export function CredencialCTA({ pageHome }: CredencialCTAProps) {
           ref={gridRef}
           className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 md:gap-5"
         >
-          {beneficios.map((b, i) => (
+          {displayBenefits.map((b: any, i: number) => (
             <div
               key={i}
               className="group flex h-[280px] flex-col justify-between rounded-[16px] border border-[#4D564D] bg-[#1C1F21] p-7 transition-colors hover:border-[#956A47]/40 md:h-[320px] md:p-8"

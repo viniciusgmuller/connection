@@ -29,7 +29,9 @@ export const PageHome: GlobalConfig = {
     },
     {
       type: "group", name: "seloIG", label: "Selo IG",
-      fields: [{ name: "stats", type: "array", label: "Estatísticas", fields: [
+      fields: [
+        { name: "headline", type: "text", label: "Manchete", defaultValue: "A maior vitrine de produtos de origem do Brasil" },
+        { name: "stats", type: "array", label: "Estatísticas", fields: [
         { name: "number", type: "text", label: "Número" },
         { name: "label", type: "text", label: "Rótulo" },
         { name: "suffix", type: "text", label: "Sufixo" },
