@@ -26,7 +26,10 @@ export default async function IngressosPage() {
     limit: 20,
   });
 
-  const settings = await payload.findGlobal({ slug: 'site-settings' });
+  const [settings, pageData] = await Promise.all([
+    payload.findGlobal({ slug: 'site-settings' }),
+    payload.findGlobal({ slug: 'page-ingressos' }),
+  ]);
   const groupEmail = settings.contact?.groupSalesEmail || 'grupos@connectionexperience.com.br';
   const whatsapp = settings.contact?.whatsapp || '5554999999999';
   const mainEmail = settings.contact?.mainEmail || 'contato@connectionexperience.com.br';
@@ -37,8 +40,8 @@ export default async function IngressosPage() {
       <section className="py-20 bg-bg-dark">
         <div className="container mx-auto px-4 lg:px-8">
           <SectionTitle
-            title="Ingressos"
-            subtitle="Escolha a experiência ideal para você e garanta sua presença no maior evento de Indicações Geográficas do Brasil"
+            title={pageData.hero?.title || "Ingressos"}
+            subtitle={pageData.hero?.subtitle || "Escolha a experiência ideal para você e garanta sua presença no maior evento de Indicações Geográficas do Brasil"}
             align="center"
           />
         </div>
@@ -121,9 +124,9 @@ export default async function IngressosPage() {
       <section className="py-16 bg-bg-brown">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-heading text-3xl text-text-light mb-4">Vendas para Grupos</h2>
+            <h2 className="font-heading text-3xl text-text-light mb-4">{pageData.groupSales?.title || "Vendas para Grupos"}</h2>
             <p className="text-text-cream mb-8">
-              Levando sua equipe para o Connection Experience? Oferecemos condições especiais para grupos a partir de 5 pessoas.
+              {pageData.groupSales?.description || "Levando sua equipe para o Connection Experience? Oferecemos condições especiais para grupos a partir de 5 pessoas."}
             </p>
             <Button href={`mailto:${groupEmail}`} variant="outline">
               Solicitar orçamento para grupos
@@ -164,10 +167,10 @@ export default async function IngressosPage() {
       <section className="py-20 bg-gold">
         <div className="container mx-auto px-4 lg:px-8 text-center">
           <h2 className="font-heading text-4xl text-bg-darker mb-4">
-            Ainda tem dúvidas?
+            {pageData.cta?.headline || "Ainda tem dúvidas?"}
           </h2>
           <p className="text-bg-dark/80 mb-8">
-            Nossa equipe está pronta para ajudar você.
+            {pageData.cta?.description || "Nossa equipe está pronta para ajudar você."}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button

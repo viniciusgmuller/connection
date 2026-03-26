@@ -123,7 +123,7 @@ export function Footer({ cmsData }: FooterProps) {
       <div className="border-t border-[#C9A962]/10">
         <div className="mx-auto flex max-w-[1216px] flex-col items-center justify-between gap-4 px-6 py-[24px] md:flex-row lg:px-0">
           <p className="font-just-sans text-[14px] text-[#F5F0E6]/50">
-            © 2026 Connection Experience. Todos os direitos reservados.
+            © {new Date().getFullYear()} Connection Experience. Todos os direitos reservados.
           </p>
           <div className="flex items-center gap-[24px]">
             <Link

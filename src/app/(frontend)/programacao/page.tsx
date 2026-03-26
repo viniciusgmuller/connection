@@ -36,6 +36,8 @@ const dayNames: Record<number, string> = {
 export default async function ProgramacaoPage() {
   const payload = await getPayload({ config });
 
+  const pageData = await payload.findGlobal({ slug: 'page-programacao' });
+
   const { docs: events } = await payload.find({
     collection: 'schedule-events',
     sort: 'date',
@@ -71,8 +73,8 @@ export default async function ProgramacaoPage() {
       <section className="py-20 bg-bg-dark">
         <div className="container mx-auto px-4 lg:px-8">
           <SectionTitle
-            title="Programação"
-            subtitle="Quatro dias intensos de conhecimento, experiências e oportunidades de negócio"
+            title={pageData.hero?.title || "Programação"}
+            subtitle={pageData.hero?.subtitle || "Quatro dias intensos de conhecimento, experiências e oportunidades de negócio"}
             align="center"
           />
           <div className="flex flex-wrap justify-center gap-4 mt-8">
@@ -167,7 +169,7 @@ export default async function ProgramacaoPage() {
       <section className="py-12 bg-bg-brown">
         <div className="container mx-auto px-4 lg:px-8 text-center">
           <p className="text-text-cream text-sm">
-            * Programação sujeita a alterações
+            {pageData.disclaimer?.text || '* Programação sujeita a alterações'}
           </p>
         </div>
       </section>

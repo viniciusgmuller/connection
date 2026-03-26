@@ -33,11 +33,8 @@ export function OQueEIG({ pageHome }: OQueEIGProps) {
 
         <div className="relative z-10 px-6 py-24 lg:px-[144px] lg:py-[175px]">
           <div className="mb-16 flex flex-col items-center gap-[18px] text-center lg:mb-[87px]">
-            <p className="font-just-sans text-xl text-[#FFF5EC]">
-              O que é
-            </p>
             <h2 className="font-heading text-5xl font-normal text-[#956A47] md:text-7xl lg:text-[90px] lg:leading-[60px]">
-              Indicação Geográfica?
+              {igTitle}
             </h2>
           </div>
 
@@ -129,10 +126,10 @@ export function OQueEIG({ pageHome }: OQueEIGProps) {
                 que não pode ser replicada em nenhum outro lugar do mundo.
               </p>
               <Link
-                href="/conhecer#ig"
+                href={igCtaLink}
                 className="mt-2 inline-flex w-fit items-center justify-center rounded-full bg-[#956A47] px-6 py-[15px] font-just-sans text-base font-semibold text-[#131415] transition-colors hover:bg-[#956A47]/90"
               >
-                Saiba mais
+                {igCtaText}
               </Link>
             </div>
           </div>
