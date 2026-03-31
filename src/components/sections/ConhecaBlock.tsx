@@ -3,8 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
-/* ── Toggle: flip to true during the event to show the schedule ── */
-const EVENT_MODE = true;
+/* ── Toggle: controlled by CMS phase, fallback to false (pre-event) ── */
 
 /* ── Data: cards (pre-event) ── */
 const categories = ['Palestras', 'Conteúdos', 'Podcasts'] as const;
@@ -84,9 +83,11 @@ const defaultLocations = [...new Set(schedule.map((s) => s.location).filter(Bool
 /* ── Component ── */
 interface ConhecaBlockProps {
   cmsSchedule?: any[];
+  eventPhase?: string;
 }
 
-export function ConhecaBlock({ cmsSchedule }: ConhecaBlockProps) {
+export function ConhecaBlock({ cmsSchedule, eventPhase }: ConhecaBlockProps) {
+  const EVENT_MODE = eventPhase === 'during';
   // Use CMS schedule data if available, mapping to internal format
   const effectiveSchedule: ScheduleItem[] = (cmsSchedule && cmsSchedule.length > 0)
     ? cmsSchedule.map((evt: any) => {

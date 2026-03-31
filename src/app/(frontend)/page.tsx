@@ -22,8 +22,12 @@ export default async function Home() {
     payload.find({ collection: 'schedule-events', sort: 'date', limit: 200, depth: 1 }),
   ]);
 
-  // Attach schedule to pageHome for SeloIG > ConhecaBlock
-  const pageHomeWithSchedule = { ...pageHome, schedulePreview: scheduleEvents.docs };
+  // Attach schedule and event phase to pageHome for SeloIG > ConhecaBlock
+  const pageHomeWithSchedule = {
+    ...pageHome,
+    schedulePreview: scheduleEvents.docs,
+    eventPhase: siteSettings.event?.phase || 'pre-event',
+  };
 
   return (
     <>

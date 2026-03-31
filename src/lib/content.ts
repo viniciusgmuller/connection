@@ -23,6 +23,16 @@ export function getEventPhases(): EventPhasesConfig {
 }
 
 export function getCurrentPhase(): EventPhase {
+  // Check if CMS phase is available via data attribute (set by layout)
+  if (typeof document !== 'undefined') {
+    const body = document.body;
+    const cmsPhase = body.getAttribute('data-event-phase');
+    if (cmsPhase === 'pre-event' || cmsPhase === 'during' || cmsPhase === 'post-event') {
+      // Map CMS values to internal values
+      if (cmsPhase === 'during') return 'during-event';
+      return cmsPhase;
+    }
+  }
   return eventPhasesData.currentPhase as EventPhase;
 }
 

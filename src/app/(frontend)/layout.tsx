@@ -82,9 +82,15 @@ export default async function FrontendLayout({
   children: React.ReactNode;
 }>) {
   let navFooterData = null;
+  let eventPhase = 'pre-event';
   try {
     const payload = await getPayload({ config });
-    navFooterData = await payload.findGlobal({ slug: 'navigation-footer' });
+    const [navData, siteSettings] = await Promise.all([
+      payload.findGlobal({ slug: 'navigation-footer' }),
+      payload.findGlobal({ slug: 'site-settings' }),
+    ]);
+    navFooterData = navData;
+    eventPhase = siteSettings.event?.phase || 'pre-event';
   } catch {
     // CMS unavailable, use fallback
   }
@@ -93,6 +99,7 @@ export default async function FrontendLayout({
     <html lang="pt-BR" className="scroll-smooth">
       <body
         className={`${playfair.variable} ${inter.variable} ${cormorant.variable} ${boska.variable} ${justSans.variable} antialiased`}
+        data-event-phase={eventPhase}
       >
         <Header
           ctaText={navFooterData?.navigation?.ctaText || undefined}
