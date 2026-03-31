@@ -37,7 +37,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     livePreview: {
-      url: process.env.NEXT_PUBLIC_SERVER_URL || "https://connection.duckstudio.design",
+      url: process.env.NEXT_PUBLIC_SERVER_URL || "https://www.connectionexperience.com.br",
       collections: ["blog-posts", "speakers", "schedule-events", "tickets", "partners", "products", "testimonials", "faq", "authors"],
       globals: ["site-settings", "page-home", "page-conhecer", "page-experimentar", "page-negociar", "page-ingressos", "page-programacao", "navigation-footer"],
       breakpoints: [

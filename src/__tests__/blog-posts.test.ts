@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 
 const API_URL =
-  process.env.PAYLOAD_API_URL || "https://connection.duckstudio.design";
+  process.env.PAYLOAD_API_URL || "https://www.connectionexperience.com.br";
 
 async function api(path: string, options?: RequestInit) {
   const res = await fetch(`${API_URL}${path}`, {
