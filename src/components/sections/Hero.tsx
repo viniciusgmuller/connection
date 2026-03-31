@@ -110,7 +110,7 @@ export function Hero({ siteSettings, pageHome }: HeroProps) {
         <div className="flex flex-col justify-between min-h-[407px]">
           {/* Headline */}
           <div className="hero-headline opacity-0">
-            <h1 className="font-heading font-normal text-[#FFF5EC] text-4xl sm:text-5xl md:text-6xl lg:text-[78.85px] leading-[1.02]">
+            <h1 className="font-heading font-normal text-[#FFF5EC] text-4xl sm:text-5xl md:text-6xl lg:text-[78.85px] leading-[1.02] lg:max-w-[calc(100%-220px)]">
               {headline}
             </h1>
           </div>
@@ -184,7 +184,7 @@ export function Hero({ siteSettings, pageHome }: HeroProps) {
       </div>
 
       {/* Date card (floating top right) */}
-      <div className="hero-date-card hidden lg:flex absolute top-[138px] right-[20px] xl:right-[calc(50%-665px)] z-20 flex-col gap-[11px] items-start bg-[#1C1F21] rounded-b-[20px] pt-[16px] pb-[16px] px-[16px] w-[181px] opacity-0">
+      <div className="hero-date-card hidden lg:flex absolute top-[138px] right-[20px] xl:right-[calc(50%-665px)] z-20 flex-col gap-[11px] items-start bg-[#1C1F21] rounded-b-[20px] pt-[16px] pb-[20px] px-[16px] w-[181px] opacity-0">
         <Image
           src="/images/icon-location-figma.svg"
           alt="Localização"
@@ -196,10 +196,10 @@ export function Hero({ siteSettings, pageHome }: HeroProps) {
           <span className="text-[24px] leading-[24px]">a</span>
           <span className="text-[48px] leading-[24px]"> {endDay}</span>
         </p>
-        <p className="font-heading font-bold text-[24px] leading-[24px] text-[#FFF5EC] text-center w-full">
+        <p className="font-heading font-bold text-[20px] leading-[22px] text-[#FFF5EC] text-center w-full">
           de {monthYear}
         </p>
-        <p className="font-just-sans font-normal text-[11px] text-[#FFF5EC] text-center w-full">
+        <p className="font-just-sans font-normal text-[10px] leading-[12px] text-[#FFF5EC]/80 text-center w-full">
           {location}
         </p>
       </div>
