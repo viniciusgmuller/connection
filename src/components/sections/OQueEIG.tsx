@@ -33,7 +33,7 @@ export function OQueEIG({ pageHome }: OQueEIGProps) {
 
         <div className="relative z-10 px-6 py-24 lg:px-[144px] lg:py-[175px]">
           <div className="mb-16 flex flex-col items-center gap-[18px] text-center lg:mb-[87px]">
-            <h2 className="font-heading text-5xl font-normal text-[#956A47] md:text-7xl lg:text-[90px] lg:leading-[60px]">
+            <h2 className="font-heading text-5xl font-normal text-[#956A47] md:text-7xl lg:text-[90px] lg:leading-[1.1]">
               {igTitle}
             </h2>
           </div>
