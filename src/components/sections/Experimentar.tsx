@@ -70,20 +70,6 @@ export function Experimentar({ cmsData }: ExperimentarProps) {
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
-              <div className="bg-[#956A47] p-6 md:p-8">
-                <p className="font-just-sans text-[11px] text-[#1C1F21]/60 uppercase tracking-[0.15em] mb-5">
-                  Quem conduz as experiências
-                </p>
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                  {content.participants.map((participant: Participant) => (
-                    <ParticipantCard
-                      key={participant.name}
-                      participant={participant}
-                      variant="brown"
-                    />
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </div>

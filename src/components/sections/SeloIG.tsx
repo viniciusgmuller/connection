@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useCallback } from 'react';
-import { ConhecaBlock } from './ConhecaBlock';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAPScroll, useGSAPTimeline, useGSAPParallax } from '@/hooks/useGSAP';
@@ -30,7 +29,6 @@ export function SeloIG({ pageHome }: SeloIGProps) {
   const statsGridRef = useRef<HTMLDivElement>(null);
   const leafRef1 = useGSAPParallax<HTMLImageElement>(40);
   const leafRef2 = useGSAPParallax<HTMLImageElement>(60);
-  const conhecaRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeUp', distance: 40, delay: 0.2 });
 
   useEffect(() => {
     const el = statsGridRef.current;
@@ -125,10 +123,6 @@ export function SeloIG({ pageHome }: SeloIGProps) {
           </div>
         </div>
 
-        {/* ─── 2. Conheça ─── */}
-        <div ref={conhecaRef} className="opacity-0">
-          <ConhecaBlock cmsSchedule={pageHome?.schedulePreview} eventPhase={pageHome?.eventPhase} />
-        </div>
       </div>
     </section>
   );
