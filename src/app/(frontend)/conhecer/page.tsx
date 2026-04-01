@@ -78,7 +78,7 @@ export default async function ConhecerPage() {
       )}
 
       {/* Speakers Section */}
-      {speakers.length > 0 && (
+      {speakers.length > 0 && pageData.speakersSection?.visible !== false && (
         <section className="py-20 bg-bg-darker">
           <div className="container mx-auto px-4 lg:px-8">
             <SectionTitle

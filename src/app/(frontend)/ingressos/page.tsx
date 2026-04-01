@@ -48,6 +48,7 @@ export default async function IngressosPage() {
       </section>
 
       {/* Tickets */}
+      {tickets.length > 0 && (
       <section className="py-16 bg-bg-darker">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -119,6 +120,7 @@ export default async function IngressosPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* Group Sales */}
       <section className="py-16 bg-bg-brown">

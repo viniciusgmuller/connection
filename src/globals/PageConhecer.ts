@@ -18,6 +18,7 @@ export const PageConhecer: GlobalConfig = {
       ]},
     ]},
     { type: "group", name: "speakersSection", label: "Seção de Palestrantes", fields: [
+      { name: "visible", type: "checkbox", label: "Visível", defaultValue: true },
       { name: "title", type: "text", label: "Título", defaultValue: "Palestrantes" },
       { name: "subtitle", type: "textarea", label: "Subtítulo" },
     ]},
