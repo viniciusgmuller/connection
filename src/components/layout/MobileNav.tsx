@@ -6,6 +6,10 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
 import type { NavItem } from './Header';
 
+const simpleLinks: { label: string; href: string }[] = [
+  { label: 'Experiências', href: '/experiencias' },
+];
+
 interface MobileNavProps {
   isOpen: boolean;
   onClose: () => void;
@@ -155,6 +159,21 @@ export function MobileNav({ isOpen, onClose, navigation, ctaText = 'Garantir Ing
                   </li>
                 );
               })}
+              {simpleLinks.map((link, index) => (
+                <li
+                  key={link.href}
+                  className="animate-fade-in-up"
+                  style={{ animationDelay: `${(navigation.length + index) * 50}ms` }}
+                >
+                  <Link
+                    href={link.href}
+                    onClick={onClose}
+                    className="flex items-center w-full py-3 px-4 text-lg text-text-cream hover:text-gold hover:bg-bg-brown/50 rounded-lg transition-all duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
 

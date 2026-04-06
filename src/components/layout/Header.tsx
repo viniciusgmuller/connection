@@ -207,6 +207,11 @@ const navigation: NavItem[] = [
   },
 ];
 
+/** Simple nav links without mega-menu dropdown */
+const simpleLinks: { label: string; href: string }[] = [
+  { label: 'Experiências', href: '/experiencias' },
+];
+
 interface HeaderProps {
   ctaText?: string;
   ctaLink?: string;
@@ -376,6 +381,15 @@ export function Header({ ctaText = 'Garantir Ingresso', ctaLink = '/ingressos' }
                     </div>
                   )}
                 </div>
+              ))}
+              {simpleLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="font-just-sans font-normal text-[16px] text-[#FFF5EC] text-center hover:text-[#FFF5EC]/70 transition-colors"
+                >
+                  {link.label}
+                </Link>
               ))}
             </nav>
 
