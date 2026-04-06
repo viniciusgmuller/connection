@@ -3,6 +3,8 @@ import { getPayload } from 'payload';
 import config from '@payload-config';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Button } from '@/components/ui/Button';
+import { RichText } from '@/components/ui/RichText';
+import { FAQAccordion } from '@/components/ui/FAQAccordion';
 
 export const dynamic = 'force-dynamic';
 
@@ -142,25 +144,7 @@ export default async function IngressosPage() {
         <section className="py-16 bg-bg-dark">
           <div className="container mx-auto px-4 lg:px-8">
             <SectionTitle title="Perguntas Frequentes" align="center" />
-            <div className="max-w-3xl mx-auto space-y-6">
-              {faqItems.map((faq) => (
-                <div key={faq.id} className="p-6 rounded-xl bg-bg-darker border border-gold/10">
-                  <h3 className="font-heading text-lg text-text-light mb-2">
-                    {faq.question}
-                  </h3>
-                  <p className="text-text-cream text-sm">
-                    {/* Extract text from richText root */}
-                    {(() => {
-                      const root = (faq.answer as any)?.root;
-                      if (!root?.children) return '';
-                      return root.children
-                        .map((p: any) => p.children?.map((t: any) => t.text).join('') || '')
-                        .join(' ');
-                    })()}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <FAQAccordion items={faqItems as any} />
           </div>
         </section>
       )}
