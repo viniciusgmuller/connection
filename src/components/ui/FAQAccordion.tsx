@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { RichText } from './RichText';
 
 interface FAQItem {
   id: string;
   question: string;
-  answer: any;
+  answerText?: string;
+  answer?: any;
 }
 
 interface FAQAccordionProps {
@@ -20,6 +20,17 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
     <div className="max-w-3xl mx-auto space-y-4">
       {items.map((faq) => {
         const isOpen = openId === faq.id;
+        // Support new textarea field or fallback to old richText
+        const answerContent = faq.answerText || (() => {
+          const root = faq.answer?.root;
+          if (!root?.children) return '';
+          return root.children
+            .map((p: any) => p.children?.map((t: any) => t.text).join('') || '')
+            .join('\n');
+        })();
+
+        if (!answerContent) return null;
+
         return (
           <div
             key={faq.id}
@@ -54,10 +65,9 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
               }`}
             >
               <div className="px-6 pb-6">
-                <RichText
-                  content={faq.answer}
-                  className="text-text-cream text-sm leading-relaxed"
-                />
+                <p className="text-text-cream text-sm leading-relaxed whitespace-pre-line">
+                  {answerContent}
+                </p>
               </div>
             </div>
           </div>
