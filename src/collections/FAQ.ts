@@ -7,7 +7,7 @@ export const FAQ: CollectionConfig = {
   access: { read: () => true },
   fields: [
     { name: "question", type: "text", required: true, label: "Pergunta" },
-    { name: "answerText", type: "textarea", required: true, label: "Resposta" },
+    { name: "answer", type: "textarea", required: true, label: "Resposta" },
     { name: "order", type: "number", defaultValue: 0, label: "Ordem" },
   ],
 };

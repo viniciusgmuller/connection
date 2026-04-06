@@ -5,8 +5,7 @@ import { useState } from 'react';
 interface FAQItem {
   id: string;
   question: string;
-  answerText?: string;
-  answer?: any;
+  answer: any;
 }
 
 interface FAQAccordionProps {
@@ -20,14 +19,16 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
     <div className="max-w-3xl mx-auto space-y-4">
       {items.map((faq) => {
         const isOpen = openId === faq.id;
-        // Support new textarea field or fallback to old richText
-        const answerContent = faq.answerText || (() => {
-          const root = faq.answer?.root;
-          if (!root?.children) return '';
-          return root.children
-            .map((p: any) => p.children?.map((t: any) => t.text).join('') || '')
-            .join('\n');
-        })();
+        // Support textarea string or richText object
+        const answerContent = typeof faq.answer === 'string'
+          ? faq.answer
+          : (() => {
+              const root = faq.answer?.root;
+              if (!root?.children) return '';
+              return root.children
+                .map((p: any) => p.children?.map((t: any) => t.text).join('') || '')
+                .join('\n');
+            })();
 
         if (!answerContent) return null;
 
