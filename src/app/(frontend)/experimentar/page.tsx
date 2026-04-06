@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { getPayload } from 'payload';
 import config from '@payload-config';
 import { SectionTitle } from '@/components/ui/SectionTitle';
@@ -31,6 +32,13 @@ export default async function ExperimentarPage() {
   const { docs: categories } = await payload.find({
     collection: 'product-categories',
     limit: 20,
+  });
+
+  const { docs: experiences } = await payload.find({
+    collection: 'experiences',
+    sort: 'order',
+    limit: 50,
+    depth: 1,
   });
 
   const pageData = await payload.findGlobal({ slug: 'page-experimentar' });
@@ -131,6 +139,70 @@ export default async function ExperimentarPage() {
                   variant="featured"
                 />
               ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Parques e Experiências */}
+      {experiences.length > 0 && (
+        <section id="parques" className="py-20 bg-bg-dark">
+          <div className="container mx-auto px-4 lg:px-8">
+            <SectionTitle
+              title="Parques, Parceiros e Experiências"
+              subtitle="Conheça os espaços e empresas que tornam o Connection Experience uma vivência inesquecível"
+              align="center"
+            />
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {experiences.map((exp: any) => {
+                const logo =
+                  typeof exp.logo === 'object' && exp.logo !== null ? exp.logo : null;
+                const logoSrc = logo?.filename
+                  ? `/media/${encodeURIComponent(logo.filename)}`
+                  : '';
+
+                return (
+                  <a
+                    key={exp.id}
+                    href={exp.website || undefined}
+                    target={exp.website ? '_blank' : undefined}
+                    rel={exp.website ? 'noopener noreferrer' : undefined}
+                    className="group flex flex-col rounded-2xl border border-[#FFF5EC]/10 bg-[#1C1F21] overflow-hidden hover:border-[#C9A962]/40 transition-colors"
+                  >
+                    <div className="flex items-center justify-center bg-white p-8 h-[200px]">
+                      {logoSrc ? (
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={logoSrc}
+                            alt={exp.name}
+                            fill
+                            className="object-contain"
+                          />
+                        </div>
+                      ) : (
+                        <span className="text-[#131415] font-just-sans text-lg font-semibold">
+                          {exp.name}
+                        </span>
+                      )}
+                    </div>
+                    <div className="p-6 flex-1 flex flex-col">
+                      <h3 className="font-heading text-xl text-text-light mb-2">
+                        {exp.name}
+                      </h3>
+                      {exp.description && (
+                        <p className="text-text-cream text-sm leading-relaxed">
+                          {exp.description}
+                        </p>
+                      )}
+                      {exp.website && (
+                        <span className="mt-auto pt-4 text-[#C9A962] text-sm font-medium group-hover:underline">
+                          Visitar site &rarr;
+                        </span>
+                      )}
+                    </div>
+                  </a>
+                );
+              })}
             </div>
           </div>
         </section>

@@ -209,7 +209,7 @@ const navigation: NavItem[] = [
 
 /** Simple nav links without mega-menu dropdown */
 const simpleLinks: { label: string; href: string }[] = [
-  { label: 'Experiências', href: '/experiencias' },
+  { label: 'Experiências', href: '/experimentar#parques' },
 ];
 
 interface HeaderProps {

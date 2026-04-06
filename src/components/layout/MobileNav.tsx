@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/Button';
 import type { NavItem } from './Header';
 
 const simpleLinks: { label: string; href: string }[] = [
-  { label: 'Experiências', href: '/experiencias' },
+  { label: 'Experiências', href: '/experimentar#parques' },
 ];
 
 interface MobileNavProps {
