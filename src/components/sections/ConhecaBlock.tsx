@@ -53,6 +53,7 @@ interface ScheduleItem {
   category: Category;
   day: string;
   location?: string;
+  description?: string;
 }
 
 const schedule: ScheduleItem[] = [
@@ -101,6 +102,7 @@ export function ConhecaBlock({ cmsSchedule, eventPhase }: ConhecaBlockProps) {
           speaker: speakerName,
           category: (evt.type === 'palestra' ? 'Palestras' : evt.type === 'workshop' ? 'Conteúdos' : 'Podcasts') as Category,
           location: evt.location || '',
+          description: evt.description || '',
         };
       })
     : schedule;
@@ -323,16 +325,18 @@ export function ConhecaBlock({ cmsSchedule, eventPhase }: ConhecaBlockProps) {
               return (
                 <div
                   key={`${item.day}-${item.time}-${i}`}
-                  className="group flex h-[137.5px] items-stretch gap-0 rounded-[16px] bg-[#FFF5EC]/[0.04] transition-colors hover:bg-[#FFF5EC]/[0.07]"
+                  className="group flex min-h-[137.5px] items-stretch gap-0 rounded-[16px] bg-[#FFF5EC]/[0.04] transition-colors hover:bg-[#FFF5EC]/[0.07]"
                 >
                   {/* Time column */}
                   <div className="flex w-[100px] shrink-0 flex-col justify-center px-5 lg:w-[120px]">
                     <span className="font-heading text-[26px] leading-[30px] text-[#FFF5EC] lg:text-[30px]">
                       {item.time}
                     </span>
-                    <span className="mt-0.5 font-just-sans text-[13px] leading-[20.8px] text-[#FFF5EC]/30">
-                      {item.endTime}
-                    </span>
+                    {item.endTime && (
+                      <span className="mt-0.5 font-just-sans text-[13px] leading-[20.8px] text-[#FFF5EC]/30">
+                        {item.endTime}
+                      </span>
+                    )}
                   </div>
 
                   {/* Accent bar */}
@@ -358,6 +362,11 @@ export function ConhecaBlock({ cmsSchedule, eventPhase }: ConhecaBlockProps) {
                       <p className="font-just-sans text-[13px] leading-[20.8px] text-[#FFF5EC]/40">
                         {item.speaker}
                       </p>
+                      {item.description && (
+                        <p className="font-just-sans text-[12px] leading-[18px] text-[#FFF5EC]/30 line-clamp-2">
+                          {item.description}
+                        </p>
+                      )}
                       {item.location && (
                         <span className="mt-[3px] inline-flex items-center gap-1.5 font-just-sans text-[12px] leading-[19.2px] text-[#FFF5EC]/25">
                           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">

@@ -125,8 +125,11 @@ export default async function ProgramacaoPage() {
                           key={event.id}
                           className="flex gap-4 p-4 rounded-xl bg-bg-dark border border-gold/10 hover:border-gold/30 transition-colors"
                         >
-                          <div className="w-16 shrink-0 text-center">
+                          <div className="w-24 shrink-0 text-center">
                             <span className="font-heading text-lg text-gold">{event.startTime}</span>
+                            {event.endTime && (
+                              <p className="text-text-muted text-xs mt-0.5">até {event.endTime}</p>
+                            )}
                           </div>
                           <div className="w-px bg-gold/20 relative">
                             <div className={`absolute top-1/2 -translate-y-1/2 -left-1.5 w-3 h-3 rounded-full ${
@@ -144,6 +147,9 @@ export default async function ProgramacaoPage() {
                               </Tag>
                             </div>
                             {speaker && <p className="text-gold text-sm mb-1">com {speaker}</p>}
+                            {event.description && (
+                              <p className="text-text-cream text-sm mb-1">{event.description}</p>
+                            )}
                             {event.location && (
                               <p className="text-text-muted text-sm flex items-center gap-1">
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
