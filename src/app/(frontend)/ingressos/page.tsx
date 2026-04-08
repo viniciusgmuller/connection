@@ -160,13 +160,13 @@ export default async function IngressosPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
-              href={`https://wa.me/${whatsapp}`}
+              href={pageData.cta?.buttonLink || `https://wa.me/${whatsapp}`}
               external
               variant="secondary"
               size="lg"
               className="bg-bg-darker text-gold"
             >
-              Falar pelo WhatsApp
+              {pageData.cta?.buttonText || "Falar pelo WhatsApp"}
             </Button>
             <Button
               href={`mailto:${mainEmail}`}
