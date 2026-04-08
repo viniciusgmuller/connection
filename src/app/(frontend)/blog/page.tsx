@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/Button';
 export const dynamic = 'force-dynamic';
 
 function mediaUrl(filename: string) {
-  return `/media/${encodeURIComponent(filename)}`;
+  return `/media/${filename}`;
 }
 
 export const metadata: Metadata = {

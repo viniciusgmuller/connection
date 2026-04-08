@@ -1,0 +1,33 @@
+0:01 Salve gurizada, tudo certo? Fazendo um repasse aí da, dos sites da Festools, né, o Conexion e o próprio Festools Uh, trazendo um pouco do que foi levantado nas reuniões e o que que é a expectativa deles Vou começar pelo Conexion, que é o primeiro projeto, né, que a gente tem que entregar Então, a gente
+0:19 provisoriamente, né, fez essa questão da, da identidade nova aqui, que tá tudo certo Acho que, visualmente não tem muito que mudar em relação ao projeto, mas eu vou destacar um pouco do que eu anotei nesses meus belos, dessas belas anotações aqui na reunião que eu tive com eles lá, que foi mais uma reunião
+0:39 para absorver algumas questões que seriam importantes e enfim, acho que é legal a gente levar em consideração isso. Primeiro de tudo, o que a gente combinou assim e que e acho que é importante levar em consideração para o design do projeto é em relação às fases que esse projeto vai ter e tornar isso 
+0:56 um padrão para esse novo modelo de projeto que a gente vai fazer para os caras daqui para frente. Então, ele é um modelo de projeto que basicamente consiste em pré-venda, o site funcionando e pós-evento.
+1:10 Uma parada nessa vibe, fica nesse sentido. ciclo, então já é bom fazer esse design pensando em como o site vai estar em cada uma dessas três fases.
+1:18 A mesma coisa para o Festools, mas depois eu entro em mais detalhes sobre isso. E em relação ao Connection, o que é o grande pulo do gato?
+1:26 Eles têm tido dificuldade de explicar o Connection, isso é um problema que eles têm há muito tempo, e pelo que eu entendi, o objetivo deles é deles como connection é ser uma ponte entre, se eu não me engano, o Sebrae, tá ligado, e o pequeno produtor que faz esse negócio que eles chamam de IG, né, que
+1:49 é tipo, que é um café feito artesanalmente ali, né, ou que é um doce típico de uma região que é feito tipo artesanalmente e tal, então é meio que esse IG, né, G que eles falam é como se fosse um selo, que atesta que aquele produto respeita determinadas características locais, de qualidade, etc, etc.
+2:12 E a ideia do Connection é ser meio que o porta-voz disso, entendeu? Então, a gente pensou bastante lá na reunião em como fazer isso e a gente A gente falou que o site, essa one page, ela tinha que funcionar em três eixos de apresentação.
+2:32 Sobre IGs, não necessariamente sobre o connection em si, mas sim sobre IGs no geral. Então, primeiro é uma questão de conhecer, eu apresento de uma maneira lúdica, até educacional o que é um IG, alguma coisa nesse sentido.
+2:48 trazendo essas questões do porquê que existe o selo, o que é o selo, que tipo de produto tem dentro do selo.
+2:54 Então, imagino que uma sessão inicial, depois da Hero, obviamente, seria algo nesse sentido, nesse eixo de conhecer, então explicar bem basicamente tudo que tem nesse sentido.
+3:08 Aí o segundo eixo seria de experimentar, aí se enfocando um pouco mais na pesquisa. mostrando o que que os produtos, o que que as oficinas do evento tem a oferecer o que que, enfim, né, tem aqueles vídeos das pessoas testando coisa, né, testando café, testando chocolate e tal, tal, tal, então acho que
+3:29 vale a pena bastante trabalhar em cima disso. E, por fim, o terceiro eixo que seria negociar, daí sim falando um pouco mais sobre quem que vai participar, tentando trazer esse público comprador para conhecer e poder colocar essas coisas dentro do seu próprio negócio.
+3:50 Em cada um desses três eixos, a ideia é ter testemunhos, coisas que possam ser provas sociais para cada uma dessas partes e a gente A ideia também é ir plugando essas coisas, então dentro do conhecer, além dessa parte lúdica de contar o que é IG, o que faz parte e tal, a ideia também é plugar as questões
+4:13 de conteúdo, as palestras e tal, tudo dentro desse eixo conhecer, o eixo experimentar também, o eixo conhecer também tem as questões, eles falaram que eles tem um podcast, eles tem demais.
+4:25 uns conteúdos de vídeo, de YouTube e tal, tal, tal, de blog que são relacionados a isso. Então, acho que também é importante pensar um pouco como a gente poderia contemplar isso tudo.
+4:37 E experimentar, aí sim a gente lista e traz um pouco mais aquelas questões de quem que vai estar no evento, um pouco mais também sobre o que que são as histórias de cada uma dessas coisas.
+4:49 Então, tem vários depoimentos mais nesse sentido, mas aí trazendo para esse lado de experimentar, junto também com as oficinas culinárias, gastronômicas, que eles têm coisas nessa vibe, e por fim negociar, que nem eu comentei com vocês, algo nesse sentido.
+5:07 Aí, basicamente, de questões que eles comentaram, deixa eu até pegar aqui, mas eles Até mais. essa questão de tentar vender mais coisas para o agro, então é mais em relação a isso.
+5:18 Eles tentam também focar bastante nessa questão do valor agregado em relação ao conteúdo em si que eles acabam apresentando, então eles querem ser meio que uma plataforma para entregar conteúdo social.
+5:37 sobre IG e o evento ser meio que uma figura disso, tá ligado? Então, na hora de construir o projeto, eu imagino que a gente trabalharia nesse sentido.
+5:46 E aí, também, em relação às páginas, depois eu vou entregar junto com esse aluno um FigJam ali com as páginas que imagino que tem aqui no site.
+5:56 Acho que não são muito diferentes das que a gente já teve, mas a ideia dos caras só é ter uma, uma navegação um pouco mais facilitada, principalmente no mobile, assim, para a questão de apresentar as listagens, para apresentar os produtos em geral, assim, quais IGs vão estar no evento.
+6:12 Tem que ter uma noção também de que isso possa ser bem facilmente navegável entre home e one page, uma página interna só para a listagem dessas coisas.
+6:20 Então, tem várias coisinhas que são importantes levar em consideração nesse projeto do curso. E indo pra questão do Festools, na real eu vou cortar o vídeo e fazer um novo vídeo pro Festools pra ficar mais organizado, mas do Connection mais ou menos isso, no geral e enfim, vai da gente também conseguir
+6:41 organizar isso de uma maneira melhor, acho que esteticamente dá pra seguir bastante do que a gente já tá fazendo, mas é mais uma questão organização e pensando também naquelas fases do evento que eu comentei, de ter pré-evento, durante evento e pós-evento sempre pensando que a gente está montando um 
+7:00 modelo para os próximos anos, um projeto do zero. Então acho que vai ser importante.
+
+## Site atual do connection:
+https://www.connectionexperience.com.br/
+
+## Grande objetivo não é redesenha-lo do zero, é manter a identidade e aplicar as considerações acima.

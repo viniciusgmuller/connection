@@ -158,7 +158,7 @@ export default async function ExperimentarPage() {
                 const logo =
                   typeof exp.logo === 'object' && exp.logo !== null ? exp.logo : null;
                 const logoSrc = logo?.filename
-                  ? `/media/${encodeURIComponent(logo.filename)}`
+                  ? `/media/${logo.filename}`
                   : '';
 
                 return (

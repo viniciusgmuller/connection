@@ -7,9 +7,8 @@ import config from '@payload-config';
 
 export const dynamic = 'force-dynamic';
 
-/** Encode filename for URL — handles filenames that already contain %20 etc. */
 function mediaUrl(filename: string) {
-  return `/media/${encodeURIComponent(filename)}`;
+  return `/media/${filename}`;
 }
 
 type Props = { params: Promise<{ slug: string }> };
