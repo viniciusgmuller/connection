@@ -89,7 +89,7 @@ export default async function ConhecerPage() {
             <div className="grid md:grid-cols-3 gap-8">
               {speakers.map((speaker) => {
                 const photo = typeof speaker.photo === 'object' && speaker.photo !== null
-                  ? `/media/${(speaker.photo as any).filename}`
+                  ? ((speaker.photo as any).url || `/media/${(speaker.photo as any).filename}`)
                   : speaker.photo;
                 const creds = (speaker.credentials as any[])?.map((c: any) => c.credential) || [];
 

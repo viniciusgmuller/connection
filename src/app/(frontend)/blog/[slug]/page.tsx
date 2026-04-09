@@ -97,7 +97,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
             <div className="aspect-video relative rounded-2xl overflow-hidden">
               <Image
-                src={mediaUrl(featuredImage.filename)}
+                src={(featuredImage as any).url || mediaUrl(featuredImage.filename)}
                 alt={featuredImage.alt || post.title}
                 fill
                 className="object-cover"
@@ -120,15 +120,18 @@ export default async function BlogPostPage({ params }: Props) {
 
           {post.legacyHtml ? (
             <div
-              className="prose prose-lg prose-invert max-w-none
-                prose-headings:font-heading prose-headings:text-text-light prose-headings:mt-10 prose-headings:mb-4
-                prose-p:text-text-cream/90 prose-p:leading-[1.8] prose-p:mb-6
-                prose-a:text-gold prose-a:no-underline hover:prose-a:underline
-                prose-img:rounded-xl prose-img:mx-auto prose-img:my-8
-                prose-strong:text-text-light prose-strong:font-semibold
-                prose-blockquote:border-gold prose-blockquote:text-text-cream/80
-                prose-li:text-text-cream/90 prose-li:leading-[1.8]
-                prose-hr:border-gold/20"
+              className="max-w-none text-text-cream/90 text-lg
+                [&_p]:leading-[1.8] [&_p]:mb-6
+                [&_h2]:font-heading [&_h2]:text-text-light [&_h2]:text-3xl [&_h2]:mt-10 [&_h2]:mb-4
+                [&_h3]:font-heading [&_h3]:text-text-light [&_h3]:text-2xl [&_h3]:mt-8 [&_h3]:mb-3
+                [&_h4]:font-heading [&_h4]:text-text-light [&_h4]:text-xl [&_h4]:mt-6 [&_h4]:mb-2
+                [&_a]:text-gold [&_a]:underline hover:[&_a]:no-underline
+                [&_strong]:text-text-light [&_strong]:font-semibold
+                [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6
+                [&_li]:mb-2 [&_li]:leading-[1.8]
+                [&_img]:rounded-xl [&_img]:mx-auto [&_img]:my-8
+                [&_blockquote]:border-l-4 [&_blockquote]:border-gold [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-text-cream/80 [&_blockquote]:my-6
+                [&_hr]:border-gold/20 [&_hr]:my-8"
               dangerouslySetInnerHTML={{ __html: post.legacyHtml }}
             />
           ) : (
