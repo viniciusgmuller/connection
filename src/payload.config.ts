@@ -19,6 +19,7 @@ import { Products } from "./collections/Products";
 import { Testimonials } from "./collections/Testimonials";
 import { FAQ } from "./collections/FAQ";
 import { Experiences } from "./collections/Experiences";
+import { Hotels } from "./collections/Hotels";
 import { SiteSettings } from "./globals/SiteSettings";
 import { PageHome } from "./globals/PageHome";
 import { PageConhecer } from "./globals/PageConhecer";
@@ -63,6 +64,7 @@ export default buildConfig({
     Testimonials,
     FAQ,
     Experiences,
+    Hotels,
   ],
   globals: [
     SiteSettings,

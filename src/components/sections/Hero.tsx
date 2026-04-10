@@ -10,12 +10,22 @@ import { useGSAPParallax } from '@/hooks/useGSAP';
 
 gsap.registerPlugin(ScrollTrigger);
 
+interface Speaker {
+  id: string;
+  name: string;
+  title?: string | null;
+  photo?: { url?: string; filename?: string; alt?: string } | string | null;
+}
+
 interface HeroProps {
   siteSettings?: any;
   pageHome?: any;
+  speakers?: Speaker[];
 }
 
-export function Hero({ siteSettings, pageHome }: HeroProps) {
+export function Hero({ siteSettings, pageHome, speakers = [] }: HeroProps) {
+  const speakersTag = pageHome?.speakers?.tag || 'Confirmados';
+  const speakersTitle = pageHome?.speakers?.title || 'Palestrantes';
   const hero = pageHome?.hero;
   const event = siteSettings?.event;
   const startDay = event?.startDate ? new Date(event.startDate).getUTCDate() : 10;
@@ -38,7 +48,6 @@ export function Hero({ siteSettings, pageHome }: HeroProps) {
   const postText = hero?.postEventCta?.buttonText || 'Reviva a Experiência';
   const postLink = hero?.postEventCta?.buttonLink || '/blog';
   const sectionRef = useRef<HTMLDivElement>(null);
-  const heroImageRef = useRef<HTMLDivElement>(null);
   const decorativeRef = useGSAPParallax<HTMLDivElement>(80);
 
   useEffect(() => {
@@ -53,22 +62,7 @@ export function Hero({ siteSettings, pageHome }: HeroProps) {
         .fromTo('.hero-ctas', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7 }, '-=0.4')
         .fromTo('.hero-date-card', { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.6 }, '-=0.5');
 
-      // Parallax zoom on hero image
-      if (heroImageRef.current) {
-        gsap.fromTo(heroImageRef.current.querySelector('video'),
-          { scale: 1.05 },
-          {
-            scale: 1,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: heroImageRef.current,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 1.5,
-            },
-          }
-        );
-      }
+      // (video parallax moved to HeroVideo component)
     }, el);
 
     return () => ctx.revert();
@@ -204,19 +198,66 @@ export function Hero({ siteSettings, pageHome }: HeroProps) {
         </p>
       </div>
 
-      {/* Hero video area */}
-      <div className="relative z-10 mx-auto max-w-[1450px] px-4 md:px-5 mt-4">
-        <div ref={heroImageRef} className="relative w-full h-[400px] md:h-[600px] lg:h-[810px] rounded-[15px] overflow-hidden">
-          <video
-            src={videoUrl}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+      {/* Speakers grid */}
+      {speakers.length > 0 && (
+        <div className="relative z-10 mx-auto max-w-[1450px] px-4 md:px-5 mt-4">
+          <div className="rounded-[15px] overflow-hidden bg-[#131415] p-8 md:p-12 lg:p-16">
+            <div className="mb-10 text-center">
+              <span className="mb-3 inline-block font-just-sans text-sm uppercase tracking-[0.2em] text-[#C9A962]">
+                {speakersTag}
+              </span>
+              <h2 className="font-heading text-[32px] font-normal leading-[1.1] text-[#FFF5EC] md:text-[40px] lg:text-[48px]">
+                {speakersTitle}
+              </h2>
+            </div>
+            <div className="grid grid-cols-2 gap-6 md:gap-8 lg:grid-cols-4">
+              {speakers.map((speaker) => {
+                const photo =
+                  typeof speaker.photo === 'object' && speaker.photo !== null
+                    ? speaker.photo
+                    : null;
+                const photoUrl = photo?.url || (photo?.filename ? `/media/${photo.filename}` : null);
+                const initials = speaker.name
+                  .split(' ')
+                  .map((w) => w[0])
+                  .join('')
+                  .slice(0, 2);
+
+                return (
+                  <div key={speaker.id} className="group flex flex-col items-center">
+                    <div className="relative mb-5 aspect-[3/4] w-full overflow-hidden rounded-2xl bg-[#1a1a1a]">
+                      {photoUrl ? (
+                        <Image
+                          src={photoUrl}
+                          alt={photo?.alt || speaker.name}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 768px) 50vw, 25vw"
+                        />
+                      ) : (
+                        <div className="flex h-full items-center justify-center">
+                          <span className="font-heading text-4xl text-[#C9A962]/30">
+                            {initials}
+                          </span>
+                        </div>
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#131415]/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    </div>
+                    <h3 className="text-center font-heading text-lg leading-tight text-[#FFF5EC] md:text-xl">
+                      {speaker.name}
+                    </h3>
+                    {speaker.title && (
+                      <p className="mt-1.5 text-center font-just-sans text-sm leading-relaxed text-[#FFF5EC]/60">
+                        {speaker.title}
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }

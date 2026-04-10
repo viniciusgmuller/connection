@@ -71,6 +71,24 @@ export const PageHome: GlobalConfig = {
       ],
     },
     {
+      type: "group", name: "speakers", label: "Palestrantes (Home)",
+      fields: [
+        { name: "tag", type: "text", label: "Tag", defaultValue: "Confirmados" },
+        { name: "title", type: "text", label: "Título", defaultValue: "Palestrantes" },
+      ],
+    },
+    {
+      type: "group", name: "eventGallery", label: "Galeria do Evento",
+      fields: [
+        { name: "title", type: "text", label: "Título", defaultValue: "Connection em Imagens" },
+        { name: "subtitle", type: "textarea", label: "Subtítulo", defaultValue: "Reviva os melhores momentos das edições anteriores" },
+        { name: "images", type: "array", label: "Imagens", fields: [
+          { name: "image", type: "upload", relationTo: "media", label: "Imagem", required: true },
+          { name: "caption", type: "text", label: "Legenda" },
+        ]},
+      ],
+    },
+    {
       type: "group", name: "infoPraticas", label: "Informações Práticas",
       fields: [{ name: "items", type: "array", label: "Itens", fields: [
         { name: "icon", type: "text", label: "Ícone" },

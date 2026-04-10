@@ -133,7 +133,7 @@ export function ConhecaBlock({ cmsSchedule, eventPhase }: ConhecaBlockProps) {
     )
       return false;
     return true;
-  });
+  }).sort((a, b) => a.time.localeCompare(b.time));
 
   return (
     <div className="mt-[100px] flex flex-col gap-[48px]">

@@ -41,6 +41,13 @@ export default async function ExperimentarPage() {
     depth: 1,
   });
 
+  const { docs: hotels } = await payload.find({
+    collection: 'hotels',
+    sort: 'order',
+    limit: 50,
+    depth: 1,
+  });
+
   const pageData = await payload.findGlobal({ slug: 'page-experimentar' });
   const features = (pageData.features as any)?.items || [];
 
@@ -201,6 +208,102 @@ export default async function ExperimentarPage() {
                       )}
                     </div>
                   </a>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Hotelaria */}
+      {hotels.length > 0 && (
+        <section id="hotelaria" className="py-20 bg-bg-darker">
+          <div className="container mx-auto px-4 lg:px-8">
+            <SectionTitle
+              title="Hotelaria"
+              subtitle="Opções de hospedagem próximas ao evento para sua comodidade"
+              align="center"
+            />
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {hotels.map((hotel: any) => {
+                const img =
+                  typeof hotel.image === 'object' && hotel.image !== null
+                    ? hotel.image
+                    : null;
+                const imgSrc = img?.url || (img?.filename ? `/media/${img.filename}` : null);
+
+                return (
+                  <div
+                    key={hotel.id}
+                    className="group flex flex-col rounded-2xl border border-[#FFF5EC]/10 bg-[#1C1F21] overflow-hidden hover:border-[#C9A962]/40 transition-colors"
+                  >
+                    {/* Image */}
+                    <div className="relative h-[200px] bg-bg-brown">
+                      {imgSrc ? (
+                        <Image
+                          src={imgSrc}
+                          alt={img?.alt || hotel.name}
+                          fill
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div className="flex h-full items-center justify-center">
+                          <svg className="w-12 h-12 text-gold/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Info */}
+                    <div className="p-6 flex-1 flex flex-col">
+                      <div className="flex items-start justify-between gap-2 mb-2">
+                        <h3 className="font-heading text-xl text-text-light">{hotel.name}</h3>
+                        {hotel.priceRange && (
+                          <span className="text-gold text-sm font-medium shrink-0">{hotel.priceRange}</span>
+                        )}
+                      </div>
+
+                      {hotel.distance && (
+                        <p className="text-gold text-sm mb-2 flex items-center gap-1">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                          {hotel.distance}
+                        </p>
+                      )}
+
+                      {hotel.description && (
+                        <p className="text-text-cream text-sm leading-relaxed mb-4">{hotel.description}</p>
+                      )}
+
+                      {hotel.address && (
+                        <p className="text-text-muted text-xs mb-2">{hotel.address}</p>
+                      )}
+
+                      <div className="mt-auto pt-4 flex items-center gap-4">
+                        {hotel.website && (
+                          <a
+                            href={hotel.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[#C9A962] text-sm font-medium hover:underline"
+                          >
+                            Reservar &rarr;
+                          </a>
+                        )}
+                        {hotel.phone && (
+                          <a
+                            href={`tel:${hotel.phone}`}
+                            className="text-text-muted text-sm hover:text-text-light transition-colors"
+                          >
+                            {hotel.phone}
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 );
               })}
             </div>

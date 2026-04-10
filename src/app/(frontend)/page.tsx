@@ -9,7 +9,8 @@ import { OQueEIG } from '@/components/sections/OQueEIG';
 import { CTA } from '@/components/sections/CTA';
 import { InfoPraticas } from '@/components/sections/InfoPraticas';
 import { Parceiros } from '@/components/sections/Parceiros';
-import { SpeakersHighlight } from '@/components/sections/SpeakersHighlight';
+import { HeroVideo } from '@/components/sections/HeroVideo';
+import { EventGallery } from '@/components/sections/EventGallery';
 
 export const dynamic = 'force-dynamic';
 
@@ -33,8 +34,8 @@ export default async function Home() {
 
   return (
     <>
-      <Hero siteSettings={siteSettings} pageHome={pageHomeWithSchedule} />
-      <SpeakersHighlight speakers={speakers.docs as any} />
+      <Hero siteSettings={siteSettings} pageHome={pageHomeWithSchedule} speakers={speakers.docs as any} />
+      <HeroVideo videoUrl={pageHomeWithSchedule?.hero?.videoUrl} />
       <SeloIG pageHome={pageHomeWithSchedule} />
       <CredencialCTA pageHome={pageHomeWithSchedule} />
       <Experimentar />
@@ -42,6 +43,14 @@ export default async function Home() {
       <OQueEIG pageHome={pageHomeWithSchedule} />
       <CTA pageHome={pageHomeWithSchedule} />
       <InfoPraticas siteSettings={siteSettings} pageHome={pageHomeWithSchedule} />
+      <EventGallery
+        title={pageHomeWithSchedule?.eventGallery?.title}
+        subtitle={pageHomeWithSchedule?.eventGallery?.subtitle}
+        images={(pageHomeWithSchedule?.eventGallery?.images as any[])?.map((item: any) => ({
+          image: typeof item.image === 'object' ? item.image : null,
+          caption: item.caption,
+        })) || []}
+      />
       <Parceiros partners={partners.docs} />
     </>
   );

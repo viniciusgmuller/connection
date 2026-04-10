@@ -5,7 +5,7 @@ const footerLinks = {
     { label: 'Sobre', href: '/#sobre' },
     { label: 'Programação', href: '/programacao' },
     { label: 'Ingressos', href: '/ingressos' },
-    { label: 'Hotelaria', href: '/hotelaria' },
+    { label: 'Hotelaria', href: '/experimentar#hotelaria' },
   ],
   eixos: [
     { label: 'Conhecer', href: '/conhecer' },
