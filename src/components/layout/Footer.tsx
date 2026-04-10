@@ -6,7 +6,6 @@ const footerLinks = {
     { label: 'Programação', href: '/programacao' },
     { label: 'Ingressos', href: '/ingressos' },
     { label: 'Hotelaria', href: '/hotelaria' },
-    { label: 'Transporte', href: '/transporte' },
   ],
   eixos: [
     { label: 'Conhecer', href: '/conhecer' },

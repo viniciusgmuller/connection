@@ -139,6 +139,27 @@ export default async function IngressosPage() {
         </div>
       </section>
 
+      {/* CTA WhatsApp */}
+      <section className="py-20 bg-gold">
+        <div className="container mx-auto px-4 lg:px-8 text-center">
+          <h2 className="font-heading text-4xl text-bg-darker mb-4">
+            {pageData.cta?.headline || "Solicitar orçamento por WhatsApp"}
+          </h2>
+          <p className="text-bg-dark/80 mb-8">
+            {pageData.cta?.description || "Nossa equipe está pronta para ajudar você."}
+          </p>
+          <Button
+            href={pageData.cta?.buttonLink || `https://wa.me/${whatsapp}`}
+            external
+            variant="secondary"
+            size="lg"
+            className="bg-bg-darker text-gold"
+          >
+            {pageData.cta?.buttonText || "Solicitar orçamento por WhatsApp"}
+          </Button>
+        </div>
+      </section>
+
       {/* FAQ */}
       {faqItems.length > 0 && (
         <section className="py-16 bg-bg-dark">
@@ -148,37 +169,6 @@ export default async function IngressosPage() {
           </div>
         </section>
       )}
-
-      {/* CTA */}
-      <section className="py-20 bg-gold">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h2 className="font-heading text-4xl text-bg-darker mb-4">
-            {pageData.cta?.headline || "Ainda tem dúvidas?"}
-          </h2>
-          <p className="text-bg-dark/80 mb-8">
-            {pageData.cta?.description || "Nossa equipe está pronta para ajudar você."}
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button
-              href={pageData.cta?.buttonLink || `https://wa.me/${whatsapp}`}
-              external
-              variant="secondary"
-              size="lg"
-              className="bg-bg-darker text-gold"
-            >
-              {pageData.cta?.buttonText || "Falar pelo WhatsApp"}
-            </Button>
-            <Button
-              href={`mailto:${mainEmail}`}
-              variant="ghost"
-              size="lg"
-              className="text-bg-darker border-2 border-bg-darker/20"
-            >
-              Enviar email
-            </Button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

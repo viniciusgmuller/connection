@@ -9,17 +9,19 @@ import { OQueEIG } from '@/components/sections/OQueEIG';
 import { CTA } from '@/components/sections/CTA';
 import { InfoPraticas } from '@/components/sections/InfoPraticas';
 import { Parceiros } from '@/components/sections/Parceiros';
+import { SpeakersHighlight } from '@/components/sections/SpeakersHighlight';
 
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
   const payload = await getPayload({ config });
 
-  const [siteSettings, pageHome, partners, scheduleEvents] = await Promise.all([
+  const [siteSettings, pageHome, partners, scheduleEvents, speakers] = await Promise.all([
     payload.findGlobal({ slug: 'site-settings' }),
     payload.findGlobal({ slug: 'page-home' }),
     payload.find({ collection: 'partners', sort: 'order', limit: 50, depth: 2 }),
     payload.find({ collection: 'schedule-events', sort: 'date', limit: 200, depth: 1 }),
+    payload.find({ collection: 'speakers', sort: 'order', limit: 50, depth: 1 }),
   ]);
 
   // Attach schedule and event phase to pageHome for SeloIG > ConhecaBlock
@@ -32,6 +34,7 @@ export default async function Home() {
   return (
     <>
       <Hero siteSettings={siteSettings} pageHome={pageHomeWithSchedule} />
+      <SpeakersHighlight speakers={speakers.docs as any} />
       <SeloIG pageHome={pageHomeWithSchedule} />
       <CredencialCTA pageHome={pageHomeWithSchedule} />
       <Experimentar />
