@@ -164,9 +164,9 @@ export default async function ExperimentarPage() {
               {experiences.map((exp: any) => {
                 const logo =
                   typeof exp.logo === 'object' && exp.logo !== null ? exp.logo : null;
-                const logoSrc = logo?.filename
+                const logoSrc = logo?.url || (logo?.filename
                   ? `/media/${logo.filename}`
-                  : '';
+                  : '');
 
                 return (
                   <a

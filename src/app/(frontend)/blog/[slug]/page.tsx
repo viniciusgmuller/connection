@@ -120,18 +120,7 @@ export default async function BlogPostPage({ params }: Props) {
 
           {post.legacyHtml ? (
             <div
-              className="max-w-none text-text-cream/90 text-lg
-                [&_p]:leading-[1.8] [&_p]:mb-6
-                [&_h2]:font-heading [&_h2]:text-text-light [&_h2]:text-3xl [&_h2]:mt-10 [&_h2]:mb-4
-                [&_h3]:font-heading [&_h3]:text-text-light [&_h3]:text-2xl [&_h3]:mt-8 [&_h3]:mb-3
-                [&_h4]:font-heading [&_h4]:text-text-light [&_h4]:text-xl [&_h4]:mt-6 [&_h4]:mb-2
-                [&_a]:text-gold [&_a]:underline hover:[&_a]:no-underline
-                [&_strong]:text-text-light [&_strong]:font-semibold
-                [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-6
-                [&_li]:mb-2 [&_li]:leading-[1.8]
-                [&_img]:rounded-xl [&_img]:mx-auto [&_img]:my-8
-                [&_blockquote]:border-l-4 [&_blockquote]:border-gold [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-text-cream/80 [&_blockquote]:my-6
-                [&_hr]:border-gold/20 [&_hr]:my-8"
+              className="blog-body max-w-none text-text-cream/90 text-lg"
               dangerouslySetInnerHTML={{ __html: post.legacyHtml }}
             />
           ) : (

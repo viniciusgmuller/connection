@@ -120,7 +120,7 @@ export function Parceiros({ partners: cmsPartners }: ParceirosProps) {
         const tier = typeof p.tier === 'object' ? p.tier : null;
         const tierOrder = tier?.order || 99;
         const logo = typeof p.logo === 'object' && p.logo !== null ? p.logo : null;
-        const logoSrc = logo?.filename ? `/media/${logo.filename}` : '';
+        const logoSrc = logo?.url || (logo?.filename ? `/media/${logo.filename}` : '');
         return {
           label: tier?.name || '',
           logos: [{ src: logoSrc, alt: p.name }],
