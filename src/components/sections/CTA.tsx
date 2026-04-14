@@ -78,14 +78,9 @@ export function CTA({ pageHome }: CTAProps) {
               {btn.text}
             </Link>
           )) : (
-            <>
-              <Link href="/ingressos" className="flex w-full sm:w-[280px] md:w-[330px] items-center justify-center rounded-full bg-[#FFF5EC] p-[20px] font-just-sans text-lg font-semibold text-[#3D2E1E] transition-colors hover:bg-[#FFF5EC]/90 md:p-[25px] md:text-[24px]">
-                Garantir meu ingresso
-              </Link>
-              <Link href="/negociar" className="flex w-full sm:w-[280px] md:w-[330px] items-center justify-center rounded-full border border-[#FFF5EC] p-[20px] font-just-sans text-lg font-semibold text-[#FFF5EC] transition-colors hover:bg-[#FFF5EC]/10 md:p-[25px] md:text-[24px]">
-                Quero ser expositor
-              </Link>
-            </>
+            <Link href="/ingressos" className="flex w-full sm:w-[280px] md:w-[330px] items-center justify-center rounded-full bg-[#FFF5EC] p-[20px] font-just-sans text-lg font-semibold text-[#3D2E1E] transition-colors hover:bg-[#FFF5EC]/90 md:p-[25px] md:text-[24px]">
+              Garantir meu ingresso
+            </Link>
           )}
         </div>
       </div>

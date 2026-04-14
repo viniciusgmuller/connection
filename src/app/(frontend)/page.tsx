@@ -4,7 +4,6 @@ import { Hero } from '@/components/sections/Hero';
 import { SeloIG } from '@/components/sections/SeloIG';
 import { CredencialCTA } from '@/components/sections/CredencialCTA';
 import { Experimentar } from '@/components/sections/Experimentar';
-import { Negociar } from '@/components/sections/Negociar';
 import { OQueEIG } from '@/components/sections/OQueEIG';
 import { CTA } from '@/components/sections/CTA';
 import { InfoPraticas } from '@/components/sections/InfoPraticas';
@@ -39,7 +38,6 @@ export default async function Home() {
       <SeloIG pageHome={pageHomeWithSchedule} />
       <CredencialCTA pageHome={pageHomeWithSchedule} />
       <Experimentar />
-      <Negociar />
       <OQueEIG pageHome={pageHomeWithSchedule} />
       <CTA pageHome={pageHomeWithSchedule} />
       <InfoPraticas siteSettings={siteSettings} pageHome={pageHomeWithSchedule} />

@@ -166,12 +166,6 @@ export function Hero({ siteSettings, pageHome, speakers = [] }: HeroProps) {
               >
                 Experimentar
               </a>
-              <a
-                href="#negociar"
-                className="flex-1 flex items-center justify-center px-[25px] py-[10px] border-b border-[#FFF5EC] font-just-sans font-normal text-[14px] text-[#FFF5EC] text-center hover:bg-[#FFF5EC]/5 transition-colors"
-              >
-                Negociar
-              </a>
             </div>
           </div>
         </div>

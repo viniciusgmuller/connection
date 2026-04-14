@@ -10,7 +10,6 @@ const footerLinks = {
   eixos: [
     { label: 'Conhecer', href: '/conhecer' },
     { label: 'Experimentar', href: '/experimentar' },
-    { label: 'Negociar', href: '/negociar' },
   ],
   conteudo: [
     { label: 'Blog', href: '/blog' },
