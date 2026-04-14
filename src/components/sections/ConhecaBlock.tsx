@@ -6,12 +6,11 @@ import Image from 'next/image';
 /* ── Toggle: controlled by CMS phase, fallback to false (pre-event) ── */
 
 /* ── Data: cards (pre-event) ── */
-const categories = ['Palestras', 'Conteúdos', 'Podcasts'] as const;
+const categories = ['Palestras', 'Podcasts'] as const;
 type Category = (typeof categories)[number];
 
 const categoryColors: Record<Category, string> = {
   Palestras: '#956A47',
-  Conteúdos: '#C9A962',
   Podcasts: '#3B4D7A',
 };
 
@@ -30,7 +29,7 @@ const cards = [
   },
   {
     title: 'Blog & Artigos',
-    category: 'Conteúdos' as Category,
+    category: 'Palestras' as Category,
     description:
       'Conteúdo transformador com especialistas renomados em turismo, gastronomia e empreendedorismo.',
   },
@@ -60,21 +59,21 @@ const schedule: ScheduleItem[] = [
   // Dia 10 - Terça
   { day: '10', time: '09:00', endTime: '10:00', title: 'Abertura oficial', speaker: 'Organização Connection', category: 'Palestras', location: 'Palco Principal' },
   { day: '10', time: '10:00', endTime: '12:00', title: 'Terroirs brasileiros: panorama atual', speaker: 'Dr. Eduardo Lima', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Palco Principal' },
-  { day: '10', time: '14:00', endTime: '15:30', title: 'O papel da IG na valorização regional', speaker: 'Conteúdo Connection', category: 'Conteúdos', location: 'Sala de Conteúdo' },
+  { day: '10', time: '14:00', endTime: '15:30', title: 'O papel da IG na valorização regional', speaker: 'Conteúdo Connection', category: 'Palestras', location: 'Sala de Conteúdo' },
   { day: '10', time: '16:00', endTime: '17:30', title: 'Podcast ao vivo: Vozes do Terroir', speaker: 'Equipe Connection', speakerImages: ['/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg'], category: 'Podcasts', location: 'Estúdio Podcast' },
   // Dia 11 - Quarta
   { day: '11', time: '09:00', endTime: '10:30', title: 'Café do Cerrado: história e futuro', speaker: 'Maria Souza', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Palco Principal' },
-  { day: '11', time: '11:00', endTime: '12:30', title: 'Mesa redonda: sustentabilidade e terroir', speaker: 'Painel com convidados', speakerImages: ['/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg'], category: 'Conteúdos', location: 'Sala de Conteúdo' },
+  { day: '11', time: '11:00', endTime: '12:30', title: 'Mesa redonda: sustentabilidade e terroir', speaker: 'Painel com convidados', speakerImages: ['/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Sala de Conteúdo' },
   { day: '11', time: '14:00', endTime: '15:30', title: 'Indicações Geográficas e turismo', speaker: 'Carlos Mendes', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Palco Principal' },
   { day: '11', time: '16:00', endTime: '17:30', title: 'Podcast ao vivo: Sabores do Brasil', speaker: 'Equipe Connection', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Podcasts', location: 'Estúdio Podcast' },
   // Dia 12 - Quinta
   { day: '12', time: '09:00', endTime: '10:30', title: 'Vinhos da Serra Gaúcha', speaker: 'Ana Vitória', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Palco Principal' },
-  { day: '12', time: '11:00', endTime: '12:30', title: 'Cacau de Rondônia: do produtor ao mundo', speaker: 'Roberto Alves', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Conteúdos', location: 'Sala de Conteúdo' },
+  { day: '12', time: '11:00', endTime: '12:30', title: 'Cacau de Rondônia: do produtor ao mundo', speaker: 'Roberto Alves', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Sala de Conteúdo' },
   { day: '12', time: '14:00', endTime: '16:00', title: 'Painel: empreendedorismo e gastronomia', speaker: 'Painel com convidados', speakerImages: ['/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Palco Principal' },
   { day: '12', time: '16:00', endTime: '17:30', title: 'Podcast ao vivo: Histórias de Origem', speaker: 'Equipe Connection', category: 'Podcasts', location: 'Estúdio Podcast' },
   // Dia 13 - Sexta
   { day: '13', time: '09:00', endTime: '10:30', title: 'Queijos artesanais com selo IG', speaker: 'Fernanda Costa', speakerImages: ['/images/conheca-card-placeholder.jpg'], category: 'Palestras', location: 'Palco Principal' },
-  { day: '13', time: '11:00', endTime: '12:30', title: 'Conteúdo especial: tradição e inovação', speaker: 'Conteúdo Connection', category: 'Conteúdos', location: 'Sala de Conteúdo' },
+  { day: '13', time: '11:00', endTime: '12:30', title: 'Conteúdo especial: tradição e inovação', speaker: 'Conteúdo Connection', category: 'Palestras', location: 'Sala de Conteúdo' },
   { day: '13', time: '14:00', endTime: '15:30', title: 'Palestra de encerramento', speaker: 'A confirmar', category: 'Palestras', location: 'Palco Principal' },
   { day: '13', time: '16:00', endTime: '17:30', title: 'Podcast ao vivo: episódio especial de encerramento', speaker: 'Equipe Connection', speakerImages: ['/images/conheca-card-placeholder.jpg', '/images/conheca-card-placeholder.jpg'], category: 'Podcasts', location: 'Estúdio Podcast' },
 ];
@@ -100,7 +99,7 @@ export function ConhecaBlock({ cmsSchedule, eventPhase }: ConhecaBlockProps) {
           endTime: evt.endTime || '',
           title: evt.title || '',
           speaker: speakerName,
-          category: (evt.type === 'palestra' ? 'Palestras' : evt.type === 'workshop' ? 'Conteúdos' : 'Podcasts') as Category,
+          category: (evt.type === 'palestra' || evt.type === 'workshop' ? 'Palestras' : 'Podcasts') as Category,
           location: evt.location || '',
           description: evt.description || '',
         };

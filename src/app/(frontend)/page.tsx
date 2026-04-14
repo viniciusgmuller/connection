@@ -26,7 +26,7 @@ export default async function Home() {
   ]);
 
   // Attach schedule and event phase to pageHome for SeloIG > ConhecaBlock
-  const pageHomeWithSchedule = {
+  const pageHomeWithSchedule: any = {
     ...pageHome,
     schedulePreview: scheduleEvents.docs,
     eventPhase: siteSettings.event?.phase || 'pre-event',
