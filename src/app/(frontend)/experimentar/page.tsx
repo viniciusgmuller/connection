@@ -17,21 +17,10 @@ export const metadata: Metadata = {
 export default async function ExperimentarPage() {
   const payload = await getPayload({ config });
 
-  const { docs: products } = await payload.find({
-    collection: 'products',
-    limit: 100,
-    depth: 1,
-  });
-
   const { docs: testimonials } = await payload.find({
     collection: 'testimonials',
     where: { axis: { equals: 'experimentar' } },
     limit: 10,
-  });
-
-  const { docs: categories } = await payload.find({
-    collection: 'product-categories',
-    limit: 20,
   });
 
   const { docs: experiences } = await payload.find({
@@ -89,38 +78,6 @@ export default async function ExperimentarPage() {
                   </div>
                 </Card>
               ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Products Grid */}
-      {products.length > 0 && (
-        <section className="py-20 bg-bg-darker">
-          <div className="container mx-auto px-4 lg:px-8">
-            <SectionTitle
-              title={pageData.productsSection?.title || "Produtos com Indicação Geográfica"}
-              subtitle={pageData.productsSection?.subtitle || "Conheça alguns dos produtos únicos que você poderá experimentar"}
-              align="center"
-            />
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {products.map((product) => {
-                const catName = typeof product.category === 'object' && product.category !== null
-                  ? (product.category as any).name : '';
-                return (
-                  <div
-                    key={product.id}
-                    className="p-6 rounded-xl bg-bg-dark border border-gold/10 hover:border-gold/30 transition-all duration-300 hover:-translate-y-1"
-                  >
-                    <div className="text-center">
-                      <h3 className="font-heading text-xl text-text-light mb-1">{product.name}</h3>
-                      <p className="text-gold text-sm mb-1">{product.origin}, {product.state}</p>
-                      {catName && <p className="text-text-muted text-xs mb-2">{catName}</p>}
-                      <p className="text-text-cream text-sm">{product.description}</p>
-                    </div>
-                  </div>
-                );
-              })}
             </div>
           </div>
         </section>
