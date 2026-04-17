@@ -6,9 +6,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
 import type { NavItem } from './Header';
 
-const simpleLinks: { label: string; href: string }[] = [
-  { label: 'Experiências', href: '/experimentar#parques' },
-];
+const simpleLinks: { label: string; href: string }[] = [];
 
 interface MobileNavProps {
   isOpen: boolean;

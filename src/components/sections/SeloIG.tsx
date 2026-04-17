@@ -10,8 +10,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const defaultStats = [
   { number: '53', suffix: '+', label: 'Produtos com Selo IG' },
-  { number: '27', suffix: '', label: 'Estados Representados' },
-  { number: '100', suffix: '+', label: 'Produtores Presentes' },
+  { number: '9', suffix: '', label: 'Estados Representados' },
+  { number: '70', suffix: '+', label: 'Produtores Representados' },
   { number: '4', suffix: '', label: 'Dias de Evento' },
 ];
 

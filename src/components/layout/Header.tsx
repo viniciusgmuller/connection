@@ -61,7 +61,7 @@ const navigation: NavItem[] = [
       },
       {
         label: 'Lista de palestrantes',
-        href: '/conhecer#palestrantes',
+        href: '/palestrantes',
         description: 'Especialistas que vão inspirar você',
         icon: (
           <svg {...iconProps}>
@@ -102,49 +102,39 @@ const navigation: NavItem[] = [
     ],
   },
   {
-    label: 'Experimentar',
+    label: 'Experiências',
     accentColor: '#956A47',
     featured: {
-      headline: 'Viva experiências sensoriais únicas',
+      headline: 'Viva experiências sensoriais únicas em Gramado',
       ctaLabel: 'Explorar',
       ctaHref: '/experimentar',
     },
-    highlights: ['+40 expositores', 'Todas as regiões do Brasil', 'Degustações exclusivas'],
+    highlights: ['Parques temáticos', 'Gastronomia regional', 'Hospedagem parceira'],
     items: [
       {
-        label: 'Oficinas',
-        href: '/experimentar#oficinas',
-        description: 'Aprenda técnicas com mestres artesãos',
+        label: 'Parques parceiros',
+        href: '/experimentar#parques',
+        description: 'Conheça os parques parceiros do evento',
         icon: (
           <svg {...iconProps}>
-            <path d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
+            <path d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 0h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
           </svg>
         ),
       },
       {
-        label: 'Feira',
-        href: '/experimentar#feira',
-        description: 'Explore produtos de todas as regiões',
+        label: 'Hotéis',
+        href: '/experimentar#hotelaria',
+        description: 'Hospedagem com condições especiais',
         icon: (
           <svg {...iconProps}>
-            <path d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.15c0 .415.336.75.75.75z" />
+            <path d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
           </svg>
         ),
       },
       {
-        label: 'Expositores',
-        href: '/experimentar#expositores',
-        description: 'Conheça quem estará presente',
-        icon: (
-          <svg {...iconProps}>
-            <path d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
-          </svg>
-        ),
-      },
-      {
-        label: 'Experiências gastronômicas',
+        label: 'Circuito Gastronômico',
         href: '/experimentar#gastronomia',
-        description: 'Degustações e harmonizações',
+        description: 'Restaurantes e experiências gastronômicas',
         icon: (
           <svg {...iconProps}>
             <path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
@@ -155,10 +145,7 @@ const navigation: NavItem[] = [
   },
 ];
 
-/** Simple nav links without mega-menu dropdown */
-const simpleLinks: { label: string; href: string }[] = [
-  { label: 'Experiências', href: '/experimentar#parques' },
-];
+const simpleLinks: { label: string; href: string }[] = [];
 
 interface HeaderProps {
   ctaText?: string;

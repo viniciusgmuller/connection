@@ -4,6 +4,7 @@ import { useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { EventPhaseWrapper, PhaseConditional } from '@/components/shared/EventPhaseWrapper';
+import { SpeakersGrid } from './SpeakersGrid';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAPParallax } from '@/hooks/useGSAP';
@@ -157,16 +158,16 @@ export function Hero({ siteSettings, pageHome, speakers = [] }: HeroProps) {
             </div>
 
             {/* Navigation tabs */}
-            <div className="flex items-start gap-2 sm:gap-[18px] w-full lg:w-[510px]">
+            <div className="flex items-start gap-2 sm:gap-[18px] w-full sm:w-auto lg:w-[510px]">
               <a
                 href="#conhecer"
-                className="flex-1 flex items-center justify-center px-[25px] py-[10px] border-b border-[#FFF5EC] font-just-sans font-normal text-[14px] text-[#FFF5EC] text-center hover:bg-[#FFF5EC]/5 transition-colors"
+                className="flex-1 flex items-center justify-center px-[25px] py-[10px] border-b border-[#FFF5EC] font-just-sans font-normal text-[14px] text-[#FFF5EC] text-center hover:bg-[#FFF5EC]/5 transition-colors whitespace-nowrap"
               >
                 Conhecer
               </a>
               <a
                 href="#experimentar"
-                className="flex-1 flex items-center justify-center px-[25px] py-[10px] border-b border-[#FFF5EC] font-just-sans font-normal text-[14px] text-[#FFF5EC] text-center hover:bg-[#FFF5EC]/5 transition-colors"
+                className="flex-1 flex items-center justify-center px-[25px] py-[10px] border-b border-[#FFF5EC] font-just-sans font-normal text-[14px] text-[#FFF5EC] text-center hover:bg-[#FFF5EC]/5 transition-colors whitespace-nowrap"
               >
                 Experimentar
               </a>
@@ -200,75 +201,7 @@ export function Hero({ siteSettings, pageHome, speakers = [] }: HeroProps) {
       {speakers.length > 0 && (
         <div className="relative z-10 mx-auto max-w-[1450px] px-4 md:px-5 mt-4">
           <div className="rounded-[15px] overflow-hidden bg-[#131415] p-8 md:p-12 lg:p-16">
-            <div className="mb-10 text-center">
-              <span className="mb-3 inline-block font-just-sans text-sm uppercase tracking-[0.2em] text-[#C9A962]">
-                {speakersTag}
-              </span>
-              <h2 className="font-heading text-[32px] font-normal leading-[1.1] text-[#FFF5EC] md:text-[40px] lg:text-[48px]">
-                {speakersTitle}
-              </h2>
-            </div>
-            <div className="grid grid-cols-2 gap-6 md:gap-8 lg:grid-cols-4">
-              {speakers.map((speaker) => {
-                const photo =
-                  typeof speaker.photo === 'object' && speaker.photo !== null
-                    ? speaker.photo
-                    : null;
-                const photoUrl = photo?.url || (photo?.filename ? `/media/${photo.filename}` : null);
-                const initials = speaker.name
-                  .split(' ')
-                  .map((w) => w[0])
-                  .join('')
-                  .slice(0, 2);
-
-                const hoverText = speaker.bio || speaker.title || '';
-
-                return (
-                  <div
-                    key={speaker.id}
-                    className="group relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-[#1a1a1a]"
-                  >
-                    {photoUrl ? (
-                      <Image
-                        src={photoUrl}
-                        alt={photo?.alt || speaker.name}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 768px) 50vw, 25vw"
-                      />
-                    ) : (
-                      <div className="flex h-full items-center justify-center">
-                        <span className="font-heading text-4xl text-[#C9A962]/30">
-                          {initials}
-                        </span>
-                      </div>
-                    )}
-
-                    {/* Subtle permanent gradient so the name is readable */}
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-opacity duration-300 group-hover:opacity-0" />
-
-                    {/* Name (always visible at bottom, fades on hover) */}
-                    <div className="absolute inset-x-0 bottom-0 p-4 md:p-5 transition-opacity duration-300 group-hover:opacity-0">
-                      <h3 className="font-heading text-lg leading-tight text-[#FFF5EC] md:text-xl lg:text-2xl">
-                        {speaker.name}
-                      </h3>
-                    </div>
-
-                    {/* Hover overlay with bio */}
-                    <div className="absolute inset-0 flex flex-col justify-end bg-black/75 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:p-5">
-                      <h3 className="mb-2 font-heading text-lg leading-tight text-[#FFF5EC] md:text-xl lg:text-2xl">
-                        {speaker.name}
-                      </h3>
-                      {hoverText && (
-                        <p className="font-just-sans text-xs leading-relaxed text-[#FFF5EC]/85 md:text-sm">
-                          {hoverText}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <SpeakersGrid speakers={speakers} tag={speakersTag} title={speakersTitle} />
           </div>
         </div>
       )}
