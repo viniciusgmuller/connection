@@ -14,6 +14,7 @@ interface Speaker {
   id: string;
   name: string;
   title?: string | null;
+  bio?: string | null;
   photo?: { url?: string; filename?: string; alt?: string } | string | null;
 }
 
@@ -28,6 +29,8 @@ export function Hero({ siteSettings, pageHome, speakers = [] }: HeroProps) {
   const speakersTitle = pageHome?.speakers?.title || 'Palestrantes';
   const hero = pageHome?.hero;
   const event = siteSettings?.event;
+  const cmsPhase = event?.phase;
+  const eventPhase = cmsPhase === 'during' ? 'during-event' as const : cmsPhase === 'post-event' ? 'post-event' as const : 'pre-event' as const;
   const startDay = event?.startDate ? new Date(event.startDate).getUTCDate() : 10;
   const endDay = event?.endDate ? new Date(event.endDate).getUTCDate() : 13;
   const monthYear = event?.startDate
@@ -44,7 +47,7 @@ export function Hero({ siteSettings, pageHome, speakers = [] }: HeroProps) {
   const preEventText = hero?.preEventCta?.buttonText || 'Garanta seu Ingresso';
   const preEventLink = hero?.preEventCta?.buttonLink || '/ingressos';
   const duringText = hero?.duringEventCta?.buttonText || 'Confira a Programação';
-  const duringLink = hero?.duringEventCta?.buttonLink || '/programacao';
+  const duringLink = hero?.duringEventCta?.buttonLink || '/#programacao';
   const postText = hero?.postEventCta?.buttonText || 'Reviva a Experiência';
   const postLink = hero?.postEventCta?.buttonLink || '/blog';
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -119,6 +122,7 @@ export function Hero({ siteSettings, pageHome, speakers = [] }: HeroProps) {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-[10px] w-full lg:w-[604px]">
               <PhaseConditional
+                phase={eventPhase}
                 preEvent={
                   <Link
                     href={preEventLink}
@@ -217,34 +221,50 @@ export function Hero({ siteSettings, pageHome, speakers = [] }: HeroProps) {
                   .join('')
                   .slice(0, 2);
 
+                const hoverText = speaker.bio || speaker.title || '';
+
                 return (
-                  <div key={speaker.id} className="group flex flex-col items-center">
-                    <div className="relative mb-5 aspect-[3/4] w-full overflow-hidden rounded-2xl bg-[#1a1a1a]">
-                      {photoUrl ? (
-                        <Image
-                          src={photoUrl}
-                          alt={photo?.alt || speaker.name}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          sizes="(max-width: 768px) 50vw, 25vw"
-                        />
-                      ) : (
-                        <div className="flex h-full items-center justify-center">
-                          <span className="font-heading text-4xl text-[#C9A962]/30">
-                            {initials}
-                          </span>
-                        </div>
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#131415]/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                    </div>
-                    <h3 className="text-center font-heading text-lg leading-tight text-[#FFF5EC] md:text-xl">
-                      {speaker.name}
-                    </h3>
-                    {speaker.title && (
-                      <p className="mt-1.5 text-center font-just-sans text-sm leading-relaxed text-[#FFF5EC]/60">
-                        {speaker.title}
-                      </p>
+                  <div
+                    key={speaker.id}
+                    className="group relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-[#1a1a1a]"
+                  >
+                    {photoUrl ? (
+                      <Image
+                        src={photoUrl}
+                        alt={photo?.alt || speaker.name}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 50vw, 25vw"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center">
+                        <span className="font-heading text-4xl text-[#C9A962]/30">
+                          {initials}
+                        </span>
+                      </div>
                     )}
+
+                    {/* Subtle permanent gradient so the name is readable */}
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-opacity duration-300 group-hover:opacity-0" />
+
+                    {/* Name (always visible at bottom, fades on hover) */}
+                    <div className="absolute inset-x-0 bottom-0 p-4 md:p-5 transition-opacity duration-300 group-hover:opacity-0">
+                      <h3 className="font-heading text-lg leading-tight text-[#FFF5EC] md:text-xl lg:text-2xl">
+                        {speaker.name}
+                      </h3>
+                    </div>
+
+                    {/* Hover overlay with bio */}
+                    <div className="absolute inset-0 flex flex-col justify-end bg-black/75 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:p-5">
+                      <h3 className="mb-2 font-heading text-lg leading-tight text-[#FFF5EC] md:text-xl lg:text-2xl">
+                        {speaker.name}
+                      </h3>
+                      {hoverText && (
+                        <p className="font-just-sans text-xs leading-relaxed text-[#FFF5EC]/85 md:text-sm">
+                          {hoverText}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 );
               })}

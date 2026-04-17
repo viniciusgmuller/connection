@@ -16,6 +16,21 @@ export const NavigationFooter: GlobalConfig = {
           { name: "href", type: "text", label: "Link" },
         ]},
       ]},
+      { name: "hiddenNavItems", type: "array", label: "Itens ocultos do menu", admin: {
+        description: "Selecione sub-itens do menu que devem ficar ocultos temporariamente.",
+      }, fields: [
+        { name: "label", type: "select", label: "Item", options: [
+          { label: "Conhecer → Programação", value: "Programação" },
+          { label: "Conhecer → Lista de palestrantes", value: "Lista de palestrantes" },
+          { label: "Conhecer → Conteúdos e talks", value: "Conteúdos e talks" },
+          { label: "Conhecer → Blog", value: "Blog" },
+          { label: "Conhecer → Conteúdos sobre IG", value: "Conteúdos sobre IG" },
+          { label: "Experimentar → Oficinas", value: "Oficinas" },
+          { label: "Experimentar → Feira", value: "Feira" },
+          { label: "Experimentar → Expositores", value: "Expositores" },
+          { label: "Experimentar → Experiências gastronômicas", value: "Experiências gastronômicas" },
+        ]},
+      ]},
     ]},
     { type: "group", name: "footer", label: "Rodapé", fields: [
       { name: "tagline", type: "textarea", label: "Slogan", defaultValue: "Experiências que inspiram, conteúdo que transforma. A maior vitrine de produtos com Indicação Geográfica do Brasil." },

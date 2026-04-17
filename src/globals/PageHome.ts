@@ -19,7 +19,7 @@ export const PageHome: GlobalConfig = {
         ]},
         { type: "group", name: "duringEventCta", label: "CTA Durante o Evento", fields: [
           { name: "buttonText", type: "text", label: "Texto do Botão", defaultValue: "Confira a Programação" },
-          { name: "buttonLink", type: "text", label: "Link do Botão", defaultValue: "/programacao" },
+          { name: "buttonLink", type: "text", label: "Link do Botão", defaultValue: "/#programacao" },
         ]},
         { type: "group", name: "postEventCta", label: "CTA Pós-evento", fields: [
           { name: "buttonText", type: "text", label: "Texto do Botão", defaultValue: "Reviva a Experiência" },
@@ -35,7 +35,11 @@ export const PageHome: GlobalConfig = {
         { name: "number", type: "text", label: "Número" },
         { name: "label", type: "text", label: "Rótulo" },
         { name: "suffix", type: "text", label: "Sufixo" },
-      ]}],
+      ]},
+        { name: "showScheduleCategoryFilters", type: "checkbox", label: "Mostrar filtros de categoria na programação da home", defaultValue: false, admin: {
+          description: "Se desabilitado, os botões de filtro por categoria (Palestras, Podcasts, etc.) ficam ocultos na seção Conheça da home.",
+        }},
+      ],
     },
     {
       type: "group", name: "credencialCta", label: "CTA de Credencial",

@@ -31,10 +31,11 @@ interface PhaseConditionalProps {
   duringEvent?: ReactNode;
   postEvent?: ReactNode;
   fallback?: ReactNode;
+  phase?: EventPhase;
 }
 
-export function PhaseConditional({ preEvent, duringEvent, postEvent, fallback }: PhaseConditionalProps) {
-  const currentPhase = getCurrentPhase();
+export function PhaseConditional({ preEvent, duringEvent, postEvent, fallback, phase }: PhaseConditionalProps) {
+  const currentPhase = phase || getCurrentPhase();
 
   switch (currentPhase) {
     case 'pre-event':

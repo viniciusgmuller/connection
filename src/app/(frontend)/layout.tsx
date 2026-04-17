@@ -144,6 +144,7 @@ fbq('track', 'PageView');`}
         <Header
           ctaText={navFooterData?.navigation?.ctaText || undefined}
           ctaLink={navFooterData?.navigation?.ctaLink || undefined}
+          hiddenNavItems={navFooterData?.navigation?.hiddenNavItems?.map((item: any) => item.label) || []}
         />
         <main>{children}</main>
         <Footer cmsData={navFooterData} />

@@ -126,8 +126,8 @@ export function SeloIG({ pageHome }: SeloIGProps) {
         </div>
 
         {/* ─── 2. Conheça ─── */}
-        <div ref={conhecaRef} className="opacity-0">
-          <ConhecaBlock cmsSchedule={pageHome?.schedulePreview} eventPhase={pageHome?.eventPhase} />
+        <div id="programacao" ref={conhecaRef} className="opacity-0">
+          <ConhecaBlock cmsSchedule={pageHome?.schedulePreview} eventPhase={pageHome?.eventPhase} hiddenTypes={pageHome?.scheduleHiddenTypes || []} />
         </div>
       </div>
     </section>

@@ -16,12 +16,13 @@ export const dynamic = 'force-dynamic';
 export default async function Home() {
   const payload = await getPayload({ config });
 
-  const [siteSettings, pageHome, partners, scheduleEvents, speakers] = await Promise.all([
+  const [siteSettings, pageHome, partners, scheduleEvents, speakers, pageProgramacao] = await Promise.all([
     payload.findGlobal({ slug: 'site-settings' }),
     payload.findGlobal({ slug: 'page-home' }),
     payload.find({ collection: 'partners', sort: 'order', limit: 50, depth: 2 }),
     payload.find({ collection: 'schedule-events', sort: 'date', limit: 200, depth: 1 }),
     payload.find({ collection: 'speakers', sort: 'order', limit: 50, depth: 1 }),
+    payload.findGlobal({ slug: 'page-programacao' }),
   ]);
 
   // Attach schedule and event phase to pageHome for SeloIG > ConhecaBlock
@@ -29,6 +30,7 @@ export default async function Home() {
     ...pageHome,
     schedulePreview: scheduleEvents.docs,
     eventPhase: siteSettings.event?.phase || 'pre-event',
+    scheduleHiddenTypes: (pageProgramacao as any).hiddenTypes || [],
   };
 
   return (

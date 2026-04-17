@@ -23,6 +23,8 @@ const typeColors: Record<EventType, string> = {
 
 const weekdayNames = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'] as const;
 
+export type ScheduleTrack = 'principal' | 'paralela';
+
 export interface ScheduleEvent {
   id?: string;
   date: string;
@@ -30,6 +32,7 @@ export interface ScheduleEvent {
   endTime?: string;
   title: string;
   type?: string;
+  track?: ScheduleTrack;
   speaker?: { name?: string } | string | null;
   speakerImages?: string[];
   location?: string;
@@ -40,6 +43,7 @@ interface ScheduleViewProps {
   events: ScheduleEvent[];
   showSearch?: boolean;
   emptyLabel?: string;
+  hiddenTypes?: string[];
 }
 
 function normalizeType(t?: string): EventType {
@@ -49,10 +53,105 @@ function normalizeType(t?: string): EventType {
   return 'special';
 }
 
+type NormalizedEvent = {
+  id?: string;
+  dayKey: string;
+  weekday: string;
+  startTime: string;
+  endTime?: string;
+  title: string;
+  type: EventType;
+  track: ScheduleTrack;
+  speaker: string;
+  speakerImages?: string[];
+  location?: string;
+  description?: string;
+};
+
+function EventCard({ item, showTime = true }: { item: NormalizedEvent; showTime?: boolean }) {
+  const color = typeColors[item.type];
+  return (
+    <div
+      className="group flex min-h-[120px] items-stretch gap-0 rounded-[16px] bg-[#FFF5EC]/[0.04] transition-colors hover:bg-[#FFF5EC]/[0.07]"
+    >
+      {showTime && (
+        <div className="flex w-[100px] shrink-0 flex-col justify-center px-5 lg:w-[120px]">
+          <span className="font-heading text-[26px] leading-[30px] text-[#FFF5EC] lg:text-[30px]">
+            {item.startTime}
+          </span>
+          {item.endTime && (
+            <span className="mt-0.5 font-just-sans text-[13px] leading-[20.8px] text-[#FFF5EC]/30">
+              até {item.endTime}
+            </span>
+          )}
+        </div>
+      )}
+
+      <div className="flex shrink-0 flex-col items-start justify-center py-4">
+        <div className="h-full w-[3px] rounded-full" style={{ backgroundColor: color }} />
+      </div>
+
+      <div className="flex min-w-0 flex-1 items-center gap-4 px-5">
+        <div className="flex min-w-0 flex-1 flex-col gap-1">
+          <div className="flex items-center gap-2">
+            <span
+              className="font-just-sans text-[12px] font-semibold uppercase tracking-[0.6px] leading-[19.2px]"
+              style={{ color }}
+            >
+              {typeLabels[item.type]}
+            </span>
+            {item.track === 'paralela' && (
+              <span className="rounded-full bg-[#FFF5EC]/10 px-[8px] py-[1px] font-just-sans text-[10px] font-medium text-[#FFF5EC]/50 uppercase tracking-wider">
+                Na Cidade
+              </span>
+            )}
+          </div>
+          <h4 className="font-just-sans text-[15px] font-semibold leading-[22px] text-[#FFF5EC] lg:text-base">
+            {item.title}
+          </h4>
+          {item.speaker && (
+            <p className="font-just-sans text-[13px] leading-[20.8px] text-[#FFF5EC]/40">
+              {item.speaker}
+            </p>
+          )}
+          {item.description && (
+            <p className="font-just-sans text-[12px] leading-[18px] text-[#FFF5EC]/30 line-clamp-2">
+              {item.description}
+            </p>
+          )}
+          {item.location && (
+            <span className="mt-[3px] inline-flex items-center gap-1.5 font-just-sans text-[12px] leading-[19.2px] text-[#FFF5EC]/25">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              {item.location}
+            </span>
+          )}
+        </div>
+
+        {item.speakerImages && item.speakerImages.length > 0 && (
+          <div className="flex shrink-0 -space-x-3.5">
+            {item.speakerImages.map((img, j) => (
+              <div
+                key={j}
+                className="relative h-[61px] w-[61px] overflow-hidden rounded-full shadow-[0_0_0_3.4px_#281b15]"
+              >
+                <Image src={img} alt="" fill className="object-cover" />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export function ScheduleView({
   events,
   showSearch = true,
   emptyLabel = 'Nenhuma atividade encontrada para este filtro.',
+  hiddenTypes = [],
 }: ScheduleViewProps) {
   const normalized = useMemo(
     () =>
@@ -74,6 +173,7 @@ export function ScheduleView({
           endTime: e.endTime,
           title: e.title,
           type: normalizeType(e.type),
+          track: (e.track || 'principal') as ScheduleTrack,
           speaker: speakerName,
           speakerImages: e.speakerImages,
           location: e.location,
@@ -94,8 +194,8 @@ export function ScheduleView({
   const typesPresent = useMemo(() => {
     const set = new Set<EventType>();
     for (const n of normalized) set.add(n.type);
-    return (Object.keys(typeLabels) as EventType[]).filter((t) => set.has(t));
-  }, [normalized]);
+    return (Object.keys(typeLabels) as EventType[]).filter((t) => set.has(t) && !hiddenTypes.includes(t));
+  }, [normalized, hiddenTypes]);
 
   const locations = useMemo(
     () => [...new Set(normalized.map((n) => n.location).filter(Boolean))] as string[],
@@ -108,7 +208,6 @@ export function ScheduleView({
   const [locationOpen, setLocationOpen] = useState(false);
   const [search, setSearch] = useState('');
 
-  // If days changed and activeDay no longer valid, fall back
   const effectiveDay = days.find((d) => d.key === activeDay)?.key || days[0]?.key || '';
 
   const filtered = useMemo(() => {
@@ -128,6 +227,9 @@ export function ScheduleView({
       })
       .sort((a, b) => a.startTime.localeCompare(b.startTime));
   }, [normalized, effectiveDay, activeType, activeLocation, search]);
+
+  const principalEvents = useMemo(() => filtered.filter((n) => n.track === 'principal'), [filtered]);
+  const paralelaEvents = useMemo(() => filtered.filter((n) => n.track === 'paralela'), [filtered]);
 
   if (normalized.length === 0) {
     return <p className="py-16 text-center font-just-sans text-base text-[#FFF5EC]/40">Programação em breve.</p>;
@@ -244,84 +346,46 @@ export function ScheduleView({
         </div>
       )}
 
-      {/* Schedule list */}
-      <div className="flex flex-col gap-[12px]">
-        {filtered.length === 0 && (
-          <p className="py-16 text-center font-just-sans text-base text-[#FFF5EC]/40">
-            {emptyLabel}
-          </p>
-        )}
-        {filtered.map((item, i) => {
-          const color = typeColors[item.type];
-          return (
-            <div
-              key={item.id || `${item.dayKey}-${item.startTime}-${i}`}
-              className="group flex min-h-[137.5px] items-stretch gap-0 rounded-[16px] bg-[#FFF5EC]/[0.04] transition-colors hover:bg-[#FFF5EC]/[0.07]"
-            >
-              <div className="flex w-[100px] shrink-0 flex-col justify-center px-5 lg:w-[120px]">
-                <span className="font-heading text-[26px] leading-[30px] text-[#FFF5EC] lg:text-[30px]">
-                  {item.startTime}
-                </span>
-                {item.endTime && (
-                  <span className="mt-0.5 font-just-sans text-[13px] leading-[20.8px] text-[#FFF5EC]/30">
-                    até {item.endTime}
-                  </span>
-                )}
-              </div>
+      {/* Schedule lists */}
+      {filtered.length === 0 && (
+        <p className="py-16 text-center font-just-sans text-base text-[#FFF5EC]/40">
+          {emptyLabel}
+        </p>
+      )}
 
-              <div className="flex shrink-0 flex-col items-start justify-center py-4">
-                <div className="h-full w-[3px] rounded-full" style={{ backgroundColor: color }} />
-              </div>
-
-              <div className="flex min-w-0 flex-1 items-center gap-4 px-5">
-                <div className="flex min-w-0 flex-1 flex-col gap-1">
-                  <span
-                    className="font-just-sans text-[12px] font-semibold uppercase tracking-[0.6px] leading-[19.2px]"
-                    style={{ color }}
-                  >
-                    {typeLabels[item.type]}
-                  </span>
-                  <h4 className="font-just-sans text-[15px] font-semibold leading-[22px] text-[#FFF5EC] lg:text-base">
-                    {item.title}
-                  </h4>
-                  {item.speaker && (
-                    <p className="font-just-sans text-[13px] leading-[20.8px] text-[#FFF5EC]/40">
-                      {item.speaker}
-                    </p>
-                  )}
-                  {item.description && (
-                    <p className="font-just-sans text-[12px] leading-[18px] text-[#FFF5EC]/30 line-clamp-2">
-                      {item.description}
-                    </p>
-                  )}
-                  {item.location && (
-                    <span className="mt-[3px] inline-flex items-center gap-1.5 font-just-sans text-[12px] leading-[19.2px] text-[#FFF5EC]/25">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
-                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z" />
-                        <circle cx="12" cy="10" r="3" />
-                      </svg>
-                      {item.location}
-                    </span>
-                  )}
-                </div>
-
-                {item.speakerImages && item.speakerImages.length > 0 && (
-                  <div className="flex shrink-0 -space-x-3.5">
-                    {item.speakerImages.map((img, j) => (
-                      <div
-                        key={j}
-                        className="relative h-[61px] w-[61px] overflow-hidden rounded-full shadow-[0_0_0_3.4px_#281b15]"
-                      >
-                        <Image src={img} alt="" fill className="object-cover" />
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
+      {/* Principal — programação do evento */}
+      {principalEvents.length > 0 && (
+        <div className="flex flex-col gap-[12px]">
+          {paralelaEvents.length > 0 && (
+            <div className="flex items-center gap-3 mb-2">
+              <div className="h-px flex-1 bg-[#FFF5EC]/10" />
+              <span className="font-just-sans text-[13px] font-semibold uppercase tracking-wider text-[#FFF5EC]/50">
+                Programação do Evento
+              </span>
+              <div className="h-px flex-1 bg-[#FFF5EC]/10" />
             </div>
-          );
-        })}
-      </div>
+          )}
+          {principalEvents.map((item, i) => (
+            <EventCard key={item.id || `p-${item.startTime}-${i}`} item={item} />
+          ))}
+        </div>
+      )}
+
+      {/* Paralela — programação na cidade */}
+      {paralelaEvents.length > 0 && (
+        <div className="flex flex-col gap-[12px] mt-6">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="h-px flex-1 bg-[#FFF5EC]/10" />
+            <span className="font-just-sans text-[13px] font-semibold uppercase tracking-wider text-[#FFF5EC]/50">
+              Programação na Cidade
+            </span>
+            <div className="h-px flex-1 bg-[#FFF5EC]/10" />
+          </div>
+          {paralelaEvents.map((item, i) => (
+            <EventCard key={item.id || `a-${item.startTime}-${i}`} item={item} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

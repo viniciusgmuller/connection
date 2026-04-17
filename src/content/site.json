@@ -20,7 +20,7 @@
     { "label": "Conhecer", "href": "/conhecer" },
     { "label": "Experimentar", "href": "/experimentar" },
     { "label": "Negociar", "href": "/negociar" },
-    { "label": "Programação", "href": "/programacao" },
+    { "label": "Programação", "href": "/#programacao" },
     { "label": "Blog", "href": "/blog" }
   ],
   "statistics": [

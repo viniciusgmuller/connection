@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
@@ -45,13 +45,13 @@ const navigation: NavItem[] = [
     featured: {
       headline: 'Descubra o universo dos Terroirs do Brasil',
       ctaLabel: 'Ver Programação',
-      ctaHref: '/programacao',
+      ctaHref: '/#programacao',
     },
     highlights: ['+30 palestrantes confirmados', '4 dias de evento', 'Painéis e debates ao vivo'],
     items: [
       {
         label: 'Programação',
-        href: '/programacao',
+        href: '/#programacao',
         description: 'Confira a grade completa do evento',
         icon: (
           <svg {...iconProps}>
@@ -163,9 +163,18 @@ const simpleLinks: { label: string; href: string }[] = [
 interface HeaderProps {
   ctaText?: string;
   ctaLink?: string;
+  hiddenNavItems?: string[];
 }
 
-export function Header({ ctaText = 'Garantir Ingresso', ctaLink = '/ingressos' }: HeaderProps) {
+export function Header({ ctaText = 'Garantir Ingresso', ctaLink = '/ingressos', hiddenNavItems = [] }: HeaderProps) {
+  const filteredNavigation = useMemo(() =>
+    navigation.map((section) => ({
+      ...section,
+      items: section.items.filter((item) => !hiddenNavItems.includes(item.label)),
+    })),
+    [hiddenNavItems],
+  );
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -237,7 +246,7 @@ export function Header({ ctaText = 'Garantir Ingresso', ctaLink = '/ingressos' }
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-[52px]">
-              {navigation.map((item) => (
+              {filteredNavigation.map((item) => (
                 <div
                   key={item.label}
                   className="static"
@@ -371,7 +380,7 @@ export function Header({ ctaText = 'Garantir Ingresso', ctaLink = '/ingressos' }
       <MobileNav
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
-        navigation={navigation}
+        navigation={filteredNavigation}
         ctaText={ctaText}
         ctaLink={ctaLink}
       />

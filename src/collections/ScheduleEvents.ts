@@ -22,6 +22,14 @@ export const ScheduleEvents: CollectionConfig = {
         { label: "Especial", value: "special" },
       ],
     },
+    {
+      name: "track", type: "select", label: "Programação",
+      defaultValue: "principal",
+      options: [
+        { label: "Do Evento", value: "principal" },
+        { label: "Na Cidade", value: "paralela" },
+      ],
+    },
     { name: "description", type: "textarea", label: "Descrição" },
   ],
 };

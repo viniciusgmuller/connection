@@ -3,7 +3,7 @@ import Link from 'next/link';
 const footerLinks = {
   evento: [
     { label: 'Sobre', href: '/#sobre' },
-    { label: 'Programação', href: '/programacao' },
+    { label: 'Programação', href: '/#programacao' },
     { label: 'Ingressos', href: '/ingressos' },
     { label: 'Hotelaria', href: '/experimentar#hotelaria' },
   ],
@@ -13,8 +13,6 @@ const footerLinks = {
   ],
   conteudo: [
     { label: 'Blog', href: '/blog' },
-    { label: 'Podcast', href: '/podcast' },
-    { label: 'Materiais', href: '/materiais' },
   ],
 };
 
