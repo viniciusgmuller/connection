@@ -83,18 +83,18 @@ export default async function BlogPage() {
                     </div>
 
                     <div className="p-6">
-                      <div className="flex items-center gap-3 text-xs text-text-muted mb-3">
-                        {post.publishedAt && <span>{formatDate(post.publishedAt)}</span>}
+                      <div className="flex items-center flex-wrap gap-x-2 gap-y-0.5 text-xs text-text-muted mb-3">
+                        {post.publishedAt && <span className="whitespace-nowrap">{formatDate(post.publishedAt)}</span>}
                         {post.author && (
                           <>
                             <span>•</span>
-                            <span>{post.author}</span>
+                            <span className="whitespace-nowrap truncate max-w-[120px]">{post.author}</span>
                           </>
                         )}
                         {(() => {
                           const text = ((post.legacyHtml as string) || '').replace(/<[^>]*>/g, '');
                           const mins = Math.max(1, Math.ceil(text.split(/\s+/).filter(Boolean).length / 200));
-                          return <><span>•</span><span>{mins} min</span></>;
+                          return <><span>•</span><span className="whitespace-nowrap">{mins} min</span></>;
                         })()}
                       </div>
                       <h2 className="font-heading text-xl text-text-light mb-2 group-hover:text-gold transition-colors">
