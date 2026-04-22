@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getPayload } from 'payload';
 import config from '@payload-config';
+import { RichText } from '@/components/ui/RichText';
 
 export const dynamic = 'force-dynamic';
 
@@ -54,7 +55,14 @@ export default async function BlogPostPage({ params }: Props) {
     : null;
 
   // Calculate reading time from content
-  const textContent = (post.legacyHtml as string || '').replace(/<[^>]*>/g, '');
+  function extractText(node: any): string {
+    if (node?.text) return node.text;
+    return (node?.children || []).map(extractText).join(' ');
+  }
+  const hasRichContent = post.content?.root?.children?.length;
+  const textContent = hasRichContent
+    ? extractText(post.content.root)
+    : (post.legacyHtml as string || '').replace(/<[^>]*>/g, '');
   const wordCount = textContent.split(/\s+/).filter(Boolean).length;
   const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
@@ -118,7 +126,12 @@ export default async function BlogPostPage({ params }: Props) {
             </p>
           )}
 
-          {post.legacyHtml ? (
+          {post.content?.root?.children?.length ? (
+            <RichText
+              content={post.content}
+              className="blog-body max-w-none text-text-cream/90 text-lg"
+            />
+          ) : post.legacyHtml ? (
             <div
               className="blog-body max-w-none text-text-cream/90 text-lg"
               dangerouslySetInnerHTML={{ __html: post.legacyHtml }}

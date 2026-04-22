@@ -37,6 +37,13 @@ export default async function ExperimentarPage() {
     depth: 1,
   });
 
+  const { docs: shops } = await payload.find({
+    collection: 'shops',
+    sort: 'order',
+    limit: 50,
+    depth: 1,
+  });
+
   const pageData = await payload.findGlobal({ slug: 'page-experimentar' });
   const features = (pageData.features as any)?.items || [];
 
@@ -261,6 +268,71 @@ export default async function ExperimentarPage() {
                       </div>
                     </div>
                   </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Circuito de Compras */}
+      {shops.length > 0 && (
+        <section id="compras" className="py-20 bg-bg-dark">
+          <div className="container mx-auto px-4 lg:px-8">
+            <SectionTitle
+              title="Circuito de Compras"
+              subtitle="Lojas e produtos regionais com Indicação Geográfica para você levar para casa"
+              align="center"
+            />
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {shops.map((shop: any) => {
+                const logo =
+                  typeof shop.logo === 'object' && shop.logo !== null ? shop.logo : null;
+                const logoSrc = logo?.url || (logo?.filename ? `/media/${logo.filename}` : '');
+
+                return (
+                  <a
+                    key={shop.id}
+                    href={shop.website || undefined}
+                    target={shop.website ? '_blank' : undefined}
+                    rel={shop.website ? 'noopener noreferrer' : undefined}
+                    className="group flex flex-col rounded-2xl border border-[#FFF5EC]/10 bg-[#1C1F21] overflow-hidden hover:border-[#C9A962]/40 transition-colors"
+                  >
+                    <div className="flex items-center justify-center bg-white p-8 h-[200px]">
+                      {logoSrc ? (
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={logoSrc}
+                            alt={shop.name}
+                            fill
+                            className="object-contain"
+                          />
+                        </div>
+                      ) : (
+                        <span className="text-[#131415] font-just-sans text-lg font-semibold">
+                          {shop.name}
+                        </span>
+                      )}
+                    </div>
+                    <div className="p-6 flex-1 flex flex-col">
+                      <h3 className="font-heading text-xl text-text-light mb-2">
+                        {shop.name}
+                      </h3>
+                      {shop.category && (
+                        <span className="text-gold text-xs font-medium mb-2">{shop.category}</span>
+                      )}
+                      {shop.description && (
+                        <p className="text-text-cream text-sm leading-relaxed">
+                          {shop.description}
+                        </p>
+                      )}
+                      {shop.website && (
+                        <span className="mt-auto pt-4 text-[#C9A962] text-sm font-medium group-hover:underline">
+                          Visitar site &rarr;
+                        </span>
+                      )}
+                    </div>
+                  </a>
                 );
               })}
             </div>
