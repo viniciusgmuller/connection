@@ -3,6 +3,7 @@ import Image from 'next/image';
 export interface SpeakerData {
   id: string;
   name: string;
+  role?: string | null;
   title?: string | null;
   bio?: string | null;
   photo?: { url?: string; filename?: string; alt?: string } | string | null;
@@ -66,17 +67,27 @@ export function SpeakersGrid({ speakers, tag = 'Confirmados', title = 'Palestran
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-opacity duration-300 group-hover:opacity-0" />
 
               <div className="absolute inset-x-0 bottom-0 p-4 md:p-5 transition-opacity duration-300 group-hover:opacity-0">
+                {speaker.role && (
+                  <span className="mb-1.5 inline-block rounded-full bg-[#C9A962]/20 px-2.5 py-0.5 font-just-sans text-[10px] uppercase tracking-wider text-[#C9A962]">
+                    {speaker.role}
+                  </span>
+                )}
                 <h3 className="font-heading text-lg leading-tight text-[#FFF5EC] md:text-xl lg:text-2xl">
                   {speaker.name}
                 </h3>
               </div>
 
               <div className="absolute inset-0 flex flex-col justify-end bg-black/75 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:p-5 overflow-y-auto">
+                {speaker.role && (
+                  <span className="mb-1.5 inline-block rounded-full bg-[#C9A962]/20 px-2.5 py-0.5 font-just-sans text-[10px] uppercase tracking-wider text-[#C9A962] shrink-0">
+                    {speaker.role}
+                  </span>
+                )}
                 <h3 className="mb-2 font-heading text-base leading-tight text-[#FFF5EC] md:text-xl lg:text-2xl shrink-0">
                   {speaker.name}
                 </h3>
                 {hoverText && (
-                  <p className="font-just-sans text-[11px] leading-relaxed text-[#FFF5EC]/85 md:text-sm line-clamp-[8] md:line-clamp-none">
+                  <p className="font-just-sans text-[11px] leading-relaxed text-[#FFF5EC]/85 md:text-sm line-clamp-[8]">
                     {hoverText}
                   </p>
                 )}

@@ -7,6 +7,11 @@ export const Speakers: CollectionConfig = {
   access: { read: () => true },
   fields: [
     { name: "name", type: "text", required: true, label: "Nome" },
+    { name: "role", type: "select", label: "Função", options: [
+      { label: "Palestrante", value: "palestrante" },
+      { label: "Mediadora", value: "mediadora" },
+      { label: "Mediador", value: "mediador" },
+    ], defaultValue: "palestrante" },
     { name: "title", type: "text", label: "Cargo/Título" },
     { name: "bio", type: "textarea", label: "Biografia" },
     { name: "photo", type: "upload", relationTo: "media", label: "Foto" },
