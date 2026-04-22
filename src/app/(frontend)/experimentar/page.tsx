@@ -298,20 +298,21 @@ export default async function ExperimentarPage() {
                     rel={shop.website ? 'noopener noreferrer' : undefined}
                     className="group flex flex-col rounded-2xl border border-[#FFF5EC]/10 bg-[#1C1F21] overflow-hidden hover:border-[#C9A962]/40 transition-colors"
                   >
-                    <div className="flex items-center justify-center bg-white p-8 h-[200px]">
+                    <div className="relative h-[200px] bg-bg-brown overflow-hidden">
                       {logoSrc ? (
-                        <div className="relative w-full h-full">
-                          <Image
-                            src={logoSrc}
-                            alt={shop.name}
-                            fill
-                            className="object-contain"
-                          />
-                        </div>
+                        <Image
+                          src={logoSrc}
+                          alt={shop.name}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
                       ) : (
-                        <span className="text-[#131415] font-just-sans text-lg font-semibold">
-                          {shop.name}
-                        </span>
+                        <div className="flex h-full items-center justify-center">
+                          <span className="font-just-sans text-lg font-semibold text-gold/30">
+                            {shop.name}
+                          </span>
+                        </div>
                       )}
                     </div>
                     <div className="p-6 flex-1 flex flex-col">
