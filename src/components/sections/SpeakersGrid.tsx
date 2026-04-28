@@ -77,9 +77,9 @@ export function SpeakersGrid({ speakers, tag = 'Confirmados', title = 'Palestran
                 </h3>
               </div>
 
-              <div className="absolute inset-0 flex flex-col justify-end bg-black/75 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:p-5 overflow-y-auto">
+              <div className="absolute inset-0 flex flex-col bg-black/75 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:p-5">
                 {speaker.role && (
-                  <span className="mb-1.5 inline-block rounded-full bg-[#C9A962]/20 px-2.5 py-0.5 font-just-sans text-[10px] uppercase tracking-wider text-[#C9A962] shrink-0">
+                  <span className="mb-1.5 inline-block self-start rounded-full bg-[#C9A962]/20 px-2.5 py-0.5 font-just-sans text-[10px] uppercase tracking-wider text-[#C9A962] shrink-0">
                     {speaker.role}
                   </span>
                 )}
@@ -87,7 +87,7 @@ export function SpeakersGrid({ speakers, tag = 'Confirmados', title = 'Palestran
                   {speaker.name}
                 </h3>
                 {hoverText && (
-                  <p className="font-just-sans text-[11px] leading-relaxed text-[#FFF5EC]/85 md:text-sm line-clamp-[8]">
+                  <p className="font-just-sans text-[11px] leading-relaxed text-[#FFF5EC]/85 md:text-sm overflow-y-auto pr-1 [scrollbar-width:thin] [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-[#FFF5EC]/30 [&::-webkit-scrollbar-thumb]:rounded-full">
                     {hoverText}
                   </p>
                 )}

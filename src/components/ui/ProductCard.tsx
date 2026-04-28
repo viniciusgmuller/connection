@@ -56,7 +56,7 @@ export function ProductCard({
         <p className="font-just-sans text-sm md:text-lg text-brand-white/50">
           {origin}, {state}
         </p>
-        <p className="font-just-sans text-sm md:text-lg text-brand-white line-clamp-2">
+        <p className="font-just-sans text-sm md:text-lg text-brand-white">
           {description}
         </p>
       </div>
