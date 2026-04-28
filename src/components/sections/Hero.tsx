@@ -4,30 +4,18 @@ import { useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { EventPhaseWrapper, PhaseConditional } from '@/components/shared/EventPhaseWrapper';
-import { SpeakersGrid } from './SpeakersGrid';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAPParallax } from '@/hooks/useGSAP';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface Speaker {
-  id: string;
-  name: string;
-  title?: string | null;
-  bio?: string | null;
-  photo?: { url?: string; filename?: string; alt?: string } | string | null;
-}
-
 interface HeroProps {
   siteSettings?: any;
   pageHome?: any;
-  speakers?: Speaker[];
 }
 
-export function Hero({ siteSettings, pageHome, speakers = [] }: HeroProps) {
-  const speakersTag = pageHome?.speakers?.tag || 'Confirmados';
-  const speakersTitle = pageHome?.speakers?.title || 'Palestrantes';
+export function Hero({ siteSettings, pageHome }: HeroProps) {
   const hero = pageHome?.hero;
   const event = siteSettings?.event;
   const cmsPhase = event?.phase;
@@ -127,7 +115,7 @@ export function Hero({ siteSettings, pageHome, speakers = [] }: HeroProps) {
                 preEvent={
                   <Link
                     href={preEventLink}
-                    className="inline-flex items-center justify-center flex-1 sm:flex-none sm:w-[200px] p-[15px] bg-[#FFF5EC] rounded-full font-just-sans font-semibold text-[16px] text-[#3D2E1E] text-center hover:bg-[#FFF5EC]/90 transition-colors"
+                    className="inline-flex items-center justify-center flex-1 sm:flex-none sm:min-w-[200px] py-[15px] px-[24px] bg-[#FFF5EC] rounded-full font-just-sans font-semibold text-[16px] text-[#3D2E1E] text-center whitespace-nowrap hover:bg-[#FFF5EC]/90 transition-colors"
                   >
                     {preEventText}
                   </Link>
@@ -135,7 +123,7 @@ export function Hero({ siteSettings, pageHome, speakers = [] }: HeroProps) {
                 duringEvent={
                   <Link
                     href={duringLink}
-                    className="inline-flex items-center justify-center flex-1 sm:flex-none sm:w-[200px] p-[15px] bg-[#FFF5EC] rounded-full font-just-sans font-semibold text-[16px] text-[#3D2E1E] text-center hover:bg-[#FFF5EC]/90 transition-colors"
+                    className="inline-flex items-center justify-center flex-1 sm:flex-none sm:min-w-[200px] py-[15px] px-[24px] bg-[#FFF5EC] rounded-full font-just-sans font-semibold text-[16px] text-[#3D2E1E] text-center whitespace-nowrap hover:bg-[#FFF5EC]/90 transition-colors"
                   >
                     {duringText}
                   </Link>
@@ -143,7 +131,7 @@ export function Hero({ siteSettings, pageHome, speakers = [] }: HeroProps) {
                 postEvent={
                   <Link
                     href={postLink}
-                    className="inline-flex items-center justify-center flex-1 sm:flex-none sm:w-[200px] p-[15px] bg-[#FFF5EC] rounded-full font-just-sans font-semibold text-[16px] text-[#3D2E1E] text-center hover:bg-[#FFF5EC]/90 transition-colors"
+                    className="inline-flex items-center justify-center flex-1 sm:flex-none sm:min-w-[200px] py-[15px] px-[24px] bg-[#FFF5EC] rounded-full font-just-sans font-semibold text-[16px] text-[#3D2E1E] text-center whitespace-nowrap hover:bg-[#FFF5EC]/90 transition-colors"
                   >
                     {postText}
                   </Link>
@@ -151,7 +139,7 @@ export function Hero({ siteSettings, pageHome, speakers = [] }: HeroProps) {
               />
               <Link
                 href={secondaryLink}
-                className="inline-flex items-center justify-center flex-1 sm:flex-none sm:w-[200px] p-[15px] border border-[#FFF5EC] rounded-full font-just-sans font-semibold text-[16px] text-[#FFF5EC] text-center hover:bg-[#FFF5EC]/10 transition-colors"
+                className="inline-flex items-center justify-center flex-1 sm:flex-none sm:min-w-[200px] py-[15px] px-[24px] border border-[#FFF5EC] rounded-full font-just-sans font-semibold text-[16px] text-[#FFF5EC] text-center whitespace-nowrap hover:bg-[#FFF5EC]/10 transition-colors"
               >
                 {secondaryText}
               </Link>
@@ -160,10 +148,10 @@ export function Hero({ siteSettings, pageHome, speakers = [] }: HeroProps) {
             {/* Navigation tabs */}
             <div className="flex items-start gap-2 sm:gap-[18px] w-full sm:w-auto lg:w-[510px]">
               <a
-                href="#conhecer"
+                href="#ig"
                 className="flex-1 flex items-center justify-center px-[25px] py-[10px] border-b border-[#FFF5EC] font-just-sans font-normal text-[14px] text-[#FFF5EC] text-center hover:bg-[#FFF5EC]/5 transition-colors whitespace-nowrap"
               >
-                Conhecer
+                Produtos
               </a>
               <a
                 href="#experimentar"
@@ -197,14 +185,6 @@ export function Hero({ siteSettings, pageHome, speakers = [] }: HeroProps) {
         </p>
       </div>
 
-      {/* Speakers grid */}
-      {speakers.length > 0 && (
-        <div className="relative z-10 mx-auto max-w-[1450px] px-4 md:px-5 mt-4">
-          <div className="rounded-[15px] overflow-hidden bg-[#131415] p-8 md:p-12 lg:p-16">
-            <SpeakersGrid speakers={speakers} tag={speakersTag} title={speakersTitle} />
-          </div>
-        </div>
-      )}
     </section>
   );
 }

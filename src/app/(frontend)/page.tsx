@@ -10,6 +10,7 @@ import { InfoPraticas } from '@/components/sections/InfoPraticas';
 import { Parceiros } from '@/components/sections/Parceiros';
 import { HeroVideo } from '@/components/sections/HeroVideo';
 import { EventGallery } from '@/components/sections/EventGallery';
+import { SpeakersGrid } from '@/components/sections/SpeakersGrid';
 
 export const dynamic = 'force-dynamic';
 
@@ -33,16 +34,26 @@ export default async function Home() {
     scheduleHiddenTypes: (pageProgramacao as any).hiddenTypes || [],
   };
 
+  const speakersTag = pageHomeWithSchedule?.speakers?.tag || 'Confirmados';
+  const speakersTitle = pageHomeWithSchedule?.speakers?.title || 'Palestrantes';
+
   return (
     <>
-      <Hero siteSettings={siteSettings} pageHome={pageHomeWithSchedule} speakers={speakers.docs as any} />
+      <Hero siteSettings={siteSettings} pageHome={pageHomeWithSchedule} />
       <HeroVideo videoUrl={pageHomeWithSchedule?.hero?.videoUrl} />
-      <SeloIG pageHome={pageHomeWithSchedule} />
-      <CredencialCTA pageHome={pageHomeWithSchedule} />
       <Experimentar />
+      {speakers.docs.length > 0 && (
+        <section className="bg-[#131415] px-4 md:px-5 py-16 md:py-24">
+          <div className="mx-auto max-w-[1450px] rounded-[15px] overflow-hidden bg-[#131415] p-8 md:p-12 lg:p-16">
+            <SpeakersGrid speakers={speakers.docs as any} tag={speakersTag} title={speakersTitle} />
+          </div>
+        </section>
+      )}
       <OQueEIG pageHome={pageHomeWithSchedule} />
+      <CredencialCTA pageHome={pageHomeWithSchedule} />
       <CTA pageHome={pageHomeWithSchedule} />
       <InfoPraticas siteSettings={siteSettings} pageHome={pageHomeWithSchedule} />
+      <SeloIG pageHome={pageHomeWithSchedule} />
       <EventGallery
         title={pageHomeWithSchedule?.eventGallery?.title}
         subtitle={pageHomeWithSchedule?.eventGallery?.subtitle}

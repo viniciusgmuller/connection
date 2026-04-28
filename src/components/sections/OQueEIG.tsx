@@ -14,7 +14,7 @@ export function OQueEIG({ pageHome }: OQueEIGProps) {
   const textRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeRight', distance: 50, duration: 0.8, delay: 0.3 });
 
   return (
-    <section className="bg-[#131415] px-6 py-16 md:px-[53px] md:py-24">
+    <section id="ig" className="bg-[#131415] px-6 py-16 md:px-[53px] md:py-24">
       <div
         ref={containerRef}
         className="relative mx-auto max-w-[1412px] overflow-hidden rounded-[15px] border border-[#956A47]/20 bg-[#131415] opacity-0"
