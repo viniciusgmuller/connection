@@ -40,7 +40,7 @@ const iconProps = {
 
 const navigation: NavItem[] = [
   {
-    label: 'Conhecer',
+    label: 'Produtos',
     accentColor: '#4D564D',
     featured: {
       headline: 'Descubra o universo dos Terroirs do Brasil',

@@ -1,88 +1,74 @@
 'use client';
 
-import Link from 'next/link';
 import { useGSAPScroll, useGSAPParallax } from '@/hooks/useGSAP';
+import { ModalidadesGrid } from './Modalidades';
 
 interface CTAProps { pageHome?: any; }
 export function CTA({ pageHome }: CTAProps) {
   const cms = pageHome?.ctaFinal;
-  const ctaHeadline = cms?.headline || 'Garante sua presença na maior vitrine de produtos com Indicação Geográfica do Brasil';
-  const ctaSubtitle = cms?.subtitle || 'Conheça produtos únicos certificados, conecte-se com produtores e descubra oportunidades de negócio.';
-  const cmsButtons = cms?.buttons;
+  const modalidadesCms = pageHome?.modalidades;
+  const ctaHeadline = cms?.headline || 'Como você quer viver o Connection?';
+  const ctaSubtitle = cms?.subtitle || 'Da Rua Coberta aos parques de Gramado — escolha a sua imersão na origem.';
+  const modalidadesTag = modalidadesCms?.tag || 'Modalidades';
   const contentRef = useGSAPScroll<HTMLDivElement>({ animation: 'scaleIn', duration: 1 });
-  const headlineRef = useGSAPScroll<HTMLHeadingElement>({ animation: 'fadeUp', distance: 40, duration: 0.9, delay: 0.1 });
+  const headlineRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeUp', distance: 40, duration: 0.9, delay: 0.1 });
   const subtitleRef = useGSAPScroll<HTMLParagraphElement>({ animation: 'fadeUp', distance: 30, delay: 0.3 });
-  const buttonsRef = useGSAPScroll<HTMLDivElement>({ animation: 'fadeUp', distance: 30, delay: 0.45 });
-  const leftSvgRef = useGSAPParallax<HTMLImageElement>(50);
-  const rightSvgRef = useGSAPParallax<HTMLImageElement>(35);
+  const leftSvgRef = useGSAPParallax<HTMLImageElement>(40);
+  const rightSvgRef = useGSAPParallax<HTMLImageElement>(30);
 
   return (
-    <section className="relative overflow-hidden bg-[#281b15] py-32 md:py-40 lg:py-48">
-      {/* Decorative organic SVG — upper left */}
-      <img
-        ref={leftSvgRef}
-        src="/images/cta/organic-lines-left.svg"
-        alt=""
-        aria-hidden="true"
-        className="pointer-events-none absolute h-auto max-w-none -translate-x-1/2 -translate-y-1/2"
-        style={{
-          left: 'calc(43.75% + 43px)',
-          top: 'calc(37.5% + 15px)',
-          width: '2602px',
-          height: '2002px',
-        }}
-      />
+    <section id="modalidades" className="relative overflow-hidden bg-[#281b15] py-32 md:py-40 lg:py-48">
+      {/* Decorative organic SVG — bottom left corner */}
+      <div
+        className="pointer-events-none absolute bottom-0 left-0"
+        style={{ transform: 'translateY(50%)' }}
+      >
+        <img
+          ref={leftSvgRef}
+          src="/images/cta/organic-lines-left.svg"
+          alt=""
+          aria-hidden="true"
+          className="h-auto max-w-none opacity-60"
+          style={{ width: '2602px', height: '2002px' }}
+        />
+      </div>
 
-      {/* Decorative organic SVG — lower right */}
-      <img
-        ref={rightSvgRef}
-        src="/images/cta/organic-lines-right.svg"
-        alt=""
-        aria-hidden="true"
-        className="pointer-events-none absolute h-auto max-w-none -translate-x-1/2 -translate-y-1/2"
-        style={{
-          left: 'calc(56.25% + 50px)',
-          top: 'calc(58.33% - 11px)',
-          width: '1801px',
-          height: '2424px',
-        }}
-      />
+      {/* Decorative organic SVG — bottom right corner */}
+      <div
+        className="pointer-events-none absolute bottom-0 right-0"
+        style={{ transform: 'translateY(50%)' }}
+      >
+        <img
+          ref={rightSvgRef}
+          src="/images/cta/organic-lines-right.svg"
+          alt=""
+          aria-hidden="true"
+          className="h-auto max-w-none opacity-60"
+          style={{ width: '1801px', height: '2424px' }}
+        />
+      </div>
 
-      {/* Content */}
       <div
         ref={contentRef}
-        className="relative z-10 mx-auto flex max-w-[997px] flex-col items-center gap-[75px] px-6 opacity-0"
+        className="relative z-10 mx-auto flex w-full max-w-[1330px] flex-col items-center gap-[60px] px-6 opacity-0 md:gap-[75px]"
       >
-        {/* Headline */}
-        <h2 ref={headlineRef} className="text-center font-heading text-[40px] font-normal leading-[1.02] text-[#FFF5EC] sm:text-[55px] md:text-[65px] lg:text-[78.85px] lg:leading-[80px] opacity-0">
-          {ctaHeadline}
-        </h2>
+        {/* Tag + Headline */}
+        <div ref={headlineRef} className="flex flex-col items-center gap-5 opacity-0">
+          <span className="inline-block rounded-full border border-[#C9A962]/30 bg-[#C9A962]/10 px-4 py-1.5 font-just-sans text-sm font-medium uppercase tracking-wider text-[#C9A962]">
+            {modalidadesTag}
+          </span>
+          <h2 className="max-w-[997px] text-center font-heading text-[40px] font-normal leading-[1.02] text-[#FFF5EC] sm:text-[55px] md:text-[65px] lg:text-[78.85px] lg:leading-[80px]">
+            {ctaHeadline}
+          </h2>
+        </div>
 
         {/* Subtitle */}
         <p ref={subtitleRef} className="max-w-[700px] text-center font-just-sans text-lg text-[#FFF5EC]/90 md:text-[24px] md:leading-normal opacity-0">
           {ctaSubtitle}
         </p>
 
-        {/* CTA Buttons */}
-        <div ref={buttonsRef} className="flex w-full max-w-[700px] flex-col items-center gap-[18px] sm:flex-row opacity-0">
-          {(cmsButtons && cmsButtons.length > 0) ? cmsButtons.map((btn: any, i: number) => (
-            <Link
-              key={i}
-              href={btn.link || '/ingressos'}
-              className={`flex w-full sm:w-[280px] md:w-[330px] items-center justify-center rounded-full p-[20px] font-just-sans text-lg font-semibold transition-colors md:p-[25px] md:text-[24px] ${
-                btn.variant === 'outline'
-                  ? 'border border-[#FFF5EC] text-[#FFF5EC] hover:bg-[#FFF5EC]/10'
-                  : 'bg-[#FFF5EC] text-[#3D2E1E] hover:bg-[#FFF5EC]/90'
-              }`}
-            >
-              {btn.text}
-            </Link>
-          )) : (
-            <Link href="/ingressos" className="flex w-full sm:w-[280px] md:w-[330px] items-center justify-center rounded-full bg-[#FFF5EC] p-[20px] font-just-sans text-lg font-semibold text-[#3D2E1E] transition-colors hover:bg-[#FFF5EC]/90 md:p-[25px] md:text-[24px]">
-              Garantir meu ingresso
-            </Link>
-          )}
-        </div>
+        {/* Modalidades cards */}
+        <ModalidadesGrid cards={modalidadesCms?.cards} />
       </div>
     </section>
   );

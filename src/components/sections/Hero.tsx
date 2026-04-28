@@ -32,9 +32,9 @@ export function Hero({ siteSettings, pageHome }: HeroProps) {
   const subtitle = hero?.subtitle || 'O maior evento de produtos de origem do Brasil. Quatro dias de experiências gastronômicas, culturais e de conteúdo em Gramado.';
   const videoUrl = hero?.videoUrl || '/videos/hero.mp4';
   const secondaryText = hero?.secondaryButtonText || 'Saiba mais';
-  const secondaryLink = hero?.secondaryButtonLink || '#sobre';
-  const preEventText = hero?.preEventCta?.buttonText || 'Garanta seu Ingresso';
-  const preEventLink = hero?.preEventCta?.buttonLink || '/ingressos';
+  const secondaryLink = hero?.secondaryButtonLink || '/#experimentar';
+  const preEventText = hero?.preEventCta?.buttonText || 'Adquirir Ingresso';
+  const preEventLink = hero?.preEventCta?.buttonLink || '/#modalidades';
   const duringText = hero?.duringEventCta?.buttonText || 'Confira a Programação';
   const duringLink = hero?.duringEventCta?.buttonLink || '/#programacao';
   const postText = hero?.postEventCta?.buttonText || 'Reviva a Experiência';

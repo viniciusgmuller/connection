@@ -2,7 +2,6 @@ import { getPayload } from 'payload';
 import config from '@payload-config';
 import { Hero } from '@/components/sections/Hero';
 import { SeloIG } from '@/components/sections/SeloIG';
-import { CredencialCTA } from '@/components/sections/CredencialCTA';
 import { Experimentar } from '@/components/sections/Experimentar';
 import { OQueEIG } from '@/components/sections/OQueEIG';
 import { CTA } from '@/components/sections/CTA';
@@ -11,6 +10,7 @@ import { Parceiros } from '@/components/sections/Parceiros';
 import { HeroVideo } from '@/components/sections/HeroVideo';
 import { EventGallery } from '@/components/sections/EventGallery';
 import { SpeakersGrid } from '@/components/sections/SpeakersGrid';
+import { SalesPopup } from '@/components/shared/SalesPopup';
 
 export const dynamic = 'force-dynamic';
 
@@ -40,8 +40,9 @@ export default async function Home() {
   return (
     <>
       <Hero siteSettings={siteSettings} pageHome={pageHomeWithSchedule} />
-      <HeroVideo videoUrl={pageHomeWithSchedule?.hero?.videoUrl} />
+      <HeroVideo videoUrl={pageHomeWithSchedule?.hero?.videoUrl} posterUrl={pageHomeWithSchedule?.hero?.videoPosterUrl} />
       <Experimentar />
+      <SeloIG pageHome={pageHomeWithSchedule} />
       {speakers.docs.length > 0 && (
         <section className="bg-[#131415] px-4 md:px-5 py-16 md:py-24">
           <div className="mx-auto max-w-[1450px] rounded-[15px] overflow-hidden bg-[#131415] p-8 md:p-12 lg:p-16">
@@ -50,10 +51,8 @@ export default async function Home() {
         </section>
       )}
       <OQueEIG pageHome={pageHomeWithSchedule} />
-      <CredencialCTA pageHome={pageHomeWithSchedule} />
       <CTA pageHome={pageHomeWithSchedule} />
       <InfoPraticas siteSettings={siteSettings} pageHome={pageHomeWithSchedule} />
-      <SeloIG pageHome={pageHomeWithSchedule} />
       <EventGallery
         title={pageHomeWithSchedule?.eventGallery?.title}
         subtitle={pageHomeWithSchedule?.eventGallery?.subtitle}
@@ -63,6 +62,7 @@ export default async function Home() {
         })) || []}
       />
       <Parceiros partners={partners.docs} />
+      <SalesPopup config={(pageHomeWithSchedule as any)?.salesPopup} />
     </>
   );
 }

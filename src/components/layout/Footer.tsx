@@ -8,7 +8,7 @@ const footerLinks = {
     { label: 'Hotelaria', href: '/experimentar#hotelaria' },
   ],
   eixos: [
-    { label: 'Conhecer', href: '/conhecer' },
+    { label: 'Produtos', href: '/conhecer' },
     { label: 'Experimentar', href: '/experimentar' },
   ],
   conteudo: [

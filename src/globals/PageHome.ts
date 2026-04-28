@@ -10,12 +10,13 @@ export const PageHome: GlobalConfig = {
       fields: [
         { name: "headline", type: "text", label: "Manchete", defaultValue: "Deguste, conheça e sinta os melhores produtos de origem do Brasil." },
         { name: "subtitle", type: "textarea", label: "Subtítulo", defaultValue: "O maior evento de produtos de origem do Brasil. Quatro dias de experiências gastronômicas, culturais e de conteúdo em Gramado." },
-        { name: "videoUrl", type: "text", label: "URL do Vídeo", defaultValue: "/videos/hero.mp4" },
+        { name: "videoUrl", type: "text", label: "URL do Vídeo (YouTube)", defaultValue: "https://www.youtube.com/watch?v=jNQXAC9IVRw", admin: { description: "Cole o link do YouTube (watch, youtu.be ou embed). O vídeo abre em um popup ao clicar no play." } },
+        { name: "videoPosterUrl", type: "text", label: "URL da Imagem de Capa do Vídeo", admin: { description: "Opcional. Se vazio, usa a thumbnail padrão do YouTube." } },
         { name: "secondaryButtonText", type: "text", label: "Texto Botão Secundário", defaultValue: "Saiba mais" },
-        { name: "secondaryButtonLink", type: "text", label: "Link Botão Secundário", defaultValue: "#sobre" },
+        { name: "secondaryButtonLink", type: "text", label: "Link Botão Secundário", defaultValue: "/#experimentar" },
         { type: "group", name: "preEventCta", label: "CTA Pré-evento", fields: [
-          { name: "buttonText", type: "text", label: "Texto do Botão", defaultValue: "Garanta seu Ingresso" },
-          { name: "buttonLink", type: "text", label: "Link do Botão", defaultValue: "/ingressos" },
+          { name: "buttonText", type: "text", label: "Texto do Botão", defaultValue: "Adquirir Ingresso" },
+          { name: "buttonLink", type: "text", label: "Link do Botão", defaultValue: "/#modalidades" },
         ]},
         { type: "group", name: "duringEventCta", label: "CTA Durante o Evento", fields: [
           { name: "buttonText", type: "text", label: "Texto do Botão", defaultValue: "Confira a Programação" },
@@ -72,6 +73,45 @@ export const PageHome: GlobalConfig = {
           { name: "link", type: "text", label: "Link" },
           { name: "variant", type: "select", label: "Variante", options: [{ label: "Primário", value: "primary" }, { label: "Contorno", value: "outline" }] },
         ]},
+      ],
+    },
+    {
+      type: "group", name: "modalidades", label: "Modalidades (Cards)",
+      fields: [
+        { name: "tag", type: "text", label: "Tag (pill superior)", defaultValue: "Modalidades" },
+        { name: "cards", type: "array", label: "Cards", admin: { description: "Cards das modalidades de participação. O card com 'Destacado' marcado fica elevado e recebe o badge." }, fields: [
+          { name: "tag", type: "text", label: "Tag (Acesso Livre, Experiências Guiadas, etc.)" },
+          { name: "price", type: "text", label: "Preço (Gratuito, R$ 400, Sob consulta)" },
+          { name: "priceNote", type: "text", label: "Nota do Preço (Sem ingresso, Por pessoa, etc.)" },
+          { name: "headline", type: "text", label: "Manchete" },
+          { name: "description", type: "textarea", label: "Descrição" },
+          { name: "features", type: "array", label: "Itens Inclusos", fields: [{ name: "text", type: "text", label: "Texto" }] },
+          { name: "caption", type: "text", label: "Caption (Ideal para...)" },
+          { name: "ctaText", type: "text", label: "Texto do CTA" },
+          { name: "ctaLink", type: "text", label: "Link do CTA" },
+          { name: "accent", type: "select", label: "Cor de destaque", defaultValue: "cream", options: [
+            { label: "Cream (claro)", value: "cream" },
+            { label: "Gold (dourado)", value: "gold" },
+            { label: "Brown (marrom)", value: "brown" },
+          ]},
+          { name: "highlighted", type: "checkbox", label: "Destacado (card elevado)", defaultValue: false },
+          { name: "badge", type: "text", label: "Badge (Indicado, Recomendado)", admin: { description: "Aparece no topo do card destacado." } },
+        ]},
+      ],
+    },
+    {
+      type: "group", name: "salesPopup", label: "Pop-up de Venda",
+      fields: [
+        { name: "enabled", type: "checkbox", label: "Ativado", defaultValue: true, admin: { description: "Se desabilitado, o popup nunca aparece." } },
+        { name: "tag", type: "text", label: "Tag", defaultValue: "Oferta especial" },
+        { name: "headline", type: "text", label: "Manchete", defaultValue: "Garanta sua imersão na origem." },
+        { name: "description", type: "textarea", label: "Descrição", defaultValue: "Visitação guiada pelos parques e empresas de Gramado. Vagas limitadas — escolha a sua modalidade antes que esgote." },
+        { name: "priceLabel", type: "text", label: "Texto antes do preço", defaultValue: "A partir de R$" },
+        { name: "price", type: "text", label: "Preço", defaultValue: "400" },
+        { name: "ctaText", type: "text", label: "Texto do CTA", defaultValue: "Adquirir ingresso" },
+        { name: "ctaLink", type: "text", label: "Link do CTA", defaultValue: "/#modalidades" },
+        { name: "dismissText", type: "text", label: "Texto do botão de dispensar", defaultValue: "Agora não" },
+        { name: "scrollThreshold", type: "number", label: "Pixels de scroll para abrir", defaultValue: 150, admin: { description: "Quantos pixels o usuário precisa rolar antes do popup aparecer." } },
       ],
     },
     {
