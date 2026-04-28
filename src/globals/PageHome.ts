@@ -10,7 +10,7 @@ export const PageHome: GlobalConfig = {
       fields: [
         { name: "headline", type: "text", label: "Manchete", defaultValue: "Deguste, conheça e sinta os melhores produtos de origem do Brasil." },
         { name: "subtitle", type: "textarea", label: "Subtítulo", defaultValue: "O maior evento de produtos de origem do Brasil. Quatro dias de experiências gastronômicas, culturais e de conteúdo em Gramado." },
-        { name: "videoUrl", type: "text", label: "URL do Vídeo (YouTube)", defaultValue: "https://www.youtube.com/watch?v=jNQXAC9IVRw", admin: { description: "Cole o link do YouTube (watch, youtu.be ou embed). O vídeo abre em um popup ao clicar no play." } },
+        { name: "videoUrl", type: "text", label: "URL do Vídeo (YouTube)", defaultValue: "", admin: { description: "Cole o link do YouTube (watch, youtu.be ou embed). O vídeo abre em um popup ao clicar no play. Deixe vazio para esconder a seção." } },
         { name: "videoPosterUrl", type: "text", label: "URL da Imagem de Capa do Vídeo", admin: { description: "Opcional. Se vazio, usa a thumbnail padrão do YouTube." } },
         { name: "secondaryButtonText", type: "text", label: "Texto Botão Secundário", defaultValue: "Saiba mais" },
         { name: "secondaryButtonLink", type: "text", label: "Link Botão Secundário", defaultValue: "/#experimentar" },

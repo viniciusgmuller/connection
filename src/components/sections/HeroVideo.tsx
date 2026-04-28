@@ -17,14 +17,11 @@ function getYouTubeId(url: string): string | null {
   return match ? match[1] : null;
 }
 
-const DEFAULT_VIDEO_URL = 'https://www.youtube.com/watch?v=jNQXAC9IVRw';
-
 export function HeroVideo({ videoUrl, posterUrl }: HeroVideoProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
 
-  const effectiveUrl = videoUrl && getYouTubeId(videoUrl) ? videoUrl : DEFAULT_VIDEO_URL;
-  const youtubeId = getYouTubeId(effectiveUrl);
+  const youtubeId = getYouTubeId(videoUrl || '');
   const thumbnail = posterUrl || (youtubeId ? `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg` : null);
   const embedUrl = youtubeId ? `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1` : null;
 
