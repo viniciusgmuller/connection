@@ -140,16 +140,15 @@ export default async function ExperimentarPage() {
                     rel={exp.website ? 'noopener noreferrer' : undefined}
                     className="group flex flex-col rounded-2xl border border-[#FFF5EC]/10 bg-[#1C1F21] overflow-hidden hover:border-[#C9A962]/40 transition-colors"
                   >
-                    <div className="flex items-center justify-center bg-white p-8 h-[200px]">
+                    <div className="relative flex items-center justify-center bg-bg-cream p-6 h-[200px] overflow-hidden">
                       {logoSrc ? (
-                        <div className="relative w-full h-full">
-                          <Image
-                            src={logoSrc}
-                            alt={exp.name}
-                            fill
-                            className="object-contain"
-                          />
-                        </div>
+                        <Image
+                          src={logoSrc}
+                          alt={exp.name}
+                          fill
+                          className="object-contain p-4"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
                       ) : (
                         <span className="text-[#131415] font-just-sans text-lg font-semibold">
                           {exp.name}
