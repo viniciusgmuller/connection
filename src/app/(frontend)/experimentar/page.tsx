@@ -280,7 +280,7 @@ export default async function ExperimentarPage() {
           <div className="container mx-auto px-4 lg:px-8">
             <SectionTitle
               title="Circuito de Compras"
-              subtitle="Lojas e produtos regionais com Indicação Geográfica para você levar para casa"
+              subtitle="Descubra a produção local e aproveite benefícios exclusivos em lojas selecionadas."
               align="center"
             />
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
